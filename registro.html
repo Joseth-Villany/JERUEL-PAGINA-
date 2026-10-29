@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta - Jeruel Velas Corporales Artesanales</title>
+  <link rel="stylesheet" href="../css/registroStyle.css">
+  <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL TARJETA VERTICAL DE REGISTRO -->
+  <main class="contenedor-registro">
+
+    <!-- SECCIÓN ÚNICA DEL FORMULARIO DE CREAR CUENTA -->
+    <section class="seccion-formulario-registro">
+      <!-- ENCABEZADO DE LA INTERFAZ -->
+      <header class="encabezado-formulario">
+        <h1 class="titulo-formulario">CREAR CUENTA</h1>
+        <p class="instruccion-formulario">Ingresa tus datos para registrarte en Jeruel Velas Corporales</p>
+      </header>
+
+      <!-- FORMULARIO DE REGISTRO -->
+      <form class="formulario-acceso" action="#" method="POST">
+        
+        <!-- NOMBRES Y APELLIDOS (AGRUPACIÓN SEMÁNTICA CON FIELDSET) -->
+        <fieldset class="contenedor-doble-campo">
+          <legend class="leyenda-oculta">Información Personal</legend>
+          
+          <article class="grupo-campo">
+            <label class="etiqueta-campo" for="nombre-usuario">Nombres *</label>
+            <p class="contenedor-input-icono">
+              <input 
+                type="text" 
+                id="nombre-usuario" 
+                name="nombres" 
+                class="campo-texto" 
+                placeholder="Ej. David" 
+                required
+              >
+            </p>
+          </article>
+
+          <article class="grupo-campo">
+            <label class="etiqueta-campo" for="apellido-usuario">Apellidos *</label>
+            <p class="contenedor-input-icono">
+              <input 
+                type="text" 
+                id="apellido-usuario" 
+                name="apellidos" 
+                class="campo-texto" 
+                placeholder="Ej. Sáenz" 
+                required
+              >
+            </p>
+          </article>
+        </fieldset>
+
+        <!-- CAMPO: CORREO ELECTRÓNICO -->
+        <article class="grupo-campo">
+          <label class="etiqueta-campo" for="correo-registro">Correo electrónico *</label>
+          <p class="contenedor-input-icono">
+            <input 
+              type="email" 
+              id="correo-registro" 
+              name="correo" 
+              class="campo-texto" 
+              placeholder="ejemplo@correo.com" 
+              required
+            >
+            <i class="icono-campo">
+              <!-- Ícono de Sobre / Correo -->
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </i>
+          </p>
+        </article>
+
+        <!-- CAMPO: CONTRASEÑA -->
+        <article class="grupo-campo">
+          <label class="etiqueta-campo" for="clave-registro">Contraseña *</label>
+          <p class="contenedor-input-icono">
+            <input 
+              type="password" 
+              id="clave-registro" 
+              name="clave" 
+              class="campo-texto" 
+              placeholder="••••••••••••" 
+              required
+            >
+            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </p>
+        </article>
+
+        <!-- CAMPO: CONFIRMAR CONTRASEÑA -->
+        <article class="grupo-campo">
+          <label class="etiqueta-campo" for="clave-confirmacion">Confirmar contraseña *</label>
+          <p class="contenedor-input-icono">
+            <input 
+              type="password" 
+              id="clave-confirmacion" 
+              name="confirmar_clave" 
+              class="campo-texto" 
+              placeholder="••••••••••••" 
+              required
+            >
+            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </p>
+        </article>
+
+        <!-- BOTÓN DE ENVIAR / REGISTRO -->
+        <a href="homeScreen.html" class="boton-iniciar-sesion">
+          CREAR CUENTA
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </form>
+
+      <hr class="linea-divisora-inferior">
+
+      <!-- PIE CON ENLACE A INICIO DE SESIÓN -->
+      <footer class="pie-formulario">
+        <p>¿Tienes una cuenta? <a href="index.html" class="enlace-registro">Inicia Sesión</a></p>
+      </footer>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

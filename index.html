@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar Sesión - Jeruel Velas Corporales Artesanales</title>
+  <link rel="stylesheet" href="css/indexStyle.css">
+  <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL DE LA PÁGINA -->
+  <main class="contenedor-inicio-sesion">
+
+    <!-- SECCIÓN 1: MARCA E IDENTIDAD (PANEL IZQUIERDO) -->
+    <section class="seccion-marca">
+      <figure class="contenedor-logo-emblema">
+          <!-- Ícono de Llama / Vela -->
+        <img src="../img/Velas artesanales bajo luz cálida (2).png" alt="">
+      </figure>
+    </section>
+
+    <!-- SECCIÓN 2: FORMULARIO DE INICIO DE SESIÓN (PANEL DERECHO) -->
+    <section class="seccion-formulario">
+      <header class="encabezado-formulario">
+        <h2 class="titulo-formulario">INICIA SESIÓN</h2>
+        <p class="instruccion-formulario">Ingresa con tus credenciales para acceder</p>
+      </header>
+
+      <form class="formulario-acceso" action="#" method="POST">
+        
+        <!-- CAMPO 1: CORREO O USUARIO -->
+        <article class="grupo-campo">
+          <label class="etiqueta-campo" for="identificador-usuario">Correo electrónico o nombre de usuario</label>
+          <p class="contenedor-input-icono">
+            <input 
+              type="text" 
+              id="identificador-usuario" 
+              name="usuario_o_correo" 
+              class="campo-texto" 
+              placeholder="ej: juanVelasco23@gmail.com" 
+              required
+            >
+            <!-- Ícono de Usuario -->
+            <i class="icono-campo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </i>
+          </p>
+        </article>
+
+        <!-- CAMPO 2: CONTRASEÑA -->
+        <article class="grupo-campo2">
+          <label class="etiqueta-campo" for="clave-acceso">Contraseña</label>
+          <p class="contenedor-input-icono">
+            <input 
+              type="password" 
+              id="clave-acceso" 
+              name="clave" 
+              class="campo-texto" 
+              placeholder="••••••••••••" 
+              required
+            >
+            <!-- Botón del Ojo para Mostrar Contraseña -->
+            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </p>
+        </article>
+
+        <!-- BOTÓN DE ENVIAR -->
+          <a href="homeScreen.html" class="boton-iniciar-sesion">
+            INICIAR SESIÓN
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+          </a>
+      </form>
+
+      <hr class="linea-divisora-inferior">
+
+      <!-- PIE CON ENLACE DE REGISTRO -->
+      <footer class="pie-formulario">
+        <p>¿No tienes cuenta? <a href="../registro.html" class="enlace-registro">Únete a nuestra familia</a></p>
+      </footer>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

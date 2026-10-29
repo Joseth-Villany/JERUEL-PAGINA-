@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Perfil - Jeruel Velas Corporales Artesanales</title>
+  <link rel="stylesheet" href="CSS/perfilStyle.css">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- CONTENEDOR PRINCIPAL DEL PERFIL CON AMPLIACIÓN DE ESCALA -->
+  <main class="contenedor-panel-perfil">
+
+    <!-- BARRA LATERAL (IZQUIERDA): GESTIÓN DE AVATAR Y NAVEGACIÓN -->
+    <aside class="columna-lateral-perfil">
+
+      <!-- TARJETA 1: FOTO Y ESTADO DE CUENTA -->
+      <section class="tarjeta-avatar-usuario">
+        <mark class="insignia-estado-cuenta">ESTADO: CUENTA ACTIVA</mark>
+
+        <figure class="contenedor-avatar-principal">
+          <img class="imagen" src="/img/favicon.png" alt="">
+          <button type="button" class="boton-subir-camara" aria-label="Cambiar foto de perfil">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+              <circle cx="12" cy="13" r="4"></circle>
+            </svg>
+          </button>
+        </figure>
+
+        <h2 class="subtitulo-gestion-avatar">GESTIÓN DE AVATAR & FOTO DE PERFIL</h2>
+
+        <nav class="menu-acciones-avatar">
+          <button type="button" class="boton-accion-secundario">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            CAMBIAR FOTO / SUBIR ARCHIVO
+          </button>
+
+          <menu class="grupo-botones-paralelos">
+            <li>
+              <button type="button" class="boton-accion-micro">ELEGIR AVATAR</button>
+            </li>
+            <li>
+              <button type="button" class="boton-accion-micro-peligro">ELIMINAR FOTO</button>
+            </li>
+          </menu>
+        </nav>
+      </section>
+
+      <!-- TARJETA 2: CONFIGURACIONES Y MUESTRAS DE NAVEGACIÓN -->
+      <section class="tarjeta-navegacion-adicional">
+        <header class="encabezado-subtarjeta">
+          <h3 class="titulo-subtarjeta">CONFIGURACIONES</h3>
+        </header>
+
+        <nav class="lista-accesos-directos">
+
+          <!-- OPCIÓN CON ENGRANAJE: DATOS DE ENVÍO Y PAGO -->
+          <a href="#" class="enlace-opcion-modulo enlace-configuraciones-destacado">
+            <i class="icono-opcion-modulo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </i>
+            <hgroup class="texto-opcion-modulo">
+              <h4>ENVÍOS Y MEDIOS DE PAGO</h4>
+              <p>Direcciones, tarjetas y facturación</p>
+            </hgroup>
+            <strong class="flecha-indicadora">&rsaquo;</strong>
+          </a>
+
+          <!-- HISTORIAL DE PEDIDOS -->
+          
+
+          <!-- VELAS FAVORITAS -->
+          <a href="#" class="enlace-opcion-modulo">
+            <i class="icono-opcion-modulo icono-corazon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </i>
+            <hgroup class="texto-opcion-modulo">
+              <h4>VELAS FAVORITAS</h4>
+              <p>Lista de deseos y guardados</p>
+            </hgroup>
+            <strong class="flecha-indicadora">&rsaquo;</strong>
+          </a>
+
+          <!-- VOLVER A INTERFAZ INICIAL -->
+          <a href="homeScreen.html" class="enlace-opcion-modulo enlace-volver-inicio">
+            <i class="icono-opcion-modulo">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </i>
+            <hgroup class="texto-opcion-modulo">
+              <h4>VOLVER AL CATALOGO</h4>
+              <p>Volver a la tienda principal</p>
+            </hgroup>
+            <strong class="flecha-indicadora">&rsaquo;</strong>
+          </a>
+
+        </nav>
+      </section>
+
+    </aside>
+
+    <!-- ÁREA PRINCIPAL (DERECHA): INFORMACIÓN Y ACCIONES -->
+    <section class="columna-principal-perfil">
+
+      <!-- BLOQUE 1: INFORMACIÓN Y DATOS BÁSICOS -->
+      <article class="tarjeta-seccion-contenido">
+        <header class="encabezado-bloque-datos">
+          <h2 class="titulo-bloque-datos">1. INFORMACIÓN Y DATOS BÁSICOS</h2>
+          <menu class="grupo-acciones-cabecera-principal">
+          <li>
+            <button type="button" class="boton-editar-datos-basicos">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+              </svg>
+              EDITAR DATOS
+            </button>
+          </li>
+        </menu>
+        </header>
+
+        <section class="rejilla-datos-usuario">
+          <fieldset class="fila-dos-campos">
+            <legend class="leyenda-oculta">Nombre y Usuario</legend>
+
+            <article class="campo-dato-lectura">
+              <label class="etiqueta-campo-lectura">NOMBRE COMPLETO:</label>
+              <output class="caja-valor-lectura">David Sáenz</output>
+            </article>
+
+            <article class="campo-dato-lectura">
+              <label class="etiqueta-campo-lectura">ALIAS / NOMBRE DE USUARIO:</label>
+              <output class="caja-valor-lectura">@david_s</output>
+            </article>
+          </fieldset>
+
+          <article class="campo-dato-lectura">
+            <label class="etiqueta-campo-lectura">CORREO ELECTRÓNICO REGISTRADO:</label>
+            <p class="contenedor-valor-verificado">
+              <output class="caja-valor-lectura">davidS_06@ejemplo.com</output>
+              <mark class="insignia-verificado">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                VERIFICADO
+              </mark>
+            </p>
+          </article>
+
+          <fieldset class="fila-dos-campos">
+            <legend class="leyenda-oculta">Teléfono y Fecha de Nacimiento</legend>
+
+            <article class="campo-dato-lectura">
+              <label class="etiqueta-campo-lectura">TELÉFONO / WHATSAPP:</label>
+              <output class="caja-valor-lectura">+57 310 987 6543</output>
+            </article>
+
+            <article class="campo-dato-lectura">
+              <label class="etiqueta-campo-lectura">FECHA NACIMIENTO / CUMPLEAÑOS:</label>
+              <output class="caja-valor-lectura">24/08/1995</output>
+            </article>
+          </fieldset>
+
+        </section>
+      </article>
+
+      <!-- BLOQUE 2: ACCESOS DIRECTOS DE COMPRAS Y PEDIDOS -->
+      <article class="tarjeta-seccion-contenido">
+        <header class="encabezado-bloque-datos">
+          <h2 class="titulo-bloque-datos">2. GESTIÓN Y SEGUIMIENTO DE COMPRAS</h2>
+        </header>
+
+        <nav class="contenedor-botones-pedidos">
+          <button type="button" class="boton-acceso-pedidos">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            MIS PEDIDOS ACTIVOS
+          </button>
+
+          <button type="button" class="boton-acceso-pedidos-secundario">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            VER HISTORIAL COMPLETO DE PEDIDOS
+          </button>
+        </nav>
+      </article>
+
+      <!-- FOOTER DE LA INTERFAZ CON OPCIONES DE SESIÓN -->
+      <footer class="pie-pagina-panel-perfil">
+        <menu class="contenedor-acciones-sesion-footer">
+          <li>
+            <a href="#" class="enlace-accion-footer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="8.5" cy="7" r="4"></circle>
+                <polyline points="17 11 19 13 23 9"></polyline>
+              </svg>
+              CAMBIAR DE PERFIL
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="enlace-accion-footer enlace-cerrar-sesion-destacado">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+              </svg>
+              CERRAR SESIÓN
+            </a>
+          </li>
+        </menu>
+      </footer>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

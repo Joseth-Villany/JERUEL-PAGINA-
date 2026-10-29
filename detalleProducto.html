@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vela Corporal Lavanda Relajante - Jeruel</title>
+  <link rel="stylesheet" href="../css/productoStyle.css">
+  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+</head>
+<body>
+
+  <!-- CABECERA DE NAVEGACIÓN -->
+  <header class="encabezado-producto-app">
+    <a href="homeScreen.html" class="enlace-volver-tienda">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      Volver al Catálogo
+    </a>
+
+    <h1 class="logo-marca-cinzel">JERUEL</h1>
+
+    <menu class="acciones-rapidas-header">
+      <li>
+        <a href="perfil.html" aria-label="Mi Perfil">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </a>
+      </li>
+    </menu>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL DEL DETALLE DE PRODUCTO -->
+  <main class="contenedor-detalle-producto">
+
+    <!-- SECCIÓN IZQUIERDA: GALERÍA VISUAL DEL PRODUCTO -->
+    <section class="seccion-galeria-producto">
+      <figure class="contenedor-imagen-principal">
+        <mark class="insignia-producto-destacado">100% Orgánica</mark>
+        <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela Corporal Artesanal de Lavanda en envase de vidrio con luz cálida">
+      </figure>
+
+      <!-- MINIATURAS DE MUESTRA -->
+      <nav class="galeria-miniaturas-producto">
+        <button type="button" class="miniatura-item miniatura-activa">
+          <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vista frontal vela">
+        </button>
+        <button type="button" class="miniatura-item">
+          <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Textura de cera tibia">
+        </button>
+      </nav>
+    </section>
+
+    <!-- SECCIÓN DERECHA: INFORMACIÓN Y ACCIONES DE COMPRA -->
+    <section class="seccion-informacion-compra">
+      
+      <header class="encabezado-titulo-producto">
+        <mark class="etiqueta-categoria-botanica">Cera de Soya & Manteca de Karité</mark>
+        <h2 class="nombre-producto-destacado">Vela Corporal Lavanda Relajante</h2>
+        <p class="slogan-sensorial-manuscrito">Inspirado en el amor que ilumina nuestras vidas</p>
+      </header>
+
+      <p class="precio-y-disponibilidad">
+        <data value="42000" class="monto-precio-producto">$42.000 COP</data>
+        <mark class="insignia-disponibilidad-stock">En Stock / Envío Inmediato</mark>
+      </p>
+
+      <p class="descripcion-breve-producto">
+        Vela corporal artesanal formulada a baja temperatura de fusión. Al derretirse se transforma en un aceite tibio cosmético rico en vitamina E y aceites esenciales, ideal para hidratar la piel seca y realizar masajes relajantes.
+      </p>
+
+      <!-- FORMULARIO DE COMPRA Y CANTIDADES -->
+      <form class="formulario-seleccion-compra" action="#" method="POST">
+        
+        <fieldset class="grupo-control-cantidad">
+          <legend class="etiqueta-control">Cantidad:</legend>
+          <p class="selector-cantidad-num">
+            <button type="button" class="boton-step-cantidad">-</button>
+            <input type="number" name="cantidad" value="1" min="1" max="10" class="input-cantidad-num">
+            <button type="button" class="boton-step-cantidad">+</button>
+          </p>
+        </fieldset>
+
+        <menu class="acciones-compra-rapida">
+          <li>
+            <button type="submit" class="boton-agregar-carrito-principal">
+              AGREGAR AL CARRITO
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="boton-favorito-destacado" title="Guardar en favoritos" aria-label="Guardar en favoritos">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </button>
+          </li>
+        </menu>
+
+      </form>
+
+      <!-- COMPONENTES DE INFORMACIÓN DESPLEGABLE (ACORDEÓN SIMPLE) -->
+      <section class="acordeon-detalles-tecnicos">
+        
+        <details open class="item-acordeon-desplegable">
+          <summary class="titulo-acordeon">Modo de Uso Cosmético & Masajes</summary>
+          <p class="contenido-acordeon">
+            Enciende la vela durante 10 a 15 minutos hasta que se forme una capa tibia de aceite. Apaga la llama, vierte suavemente una pequeña cantidad sobre la palma de tu mano o la piel y realiza masajes circulares.
+          </p>
+        </details>
+
+        <details class="item-acordeon-desplegable">
+          <summary class="titulo-acordeon">Ingredientes 100% Naturales</summary>
+          <p class="contenido-acordeon">
+            Cera de soya botánica no transgénica, manteca de karité, manteca de cacao pura, aceite esencial concentrado de lavanda y pabilo de algodón ecológico sin plomo.
+          </p>
+        </details>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA SIMPLE -->
+  <footer class="pie-pagina-producto-simple">
+    <p>&copy; 2026 Jeruel Velas Corporales Artesanales. Elaborado a mano con cuidado cosmético.</p>
+  </footer>
+
+</body>
+</html>

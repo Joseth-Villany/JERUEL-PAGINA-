@@ -1,0 +1,318 @@
+/* ==========================================================================
+   1. VARIABLES Y TIPOGRAFÍAS OFICIALES (JERUEL)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-principal: #441E1E;            /* Vinotinto / Tinto Oscuro */
+  --color-fondo-principal: #FFF1EA;      /* Blanco Crema / Marfil */
+  --color-fondo-tarjeta: #FFFFFF;        /* Blanco Puro */
+  --color-texto-principal: #441E1E;      /* Vinotinto Oscuro */
+  --color-texto-secundario: #654A47;     /* Café / Marrón Cálido */
+  --color-texto-atenuado: #A08C8A;        /* Grisáceo / Placeholder */
+  --color-acento-dorado: #C9A16E;        /* Dorado Claro / Hover */
+  --color-borde-campo: #441E1E;         /* Vinotinto para Contornos */
+  --color-halo-dorado: #FBEEDC;
+  --fuente-principal: 'Montserrat', sans-serif;
+  --fuente-marca: 'Cinzel', serif;
+  --fuente-manuscrita: 'Great Vibes', cursive;
+}
+
+/* RESETEO UNIVERSAL CORREGIDO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fuente-principal);
+}
+
+/* ==========================================================================
+   2. LIENZO Y FONDO DE LA PÁGINA (BODY)
+   ========================================================================== */
+body {
+  position: relative;
+  isolation: isolate;
+  background-color: #F0E5D8;
+  color: var(--color-texto-secundario);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+/* Efecto de Fondo Difuminado Cálido */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20px;
+  z-index: -2;
+  background-image: url("../img/fondo-body.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(0.4rem);
+  transform: scale(1.03);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255, 241, 234, 0.65);
+  pointer-events: none;
+  justify-content: center;
+}
+figure img{
+  border: 3px solid red;
+}
+
+/* ==========================================================================
+   3. CONTENEDOR PRINCIPAL TARJETA REGISTRO
+   ========================================================================== */
+main.contenedor-registro {
+  background-color: var(--color-fondo-tarjeta);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 40rem;
+  max-height: 100rem;
+  height: 45rem;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(68, 30, 30, 0.12);
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+}
+
+section.seccion-formulario-registro {
+  width: 100%;
+  padding: 2.2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-fondo-tarjeta);
+  
+}
+
+/* ==========================================================================
+   5. ENCABEZADOS Y TITULARES
+   ========================================================================== */
+header.encabezado-formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.4rem;
+  
+  
+}
+
+header.encabezado-formulario h1.titulo-formulario {
+  color: var(--color-principal);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  margin: 0;
+  
+}
+
+header.encabezado-formulario p.instruccion-formulario {
+  color: var(--color-texto-secundario);
+  font-size: 0.88rem;
+  margin-top: 0.80rem;  
+}
+
+/* ==========================================================================
+   6. ESTRUCTURA Y CAMPOS DEL FORMULARIO
+   ========================================================================== */
+form.formulario-acceso {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  padding: 1rem 0 0.4rem 0;
+  width: 100%;
+  margin-top: 2rem;
+  
+}
+
+/* Fieldset Semántico para los Campos Dobles (Nombres y Apellidos) */
+fieldset.contenedor-doble-campo {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.8rem;
+  width: 100%;
+
+}
+
+.leyenda-oculta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+ 
+}
+
+.contenedor-doble-campo article.grupo-campo {
+  flex: 1;
+}
+
+article.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  
+}
+
+label.etiqueta-campo {
+  color: var(--color-principal);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+p.contenedor-input-icono {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input.campo-texto {
+  width: 100%;
+  padding: 0.85rem 2.5rem 0.85rem 1rem;
+  border: 2px solid var(--color-borde-campo);
+  border-radius: 25px;
+  font-size: 0.88rem;
+  color: var(--color-texto-principal);
+  background-color: var(--color-fondo-tarjeta);
+  outline: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+input.campo-texto:focus {
+  border-color: var(--color-acento-dorado);
+  box-shadow: 0 0 0 3px rgba(68, 30, 30, 0.1);
+  transform: scale(1.015);
+}
+
+input.campo-texto::placeholder {
+  color: var(--color-texto-atenuado);
+}
+
+i.icono-campo, 
+button.boton-mostrar-contrasena {
+  position: absolute;
+  right: 0.9rem;
+  background: none;
+  border: none;
+  color: var(--color-principal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-style: normal;
+}
+
+/* ==========================================================================
+   7. BOTÓN PRINCIPAL Y ENLACES (EFECTO HOVER SCALE)
+   ========================================================================== */
+a.boton-iniciar-sesion {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 25px;
+  padding: 1.05rem 0;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
+  padding: 1.1rem 1rem 1.1rem 1rem;
+}
+
+a.boton-iniciar-sesion:hover {
+  background-color: #2F1414;
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(68, 30, 30, 0.25);
+  color: var(--color-fondo-principal);
+}
+
+a.boton-iniciar-sesion:active {
+  transform: scale(0.99);
+}
+
+hr.linea-divisora-inferior {
+  border: none;
+  height: 1px;
+  background-color: #EFE6E2;
+  margin: 1.1rem 0 0.8rem 0;
+  width: 100%;
+}
+
+footer.pie-formulario {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--color-texto-secundario);
+}
+
+a.enlace-registro {
+  color: var(--color-acento-dorado);
+  font-weight: 700;
+  text-decoration: underline;
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+
+a.enlace-registro:hover {
+  color: var(--color-principal);
+  transform: scale(1.03);
+}
+
+/* ==========================================================================
+   8. ADAPTABILIDAD RESPONSIVA (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 520px) {
+  body {
+    padding: 1rem;
+  }
+
+  main.contenedor-registro {
+    border-radius: 1rem;
+    padding: 0;
+  }
+
+  section.seccion-formulario-registro {
+    padding: 1.8rem 1.25rem;
+  }
+
+  fieldset.contenedor-doble-campo {
+    flex-direction: column;
+    gap: 0.95rem;
+  }
+
+  header.encabezado-formulario h1.titulo-formulario {
+    font-size: 1.45rem;
+  }
+}

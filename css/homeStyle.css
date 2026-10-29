@@ -1,0 +1,721 @@
+/* ==========================================================================
+   1. VARIABLES, TIPOGRAFÍAS Y DEGRADADO CORPORATIVO EN BODY (JERUEL)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-principal: #441E1E;            /* Vinotinto / Tinto Oscuro */
+  --color-fondo-crema: #FFF1EA;          /* Blanco Crema / Marfil */
+  --color-fondo-suave: #F0E5D8;          /* Crema Cálido */
+  --color-fondo-tarjeta: #FFFFFF;        /* Blanco Puro */
+  --color-texto-principal: #441E1E;      /* Vinotinto Oscuro */
+  --color-texto-secundario: #654A47;     /* Café / Marrón Cálido */
+  --color-texto-atenuado: #A08C8A;        /* Grisáceo / Placeholder */
+  --color-acento-dorado: #C9A16E;        /* Dorado Claro */
+  --color-verde-oliva: #8B8468;          /* Verde Botánico */
+  --color-palo-rosa: #925C5D;            /* Acento Rosa */
+  --color-borde-suave: #EFE6E2;          /* Contorno Suave */
+
+  --fuente-principal: 'Montserrat', sans-serif;
+  --fuente-marca: 'Cinzel', serif;
+  --fuente-manuscrita: 'Great Vibes', cursive;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* RESETEO UNIVERSAL ESTRICTO */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--fuente-principal);
+}
+
+/* DEGRADADO RADIAL Y LINEAL COMBINADO EN EL BODY */
+body {
+  min-height: 100vh;
+  color: var(--color-texto-secundario);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* Background con degradado corporativo elegante usando la paleta oficial */
+  background: radial-gradient(
+    circle at 50% 10%, 
+    #FFF1EA 0%, 
+    #F0E5D8 50%, 
+    #E8D8CA 80%,
+    rgba(68, 30, 30, 0.15) 100%
+  );
+  background-attachment: fixed;
+}
+
+.leyenda-oculta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* ==========================================================================
+   2. CABECERA PRINCIPAL Y BARRA DE NAVEGACIÓN (HEADER)
+   ========================================================================== */
+header.encabezado-principal-sitio {
+  position: fixed;
+  top: 0;                  
+  left: 0;                  
+  width: 100%;
+  z-index: 1000;           
+  padding: 1.2rem 2.2rem;
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid var(--color-acento-dorado);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 10px 25px rgba(68, 30, 30, 0.08);
+}
+
+figure.contenedor-branding-logo {
+  display: flex;
+  flex-direction: column;
+}
+
+h1.logo-marca-cinzel {
+  font-family: var(--fuente-marca);
+  color: var(--color-principal);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 0.25rem;
+  line-height: 1;
+}
+
+p.subtexto-marca-eslogan {
+  font-size: 0.65rem;
+  color: var(--color-texto-secundario);
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+form.formulario-busqueda-global {
+  flex: 1;
+  max-width: 26rem;
+}
+
+p.contenedor-input-busqueda {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input.campo-busqueda-header {
+  width: 100%;
+  padding: 0.75rem 2.8rem 0.75rem 1.2rem;
+  border: 1.5px solid var(--color-borde-suave);
+  border-radius: 25px;
+  font-size: 0.82rem;
+  color: var(--color-texto-principal);
+  background-color: var(--color-fondo-crema);
+  outline: none;
+  transition: transform 0.25s ease, border-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+input.campo-busqueda-header:focus {
+  border-color: var(--color-acento-dorado);
+  box-shadow: 0 0 0 3px rgba(68, 30, 30, 0.08);
+  transform: scale(1.015);
+}
+
+button.boton-ejecutar-busqueda {
+  position: absolute;
+  right: 0.8rem;
+  background: none;
+  border: none;
+  color: var(--color-principal);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+nav.navegacion-principal-app {
+  display: flex;
+}
+
+menu.lista-enlaces-menu {
+  list-style: none;
+  display: flex;
+  gap: 1.8rem;
+}
+
+menu.lista-enlaces-menu a {
+  text-decoration: none;
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04rem;
+  transition: color 0.2s ease, transform 0.25s ease;
+  display: inline-block;
+}
+
+menu.lista-enlaces-menu a:hover,
+menu.lista-enlaces-menu a.enlace-menu-activo {
+  color: var(--color-principal);
+  transform: scale(1.05);
+}
+
+menu.grupo-acciones-usuario {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+a.boton-icono-header {
+  position: relative;
+  background-color: var(--color-fondo-crema);
+  color: var(--color-principal);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+a.boton-icono-header:hover {
+  transform: scale(1.08);
+  background-color: #FFFFFF;
+}
+
+mark.contador-items-carrito {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 800;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   3. CONTENEDOR PRINCIPAL HOME
+   ========================================================================== */
+main.contenedor-principal-home {
+  width: 100%;
+  max-width: 92rem;
+  padding: 25px 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin: 7rem auto 0 auto;
+}
+
+/* HERO BANNER */
+section.seccion-hero-promocional {
+  background-color: var(--color-fondo-tarjeta);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: center;
+  gap: 2.5rem;
+  box-shadow: 0 12px 30px rgba(68, 30, 30, 0.08);
+}
+
+article.tarjeta-hero-bienvenida {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+p.frase-emocional-manuscrita {
+  font-family: var(--fuente-manuscrita);
+  color: var(--color-palo-rosa);
+  font-size: 2rem;
+  line-height: 1;
+}
+
+h2.titulo-hero-principal {
+  color: var(--color-principal);
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  line-height: 1.2;
+}
+
+p.descripcion-hero {
+  color: var(--color-texto-secundario);
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+menu.grupo-botones-hero {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+a.boton-principal-hero {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  padding: 1rem 1.8rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.25s ease;
+}
+
+a.boton-principal-hero:hover {
+  transform: scale(1.03);
+  background-color: #2F1414;
+  box-shadow: 0 8px 20px rgba(68, 30, 30, 0.25);
+}
+
+a.boton-secundario-hero {
+  background-color: var(--color-fondo-crema);
+  color: var(--color-principal);
+  border: 1.5px solid var(--color-principal);
+  padding: 1rem 1.8rem;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08rem;
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.2s ease;
+}
+
+a.boton-secundario-hero:hover {
+  transform: scale(1.03);
+  border-color: var(--color-acento-dorado);
+}
+
+figure.figura-imagen-hero {
+  width: 100%;
+  height: 360px;
+  border-radius: 1.2rem;
+  overflow: hidden;
+  border: 2px solid var(--color-acento-dorado);
+}
+
+img.imagen-destacada-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   4. FILTROS Y CATEGORÍAS
+   ========================================================================== */
+header.encabezado-seccion-catalogo {
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+h2.titulo-seccion-general {
+  color: var(--color-principal);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+p.subtitulo-seccion-general {
+  color: var(--color-texto-secundario);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+nav.barra-categorias-productos {
+  display: flex;
+  justify-content: center;
+}
+
+menu.lista-botones-categorias {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+button.boton-categoria-item {
+  background-color: var(--color-fondo-tarjeta);
+  color: var(--color-texto-secundario);
+  border: 1.5px solid var(--color-borde-suave);
+  border-radius: 20px;
+  padding: 0.75rem 1.4rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+button.boton-categoria-item:hover,
+button.boton-categoria-item.categoria-activa {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  border-color: var(--color-principal);
+  transform: scale(1.03);
+}
+article.conector-catalogo{
+  padding: 2rem;
+}
+
+/* ==========================================================================
+   5. GRID DE PRODUCTOS (TARJETAS VELAS)
+   ========================================================================== */
+section.seccion-grid-productos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 1rem;
+}
+a{
+  text-decoration: none;
+}
+
+article.tarjeta-producto-vela {
+  flex: 1; 
+  background-color: var(--color-fondo-tarjeta);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 1.35rem;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 0 10px 22px rgba(68, 30, 30, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  height: 100%;
+}
+
+article.tarjeta-producto-vela:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(68, 30, 30, 0.12);
+}
+
+figure.contenedor-foto-producto {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--color-borde-suave);
+}
+
+figure.contenedor-foto-producto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+mark.insignia-producto-destacado,
+mark.insignia-producto-nuevo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+mark.insignia-producto-destacado {
+  background-color: var(--color-principal);
+}
+
+mark.insignia-producto-nuevo {
+  background-color: var(--color-verde-oliva);
+}
+
+button.boton-favorito-producto {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--color-palo-rosa);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s ease;
+}
+
+button.boton-favorito-producto:hover {
+  transform: scale(1.15);
+}
+
+mark.etiqueta-ingrediente-botanico {
+  background-color: var(--color-fondo-crema);
+  color: var(--color-verde-oliva);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+
+h3.nombre-producto-vela {
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+p.descripcion-corta-producto {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+footer.pie-tarjeta-producto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-borde-suave);
+}
+
+data.precio-producto {
+  color: var(--color-principal);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+button.boton-agregar-carrito {
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 20px;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+button.boton-agregar-carrito:hover {
+  transform: scale(1.05);
+  background-color: #2F1414;
+}
+
+/* ==========================================================================
+   6. BENEFICIOS Y PROPUESTA DE VALOR
+   ========================================================================== */
+section.seccion-propuesta-valor {
+  background-color: rgba(255, 255, 255, 0.85);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+}
+
+ul.grid-beneficios-marca {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+  margin-top: 1.5rem;
+}
+
+li.tarjeta-beneficio-item {
+  background-color: var(--color-fondo-crema);
+  border: 1px solid var(--color-borde-suave);
+  border-radius: 1.2rem;
+  padding: 1.6rem;
+  text-align: center;
+}
+
+figure.circulo-icono-beneficio {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--color-principal);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+}
+
+li.tarjeta-beneficio-item h3 {
+  color: var(--color-principal);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+li.tarjeta-beneficio-item p {
+  color: var(--color-texto-secundario);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   7. TESTIMONIOS Y PIE DE PÁGINA
+   ========================================================================== */
+section.seccion-testimonios-experiencia {
+  display: flex;
+  justify-content: center;
+}
+
+article.tarjeta-testimonio-destacada {
+  background-color: var(--color-fondo-tarjeta);
+  border: 1.5px solid var(--color-acento-dorado);
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  max-width: 52rem;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(68, 30, 30, 0.06);
+}
+
+blockquote.texto-cita-cliente {
+  color: var(--color-principal);
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-style: italic;
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+p.autor-testimonio {
+  color: var(--color-acento-dorado);
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+footer.pie-pagina-principal-sitio {
+  width: 100%;
+  max-width: 92rem;
+  margin: 0 auto 30px auto;
+  padding: 2.5rem 3rem;
+  background-color: var(--color-principal);
+  color: var(--color-fondo-crema);
+  border-radius: 1.5rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 2rem;
+}
+
+section.columna-footer-marca h2 {
+  color: #FFFFFF;
+  margin-bottom: 0.4rem;
+}
+
+p.eslogan-footer {
+  font-family: var(--fuente-manuscrita);
+  color: var(--color-acento-dorado);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+p.derechos-reservados {
+  font-size: 0.75rem;
+  color: var(--color-texto-atenuado);
+}
+
+h3.titulo-columna-footer {
+  color: var(--color-acento-dorado);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.06rem;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+menu.lista-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+menu.lista-footer-links a {
+  color: var(--color-fondo-crema);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+menu.lista-footer-links a:hover {
+  color: var(--color-acento-dorado);
+}
+
+address.datos-contacto-institucional {
+  font-style: normal;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--color-fondo-crema);
+}
+
+/* ==========================================================================
+   8. RESPONSIVIDAD (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  header.encabezado-principal-sitio {
+    flex-wrap: wrap;
+    padding: 1.2rem;
+  }
+
+  form.formulario-busqueda-global {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 0.8rem;
+  }
+
+  section.seccion-hero-promocional {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  footer.pie-pagina-principal-sitio {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  menu.lista-enlaces-menu {
+    display: none; /* Se consolida menú en vista móvil */
+  }
+
+  h2.titulo-hero-principal {
+    font-size: 1.6rem;
+  }
+
+  figure.figura-imagen-hero {
+    height: 240px;
+  }
+}
