@@ -71,11 +71,7 @@
     </menu>
 
   </header>
-
-  <!-- CONTENIDO PRINCIPAL DE LA HOME SCREEN -->
-  <main class="contenedor-principal-home">
-
-    <!-- SECCIÓN HERO: BANNER PRINCIPAL PROMOCIONAL -->
+  <!-- SECCIÓN HERO: BANNER PRINCIPAL PROMOCIONAL -->
     <section class="seccion-hero-promocional">
       <article class="tarjeta-hero-bienvenida">
         <hgroup class="encabezado-hero-texto">
@@ -100,14 +96,16 @@
           </li>
         </menu>
       </article>
-
-      <figure class="figura-imagen-hero">
-        <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela corporal artesanal en frasco de vidrio encendida con ambiente cálido" class="imagen-destacada-hero">
-      </figure>
     </section>
 
+  <!-- CONTENIDO PRINCIPAL DE LA HOME SCREEN -->
+  <main class="contenedor-principal-home">
     <!-- SECCIÓN FILTROS DE CATEGORÍAS -->
+    <article class="conector-catalogo" id="catalogo">
+
+    </article>
     <section class="seccion-filtros-catalogo">
+     
       <header class="encabezado-seccion-catalogo">
         <h2 class="titulo-seccion-general">NUESTRAS COLECCIONES</h2>
         <p class="subtitulo-seccion-general">Selecciona según la experiencia de aromaterapia que deseas vivir</p>
@@ -123,9 +121,6 @@
         </menu>
       </nav>
     </section>
-    <article class="conector-catalogo" id="catalogo">
-
-    </article>
 
     <!-- SECCIÓN CATÁLOGO DE PRODUCTOS (GRID DE TARJETAS) -->
     <section class="seccion-grid-productos">
@@ -135,7 +130,7 @@
         <article class="tarjeta-producto-vela">
         <figure class="contenedor-foto-producto">
           <mark class="insignia-producto-destacado">Más Vendido</mark>
-          <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela Corporal Lavanda & Karité">
+          <img src="img/lavanda.png" alt="Vela Corporal Lavanda & Karité">
           <button type="button" class="boton-favorito-producto" title="Guardar en Favoritos" aria-label="Guardar en Favoritos">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -167,7 +162,7 @@
        <a href="detalleProducto.html">
           <article class="tarjeta-producto-vela">
           <figure class="contenedor-foto-producto">
-            <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela Corporal Cacao & Vainilla">
+            <img src="img/cacao.png" alt="Vela Corporal Cacao & Vainilla">
             <button type="button" class="boton-favorito-producto" title="Guardar en Favoritos" aria-label="Guardar en Favoritos">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -202,7 +197,7 @@
           <article class="tarjeta-producto-vela">
           <figure class="contenedor-foto-producto">
             <mark class="insignia-producto-nuevo">Nuevo</mark>
-            <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela Corporal Naranja & Bergamota">
+            <img src="img/naranja.png" alt="Vela Corporal Naranja & Bergamota">
             <button type="button" class="boton-favorito-producto" title="Guardar en Favoritos" aria-label="Guardar en Favoritos">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -236,7 +231,7 @@
         <article class="tarjeta-producto-vela">
         <figure class="contenedor-foto-producto">
           <mark class="insignia-producto-nuevo">Nuevo</mark>
-          <img src="img/Velas artesanales bajo luz cálida (2).png" alt="Vela Corporal Naranja & Bergamota">
+          <img src="img/bosque.png" alt="Vela Corporal Naranja & Bergamota">
           <button type="button" class="boton-favorito-producto" title="Guardar en Favoritos" aria-label="Guardar en Favoritos">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -245,7 +240,7 @@
         </figure>
 
         <header class="encabezado-producto-info">
-          <mark class="etiqueta-ingrediente-botanico">Cítricos Naturales</mark>
+          <mark class="etiqueta-ingrediente-botanico">frutos rojos del bosque frescos</mark>
           <h3 class="nombre-producto-vela">Vela Corporal Calidez del Bosque</h3>
         </header>
 
@@ -266,9 +261,12 @@
       
 
     </section>
+    <article id="beneficios">
+
+    </article>
 
     <!-- SECCIÓN BENEFICIOS & PROPUESTA DE VALOR -->
-    <section id="beneficios" class="seccion-propuesta-valor">
+    <section  class="seccion-propuesta-valor">
       <header class="encabezado-seccion-catalogo">
         <h2 class="titulo-seccion-general">¿POR QUÉ ELEGIR JERUEL?</h2>
         <p class="subtitulo-seccion-general">Ingredientes 100% aptos para uso cosmético en tu piel</p>
@@ -323,7 +321,6 @@
         <blockquote class="texto-cita-cliente">
           "Al derretirse se crea una textura suave e hidratante perfecta para masajes. El aroma a lavanda llena toda la habitación y deja la piel profundamente nutrida."
         </blockquote>
-        <p class="autor-testimonio">— María Fernanda Rojas</p>
       </article>
     </section>
 

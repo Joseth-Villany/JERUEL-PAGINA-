@@ -223,20 +223,26 @@ main.contenedor-principal-home {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  margin: 7rem auto 0 auto;
 }
 
 /* HERO BANNER */
 section.seccion-hero-promocional {
-  background-color: var(--color-fondo-tarjeta);
+  background-color: transparent;
   border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 1.5rem;
-  padding: 3rem;
+  padding: 4rem 4rem;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   align-items: center;
-  gap: 2.5rem;
-  box-shadow: 0 12px 30px rgba(68, 30, 30, 0.08);
+  gap: 5rem;
+  background-image: url(../img/background2.png);
+  background-repeat: no-repeat;
+  background-size: cover;          
+  background-position: right bottom;
+  background-position: right center;
+  width: 100%;
+  max-width: 100%;
+  margin: 5.5rem auto 0 auto;
+  
 }
 
 article.tarjeta-hero-bienvenida {
@@ -247,9 +253,11 @@ article.tarjeta-hero-bienvenida {
 
 p.frase-emocional-manuscrita {
   font-family: var(--fuente-manuscrita);
-  color: var(--color-palo-rosa);
+  color: var(--color-principal);
   font-size: 2rem;
   line-height: 1;
+  margin: 2rem 0rem 2rem 0rem;
+  max-width: 70%;
 }
 
 h2.titulo-hero-principal {
@@ -258,17 +266,21 @@ h2.titulo-hero-principal {
   font-weight: 800;
   letter-spacing: 0.08rem;
   line-height: 1.2;
+  max-width: 80%;
 }
 
 p.descripcion-hero {
   color: var(--color-texto-secundario);
-  font-size: 0.98rem;
+  font-size: 1rem;
   line-height: 1.6;
+  max-width: 70%;
+  margin: 2rem 0rem 4rem 0rem;
 }
 
 menu.grupo-botones-hero {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 1rem;
   margin-top: 0.5rem;
 }
@@ -540,6 +552,7 @@ section.seccion-propuesta-valor {
   border: 1.5px solid var(--color-acento-dorado);
   border-radius: 1.5rem;
   padding: 2.5rem;
+  margin: 3rem 0rem 0rem 0rem;
 }
 
 ul.grid-beneficios-marca {
@@ -589,6 +602,7 @@ li.tarjeta-beneficio-item p {
 section.seccion-testimonios-experiencia {
   display: flex;
   justify-content: center;
+  max-width: 100%;
 }
 
 article.tarjeta-testimonio-destacada {
@@ -618,12 +632,10 @@ p.autor-testimonio {
 
 footer.pie-pagina-principal-sitio {
   width: 100%;
-  max-width: 92rem;
-  margin: 0 auto 30px auto;
+  max-width: 100%;
   padding: 2.5rem 3rem;
   background-color: var(--color-principal);
   color: var(--color-fondo-crema);
-  border-radius: 1.5rem;
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: 2rem;

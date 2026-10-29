@@ -87,6 +87,9 @@ h1.logo-marca-cinzel {
 
 menu.acciones-rapidas-header {
   list-style: none;
+  text-decoration: none;
+  display: flex;
+  gap: 0.8rem;
 }
 
 menu.acciones-rapidas-header a {
