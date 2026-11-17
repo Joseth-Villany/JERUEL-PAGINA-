@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Métodos de pago | JERUEL</title>
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/pagoStyle.css">
+  <script src="js/tienda.js" defer></script>
+  <script src="js/pago.js" defer></script>
+</head>
+<body>
+  <header class="cabecera-tienda">
+    <nav class="contenedor barra-tienda" aria-label="Tienda">
+      <a class="marca" href="homeScreen.html">JERUEL</a>
+      <ul class="enlaces">
+        <li><a href="carrito.html">Carrito</a></li>
+        <li><a href="perfil.html">Mi cuenta</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenedor pago">
+    <section id="vista-cuenta" aria-labelledby="titulo-cuenta" hidden>
+      <a class="enlace-regreso" href="perfil.html#direcciones-y-pagos">Volver a Mi cuenta</a>
+      <h1 id="titulo-cuenta">Métodos de pago</h1>
+      <section class="tarjeta estado-vacio" aria-labelledby="titulo-guardados">
+        <h2 id="titulo-guardados">Métodos guardados</h2>
+        <p>Aún no hay métodos guardados. Podrás gestionarlos cuando se habiliten los pagos en línea.</p>
+        <a class="boton secundario" href="carrito.html">Ver carrito</a>
+      </section>
+    </section>
+
+    <section id="vista-compra" aria-labelledby="titulo-compra" hidden>
+      <a class="enlace-regreso" href="carrito.html">Volver al carrito</a>
+      <h1 id="titulo-compra">Finalizar compra</h1>
+      <p class="aviso-demo">Demostración · Sin cobro ni envío real</p>
+      <section class="tarjeta estado-vacio" id="carrito-vacio-pago" aria-labelledby="titulo-vacio" hidden>
+        <h2 id="titulo-vacio" tabindex="-1">Tu carrito está vacío</h2>
+        <p>Agrega una vela para probar el recorrido de compra.</p>
+        <a class="boton primario" href="homeScreen.html#catalogo">Explorar el catálogo</a>
+      </section>
+
+      <section class="flujo-compra" id="flujo-compra" aria-label="Compra de demostración" hidden>
+        <ol class="pasos" aria-label="Pasos de compra">
+          <li data-paso="entrega" aria-current="step">Entrega</li>
+          <li data-paso="pago">Pago</li>
+          <li data-paso="confirmacion">Confirmación</li>
+        </ol>
+
+        <section class="tarjeta etapa" id="paso-entrega" aria-labelledby="titulo-entrega">
+          <h2 id="titulo-entrega" tabindex="-1">¿Dónde recibirías tu pedido?</h2>
+          <form id="formulario-entrega">
+            <fieldset>
+              <legend>Dirección de entrega</legend>
+              <ul class="opciones" id="opciones-entrega"></ul>
+            </fieldset>
+            <p class="ayuda">Puedes agregar una dirección desde <a href="perfil.html#direcciones-y-pagos">Mi cuenta</a>.</p>
+            <button class="boton primario" type="submit">Continuar al pago</button>
+          </form>
+        </section>
+
+        <section class="tarjeta etapa" id="paso-pago" aria-labelledby="titulo-metodo" hidden>
+          <h2 id="titulo-metodo" tabindex="-1">Elige un método de pago</h2>
+          <p class="entrega-elegida">Entrega <strong id="entrega-seleccionada"></strong></p>
+          <form id="formulario-pago">
+            <fieldset aria-describedby="ayuda-metodo">
+              <legend>Método de demostración</legend>
+              <ul class="opciones">
+                <li><label><input type="radio" name="metodo" value="tarjeta" checked> Tarjeta</label></li>
+                <li><label><input type="radio" name="metodo" value="pse"> PSE</label></li>
+                <li><label><input type="radio" name="metodo" value="nequi"> Nequi</label></li>
+              </ul>
+            </fieldset>
+            <p class="ayuda" id="ayuda-metodo"></p>
+            <button class="boton secundario" id="volver-entrega" type="button">Cambiar entrega</button>
+          </form>
+        </section>
+
+        <aside id="resumen-pago" class="tarjeta resumen" aria-labelledby="titulo-resumen">
+          <h2 id="titulo-resumen">Resumen del pedido</h2>
+          <ul class="articulos" id="articulos-pago"></ul>
+          <dl>
+            <dt>Subtotal</dt><dd id="subtotal-pago"></dd>
+            <dt>Envío simulado</dt><dd>$0 COP</dd>
+            <dt>Total simulado</dt><dd id="total-pago"></dd>
+          </dl>
+          <button class="boton primario" id="simular-pago" type="submit" form="formulario-pago" hidden>Simular pago</button>
+        </aside>
+
+        <section class="tarjeta etapa estado-vacio confirmacion" id="paso-confirmacion" aria-labelledby="titulo-confirmacion" hidden>
+          <h2 id="titulo-confirmacion" tabindex="-1">Simulación completada</h2>
+          <p id="detalle-confirmacion"></p>
+          <p>Tu selección sigue disponible en el carrito.</p>
+          <a class="boton primario" href="carrito.html">Volver al carrito</a>
+        </section>
+      </section>
+      <p id="estado-pago" class="estado" role="status"></p>
+    </section>
+    <noscript><p>Activa JavaScript para ver el resumen e iniciar la demostración.</p></noscript>
+  </main>
+  <footer class="pie-pago">JERUEL · Velas corporales artesanales</footer>
+</body>
+</html>

@@ -1,733 +1,483 @@
-/* ==========================================================================
-   1. VARIABLES, TIPOGRAFÍAS Y DEGRADADO CORPORATIVO EN BODY (JERUEL)
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap');
+/* ============================================================
+   JERUEL - HOME | Diseño desktop-first, adaptable a tablet y móvil
+   Colores y tipografías conservados de la identidad existente.
+   ============================================================ */
 
 :root {
-  --color-principal: #441E1E;            /* Vinotinto / Tinto Oscuro */
-  --color-fondo-crema: #FFF1EA;          /* Blanco Crema / Marfil */
-  --color-fondo-suave: #F0E5D8;          /* Crema Cálido */
-  --color-fondo-tarjeta: #FFFFFF;        /* Blanco Puro */
-  --color-texto-principal: #441E1E;      /* Vinotinto Oscuro */
-  --color-texto-secundario: #654A47;     /* Café / Marrón Cálido */
-  --color-texto-atenuado: #A08C8A;        /* Grisáceo / Placeholder */
-  --color-acento-dorado: #C9A16E;        /* Dorado Claro */
-  --color-verde-oliva: #8B8468;          /* Verde Botánico */
-  --color-palo-rosa: #925C5D;            /* Acento Rosa */
-  --color-borde-suave: #EFE6E2;          /* Contorno Suave */
+  --color-vino: #441E1E;
+  --color-dorado: #C9A16E;
+  --color-crema: #FFF1EA;
+  --color-crema-calido: #F0E5D8;
+  --color-oliva: #8B8468;
+  --color-rosa: #925C5D;
+  --color-cafe: #654A47;
+  --color-crema-oscuro: #E8D8CA;
+  --color-blanco: #FFFFFF;
+  --color-borde: #E8D8CA;
+  --color-texto-suave: #765C58;
 
-  --fuente-principal: 'Montserrat', sans-serif;
-  --fuente-marca: 'Cinzel', serif;
-  --fuente-manuscrita: 'Great Vibes', cursive;
-}
-html {
-  scroll-behavior: smooth;
-}
+  --fuente-texto: 'Montserrat', Arial, sans-serif;
+  --fuente-marca: 'Cinzel', Georgia, serif;
+  --fuente-emocional: 'Great Vibes', cursive;
 
-/* RESETEO UNIVERSAL ESTRICTO */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--fuente-principal);
+  --ancho-contenido: 1320px;
+  --radio-pequeno: 12px;
+  --radio-mediano: 20px;
+  --radio-grande: 28px;
+  --sombra-suave: 0 12px 36px rgb(68 30 30 / 7%);
 }
 
-/* DEGRADADO RADIAL Y LINEAL COMBINADO EN EL BODY */
+/* BASE Y ACCESIBILIDAD */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 112px; }
 body {
-  min-height: 100vh;
-  color: var(--color-texto-secundario);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  /* Background con degradado corporativo elegante usando la paleta oficial */
-  background: radial-gradient(
-    circle at 50% 10%, 
-    #FFF1EA 0%, 
-    #F0E5D8 50%, 
-    #E8D8CA 80%,
-    rgba(68, 30, 30, 0.15) 100%
-  );
-  background-attachment: fixed;
+  min-width: 320px;
+  margin: 0;
+  background: var(--color-crema);
+  color: var(--color-cafe);
+  font-family: var(--fuente-texto);
+  -webkit-font-smoothing: antialiased;
 }
-
-.leyenda-oculta {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
+button, input { font: inherit; }
+button { cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+ul, ol { margin: 0; padding: 0; }
+h1, h2, h3, p, figure { margin: 0; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 3px solid var(--color-rosa); outline-offset: 4px; }
+::selection { background: var(--color-dorado); color: var(--color-vino); }
+.contenedor-ancho { width: min(calc(100% - 88px), var(--ancho-contenido)); margin-inline: auto; }
+.solo-lectores {
+  position: absolute; width: 1px; height: 1px; padding: 0;
+  margin: -1px; overflow: hidden; clip-path: inset(50%);
+  white-space: nowrap; border: 0;
 }
-
-/* ==========================================================================
-   2. CABECERA PRINCIPAL Y BARRA DE NAVEGACIÓN (HEADER)
-   ========================================================================== */
-header.encabezado-principal-sitio {
-  position: fixed;
-  top: 0;                  
-  left: 0;                  
-  width: 100%;
-  z-index: 1000;           
-  padding: 1.2rem 2.2rem;
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid var(--color-acento-dorado);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  box-shadow: 0 10px 25px rgba(68, 30, 30, 0.08);
+.enlace-saltar {
+  position: fixed; left: 20px; top: -90px; z-index: 200;
+  border-radius: 10px; padding: 12px 18px;
+  background: var(--color-vino); color: white;
 }
+.enlace-saltar:focus { top: 12px; }
 
-figure.contenedor-branding-logo {
-  display: flex;
-  flex-direction: column;
+/* ENCABEZADO */
+.encabezado-sitio {
+  position: sticky; top: 0; z-index: 100;
+  border-bottom: 1px solid rgb(68 30 30 / 10%);
+  background: rgb(255 249 245 / 96%);
+  backdrop-filter: blur(16px);
 }
-
-h1.logo-marca-cinzel {
-  font-family: var(--fuente-marca);
-  color: var(--color-principal);
-  font-size: 1.8rem;
-  font-weight: 800;
-  letter-spacing: 0.25rem;
-  line-height: 1;
-}
-
-p.subtexto-marca-eslogan {
-  font-size: 0.65rem;
-  color: var(--color-texto-secundario);
-  letter-spacing: 0.08rem;
-  text-transform: uppercase;
-  margin-top: 0.2rem;
-}
-
-form.formulario-busqueda-global {
-  flex: 1;
-  max-width: 26rem;
-}
-
-p.contenedor-input-busqueda {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-input.campo-busqueda-header {
-  width: 100%;
-  padding: 0.75rem 2.8rem 0.75rem 1.2rem;
-  border: 1.5px solid var(--color-borde-suave);
-  border-radius: 25px;
-  font-size: 0.82rem;
-  color: var(--color-texto-principal);
-  background-color: var(--color-fondo-crema);
-  outline: none;
-  transition: transform 0.25s ease, border-color 0.2s ease, box-shadow 0.25s ease;
-}
-
-input.campo-busqueda-header:focus {
-  border-color: var(--color-acento-dorado);
-  box-shadow: 0 0 0 3px rgba(68, 30, 30, 0.08);
-  transform: scale(1.015);
-}
-
-button.boton-ejecutar-busqueda {
-  position: absolute;
-  right: 0.8rem;
-  background: none;
-  border: none;
-  color: var(--color-principal);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-nav.navegacion-principal-app {
-  display: flex;
-}
-
-menu.lista-enlaces-menu {
-  list-style: none;
-  display: flex;
-  gap: 1.8rem;
-}
-
-menu.lista-enlaces-menu a {
-  text-decoration: none;
-  color: var(--color-texto-secundario);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.04rem;
-  transition: color 0.2s ease, transform 0.25s ease;
-  display: inline-block;
-}
-
-menu.lista-enlaces-menu a:hover,
-menu.lista-enlaces-menu a.enlace-menu-activo {
-  color: var(--color-principal);
-  transform: scale(1.05);
-}
-
-menu.grupo-acciones-usuario {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-}
-
-a.boton-icono-header {
-  position: relative;
-  background-color: var(--color-fondo-crema);
-  color: var(--color-principal);
-  border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: transform 0.25s ease, background-color 0.2s ease;
-}
-
-a.boton-icono-header:hover {
-  transform: scale(1.08);
-  background-color: #FFFFFF;
-}
-
-mark.contador-items-carrito {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  font-size: 0.65rem;
-  font-weight: 800;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ==========================================================================
-   3. CONTENEDOR PRINCIPAL HOME
-   ========================================================================== */
-main.contenedor-principal-home {
-  width: 100%;
-  max-width: 92rem;
-  padding: 25px 0 40px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-}
-
-/* HERO BANNER */
-section.seccion-hero-promocional {
-  background-color: transparent;
-  border: 1.5px solid var(--color-acento-dorado);
-  padding: 4rem 4rem;
+.contenido-encabezado {
+  min-height: 88px;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-areas: 'marca navegacion busqueda acciones';
+  grid-template-columns: auto auto minmax(180px, 270px) auto;
+  justify-content: space-between;
   align-items: center;
-  gap: 5rem;
-  background-image: url(../img/background2.png);
+  column-gap: clamp(18px, 2.5vw, 42px);
+}
+.marca-sitio { grid-area: marca; display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+.nombre-marca { font-family: var(--fuente-marca); font-weight: 700; font-size: 26px; letter-spacing: .21em; line-height: 1.15; color: var(--color-vino); }
+.descripcion-marca { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: .11em; color: var(--color-cafe); }
+.navegacion-principal { grid-area: navegacion; }
+.lista-navegacion { display: flex; gap: clamp(16px, 1.8vw, 29px); align-items: center; list-style: none; }
+.lista-navegacion a {
+  display: inline-block; padding: 8px 0;
+  color: var(--color-cafe); font-size: 12px; font-weight: 700;
+  transition: color .2s ease;
+}
+.lista-navegacion a:hover, .lista-navegacion .enlace-activo { color: var(--color-vino); }
+.lista-navegacion .enlace-activo { box-shadow: 0 2px 0 var(--color-dorado); }
+.formulario-busqueda { grid-area: busqueda; position: relative; width: 100%; }
+.formulario-busqueda input {
+  display: block; width: 100%; min-height: 42px; padding: 9px 46px 9px 16px;
+  border: 1px solid var(--color-crema-oscuro); border-radius: 100px;
+  background: white; color: var(--color-vino); font-size: 12px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.formulario-busqueda input::placeholder { color: #806D69; }
+.formulario-busqueda input:focus { outline: none; border-color: var(--color-rosa); box-shadow: 0 0 0 3px rgb(146 92 93 / 12%); }
+.boton-buscar {
+  position: absolute; top: 50%; right: 10px; transform: translateY(-50%);
+  display: grid; place-items: center; width: 31px; height: 31px;
+  padding: 4px; border: 0; border-radius: 50%; color: var(--color-vino); background: transparent;
+}
+.boton-buscar:hover { background: var(--color-crema); }
+.acciones-encabezado { list-style: none; margin: 0; padding: 0; grid-area: acciones; display: flex; align-items: center; gap: 9px; }
+.boton-icono {
+  display: grid; place-items: center; position: relative;
+  width: 42px; height: 42px; flex: 0 0 42px;
+  padding: 9px; border-radius: 50%; border: 1px solid transparent;
+  color: var(--color-vino); background: transparent;
+  transition: background-color .2s, border-color .2s;
+}
+.boton-icono:hover { background: white; border-color: var(--color-crema-oscuro); }
+.boton-icono svg, .boton-buscar svg {
+  width: 21px; height: 21px; fill: none; stroke: currentColor;
+  stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+.contador-carrito {
+  position: absolute; top: 0; right: -3px;
+  min-width: 18px; height: 18px; padding: 1px 5px;
+  display: grid; place-items: center; border-radius: 100px;
+  color: white; background: var(--color-vino); font-size: 10px; font-weight: 700;
+}
+.acciones-encabezado li:has(.boton-menu) { display: none; }
+.boton-menu { display: none; }
+
+/* PRESENTACIÓN: imagen de fondo a todo el ancho de la sección */
+.seccion-inicio {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #FFF7F0;
+  /* Degradado sobre la fotografía: mantiene el texto legible sin ocultar los productos. */
+  background-image:
+    linear-gradient(90deg,
+      rgb(255 247 240 / 99%) 0%,
+      rgb(255 247 240 / 95%) 32%,
+      rgb(255 247 240 / 78%) 49%,
+      rgb(255 247 240 / 20%) 75%,
+      rgb(255 247 240 / 3%) 100%),
+    url('../img/background2.png');
   background-repeat: no-repeat;
-  background-size: cover;          
-  background-position: right bottom;
-  background-position: right center;
-  width: 100%;
-  max-width: 100%;
-  margin: 5.5rem auto 0 auto;
-  
+  background-size: cover;
+  background-position: center, right center;
 }
-
-article.tarjeta-hero-bienvenida {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-p.frase-emocional-manuscrita {
-  font-family: var(--fuente-manuscrita);
-  color: var(--color-principal);
-  font-size: 2rem;
-  line-height: 1;
-  margin: 2rem 0rem 2rem 0rem;
-  max-width: 70%;
-}
-
-h2.titulo-hero-principal {
-  color: var(--color-principal);
-  font-size: 2.2rem;
-  font-weight: 800;
-  letter-spacing: 0.08rem;
-  line-height: 1.2;
-  max-width: 80%;
-}
-
-p.descripcion-hero {
-  color: var(--color-texto-secundario);
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 70%;
-  margin: 2rem 0rem 4rem 0rem;
-}
-
-menu.grupo-botones-hero {
-  list-style: none;
+.contenido-inicio {
+  min-height: 650px;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
+  padding-block: 84px;
 }
-
-a.boton-principal-hero {
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  padding: 1rem 1.8rem;
-  border-radius: 25px;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.08rem;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: transform 0.25s ease, background-color 0.2s ease, box-shadow 0.25s ease;
-}
-
-a.boton-principal-hero:hover {
-  transform: scale(1.03);
-  background-color: #2F1414;
-  box-shadow: 0 8px 20px rgba(68, 30, 30, 0.25);
-}
-
-a.boton-secundario-hero {
-  background-color: var(--color-fondo-crema);
-  color: var(--color-principal);
-  border: 1.5px solid var(--color-principal);
-  padding: 1rem 1.8rem;
-  border-radius: 25px;
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.08rem;
-  text-decoration: none;
-  transition: transform 0.25s ease, border-color 0.2s ease;
-}
-
-a.boton-secundario-hero:hover {
-  transform: scale(1.03);
-  border-color: var(--color-acento-dorado);
-}
-
-figure.figura-imagen-hero {
-  width: 100%;
-  height: 360px;
-  border-radius: 1.2rem;
-  overflow: hidden;
-  border: 2px solid var(--color-acento-dorado);
-}
-
-img.imagen-destacada-hero {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ==========================================================================
-   4. FILTROS Y CATEGORÍAS
-   ========================================================================== */
-header.encabezado-seccion-catalogo {
-  text-align: center;
-  margin-bottom: 1.2rem;
-}
-
-h2.titulo-seccion-general {
-  color: var(--color-principal);
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-}
-
-p.subtitulo-seccion-general {
-  color: var(--color-texto-secundario);
-  font-size: 0.9rem;
-  margin-top: 0.3rem;
-}
-
-nav.barra-categorias-productos {
-  display: flex;
-  justify-content: center;
-}
-
-menu.lista-botones-categorias {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-button.boton-categoria-item {
-  background-color: var(--color-fondo-tarjeta);
-  color: var(--color-texto-secundario);
-  border: 1.5px solid var(--color-borde-suave);
-  border-radius: 20px;
-  padding: 0.75rem 1.4rem;
-  font-size: 0.82rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.25s ease, border-color 0.2s ease, background-color 0.2s ease;
-}
-
-button.boton-categoria-item:hover,
-button.boton-categoria-item.categoria-activa {
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  border-color: var(--color-principal);
-  transform: scale(1.03);
-}
-article.conector-catalogo{
-  padding: 2rem;
-}
-
-/* ==========================================================================
-   5. GRID DE PRODUCTOS (TARJETAS VELAS)
-   ========================================================================== */
-section.seccion-grid-productos {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 1rem;
-}
-a{
-  text-decoration: none;
-}
-
-article.tarjeta-producto-vela {
-  flex: 1; 
-  background-color: var(--color-fondo-tarjeta);
-  border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 1.35rem;
-  padding: 1.4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  box-shadow: 0 10px 22px rgba(68, 30, 30, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  height: 100%;
-}
-
-article.tarjeta-producto-vela:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 15px 30px rgba(68, 30, 30, 0.12);
-}
-
-figure.contenedor-foto-producto {
+.texto-inicio {
   position: relative;
-  width: 100%;
-  height: 220px;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid var(--color-borde-suave);
+  z-index: 1;
+  width: min(60%, 660px);
+  padding-block: 14px;
 }
-
-figure.contenedor-foto-producto img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.texto-superior {
+  color: var(--color-rosa); text-transform: uppercase;
+  font-size: 11px; font-weight: 800; letter-spacing: .19em;
 }
-
-mark.insignia-producto-destacado,
-mark.insignia-producto-nuevo {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: #FFFFFF;
-  font-size: 0.65rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 12px;
-  text-transform: uppercase;
+.texto-inicio h1 {
+  margin-top: 18px; max-width: 660px;
+  color: var(--color-vino); font-family: var(--fuente-marca);
+  font-size: clamp(35px, 3.5vw, 56px);
+  font-weight: 600; line-height: 1.22; letter-spacing: -.028em;
 }
-
-mark.insignia-producto-destacado {
-  background-color: var(--color-principal);
+.texto-inicio h1 em { font-style: normal; color: var(--color-rosa); }
+.descripcion-inicio { margin-top: 22px; max-width: 555px; font-size: 14px; line-height: 1.95; }
+.acciones-inicio { display: flex; align-items: center; flex-wrap: wrap; gap: 26px; margin-top: 32px; }
+.boton-primario, .boton-secundario {
+  min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 18px;
+  padding: 13px 24px; border: 1px solid var(--color-vino); border-radius: 100px;
+  font-size: 12px; font-weight: 800; transition: background .2s, transform .2s;
 }
+.boton-primario { background: var(--color-vino); color: white; }
+.boton-primario:hover { background: #603030; transform: translateY(-2px); }
+.boton-secundario { color: var(--color-vino); background: transparent; }
+.boton-secundario:hover { background: var(--color-crema-calido); }
+.enlace-subrayado { padding-bottom: 5px; border-bottom: 1px solid var(--color-dorado); color: var(--color-vino); font-size: 12px; font-weight: 700; }
+.enlace-subrayado:hover { border-color: var(--color-vino); }
+.firma-marca { margin-top: 37px; color: var(--color-rosa); font-family: var(--fuente-emocional); font-size: 28px; line-height: 1.2; }
 
-mark.insignia-producto-nuevo {
-  background-color: var(--color-verde-oliva);
+/* SECCIONES Y CATÁLOGO */
+.seccion-catalogo { padding-block: 85px 92px; }
+.encabezado-seccion { max-width: 760px; margin-inline: auto; text-align: center; }
+.encabezado-seccion h2, .introduccion-ritual h2 {
+  margin-top: 13px; color: var(--color-vino); font-family: var(--fuente-marca);
+  font-weight: 600; font-size: clamp(26px, 2.8vw, 37px); line-height: 1.3;
 }
-
-button.boton-favorito-producto {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: var(--color-palo-rosa);
-  border: none;
-  border-radius: 50%;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.25s ease;
+.encabezado-seccion > p:last-child { margin-top: 12px; font-size: 13px; line-height: 1.75; }
+.filtros-catalogo { border: 0; padding: 0; min-width: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 37px; }
+.boton-filtro {
+  min-height: 40px; padding: 10px 17px; border: 1px solid var(--color-borde);
+  border-radius: 100px; background: white; color: var(--color-cafe);
+  font-size: 11px; font-weight: 700; transition: background .2s, border-color .2s, color .2s;
 }
-
-button.boton-favorito-producto:hover {
-  transform: scale(1.15);
-}
-
-mark.etiqueta-ingrediente-botanico {
-  background-color: var(--color-fondo-crema);
-  color: var(--color-verde-oliva);
-  font-size: 0.68rem;
-  font-weight: 800;
-  padding: 4px 10px;
-  border-radius: 10px;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 0.4rem;
-}
-
-h3.nombre-producto-vela {
-  color: var(--color-principal);
-  font-size: 1.1rem;
-  font-weight: 800;
-}
-
-p.descripcion-corta-producto {
-  color: var(--color-texto-secundario);
-  font-size: 0.85rem;
-  line-height: 1.4;
-}
-
-footer.pie-tarjeta-producto {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-  padding-top: 0.6rem;
-  border-top: 1px solid var(--color-borde-suave);
-}
-
-data.precio-producto {
-  color: var(--color-principal);
-  font-size: 1.1rem;
-  font-weight: 800;
-}
-
-button.boton-agregar-carrito {
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 20px;
-  padding: 0.65rem 1.2rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 0.05rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: transform 0.25s ease, background-color 0.2s ease;
-}
-
-button.boton-agregar-carrito:hover {
-  transform: scale(1.05);
-  background-color: #2F1414;
-}
-
-/* ==========================================================================
-   6. BENEFICIOS Y PROPUESTA DE VALOR
-   ========================================================================== */
-section.seccion-propuesta-valor {
-  background-color: rgba(255, 255, 255, 0.85);
-  border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
-  margin: 3rem 0rem 0rem 0rem;
-}
-
-ul.grid-beneficios-marca {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.8rem;
-  margin-top: 1.5rem;
-}
-
-li.tarjeta-beneficio-item {
-  background-color: var(--color-fondo-crema);
-  border: 1px solid var(--color-borde-suave);
-  border-radius: 1.2rem;
-  padding: 1.6rem;
-  text-align: center;
-}
-
-figure.circulo-icono-beneficio {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem auto;
-}
-
-li.tarjeta-beneficio-item h3 {
-  color: var(--color-principal);
-  font-size: 1rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-}
-
-li.tarjeta-beneficio-item p {
-  color: var(--color-texto-secundario);
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
-/* ==========================================================================
-   7. TESTIMONIOS Y PIE DE PÁGINA
-   ========================================================================== */
-section.seccion-testimonios-experiencia {
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-}
-
-article.tarjeta-testimonio-destacada {
-  background-color: var(--color-fondo-tarjeta);
-  border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 1.5rem;
-  padding: 2.5rem;
-  max-width: 52rem;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(68, 30, 30, 0.06);
-}
-
-blockquote.texto-cita-cliente {
-  color: var(--color-principal);
-  font-size: 1.15rem;
-  font-weight: 600;
-  font-style: italic;
-  margin: 1rem 0;
-  line-height: 1.6;
-}
-
-p.autor-testimonio {
-  color: var(--color-acento-dorado);
-  font-weight: 800;
-  font-size: 0.9rem;
-}
-
-footer.pie-pagina-principal-sitio {
-  width: 100%;
-  max-width: 100%;
-  padding: 2.5rem 3rem;
-  background-color: var(--color-principal);
-  color: var(--color-fondo-crema);
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 2rem;
-}
-
-section.columna-footer-marca h2 {
-  color: #FFFFFF;
-  margin-bottom: 0.4rem;
-}
-
-p.eslogan-footer {
-  font-family: var(--fuente-manuscrita);
-  color: var(--color-acento-dorado);
-  font-size: 1.3rem;
-  margin-bottom: 1rem;
-}
-
-p.derechos-reservados {
-  font-size: 0.75rem;
-  color: var(--color-texto-atenuado);
-}
-
-h3.titulo-columna-footer {
-  color: var(--color-acento-dorado);
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.06rem;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-
-menu.lista-footer-links {
-  list-style: none;
+.boton-filtro:hover { border-color: var(--color-rosa); color: var(--color-vino); }
+.boton-filtro.filtro-activo { background: var(--color-vino); color: white; border-color: var(--color-vino); }
+.estado-catalogo { margin: 28px 0 16px; color: var(--color-texto-suave); font-size: 12px; }
+.cuadricula-productos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+/* Tarjetas como en la Home original: fotografía independiente, redondeada y enmarcada. */
+.tarjeta-producto {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  overflow: hidden;
+  border: 1.5px solid var(--color-borde);
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 5px 23px rgb(68 30 30 / 4%);
+  transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+}
+/* Solo la tarjeta que recibe el cursor o el foco destaca en dorado. */
+.tarjeta-producto:hover,
+.tarjeta-producto:focus-within {
+  border-color: var(--color-dorado);
+  transform: translateY(-5px);
+  box-shadow: 0 14px 32px rgb(68 30 30 / 11%), 0 0 0 1px rgb(201 161 110 / 25%);
+}
+.imagen-producto {
+  position: relative;
+  aspect-ratio: 4 / 4.55;
+  margin: 14px 14px 0;
+  border: 1.5px solid var(--color-crema-oscuro);
+  border-radius: 16px;
+  background: #F4EDE6;
+  overflow: hidden;
+  transition: border-color .25s ease, box-shadow .25s ease;
+}
+.tarjeta-producto:hover .imagen-producto,
+.tarjeta-producto:focus-within .imagen-producto {
+  border-color: var(--color-dorado);
+  box-shadow: 0 0 0 2px rgb(201 161 110 / 12%);
+}
+.enlace-imagen-producto { display: block; width: 100%; height: 100%; }
+.imagen-producto img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .35s ease;
+}
+.tarjeta-producto:hover .imagen-producto img { transform: scale(1.035); }
+.imagen-producto.imagen-no-disponible { background: linear-gradient(145deg, #F3E8DE, #E8D8CA); }
+.imagen-producto.imagen-no-disponible::before {
+  content: 'Imagen del producto'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); width: 80%;
+  color: var(--color-cafe); text-align: center; font-size: 12px;
+}
+.etiqueta-destacada, .etiqueta-novedad {
+  position: absolute; top: 14px; left: 14px; z-index: 1;
+  padding: 7px 11px; border-radius: 100px;
+  color: white; font-size: 10px; font-weight: 700;
+}
+.etiqueta-destacada { background: var(--color-vino); }
+.etiqueta-novedad { background: var(--color-oliva); }
+.boton-favorito {
+  position: absolute; top: 11px; right: 11px; z-index: 1;
+  display: grid; place-items: center; width: 38px; height: 38px;
+  border: 1px solid rgb(68 30 30 / 5%); border-radius: 50%;
+  background: rgb(255 255 255 / 95%); color: var(--color-rosa);
+}
+.boton-favorito:hover { background: white; transform: scale(1.05); }
+.boton-favorito[aria-pressed="true"] { color: var(--color-vino); background: var(--color-crema); }
+.boton-favorito svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linejoin: round; }
+.boton-favorito[aria-pressed="true"] svg { fill: currentColor; }
+.informacion-producto { display: flex; flex: 1; flex-direction: column; padding: 21px 20px 19px; }
+.ingredientes-producto { color: var(--color-oliva); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.informacion-producto h3 { margin-top: 10px; color: var(--color-vino); font-size: 15px; font-weight: 700; line-height: 1.5; }
+.informacion-producto h3 a:hover { text-decoration: underline; text-decoration-color: var(--color-dorado); text-underline-offset: 3px; }
+.descripcion-producto { margin-top: 9px; font-size: 11.5px; line-height: 1.75; }
+.pie-producto { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 22px; }
+.precio-producto { white-space: nowrap; color: var(--color-vino); font-size: 16px; font-weight: 800; }
+.precio-producto small { font-size: 10px; font-weight: 600; }
+.boton-agregar {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  min-height: 36px; padding: 8px 13px; border: 1px solid var(--color-vino);
+  border-radius: 100px; background: var(--color-vino); color: white;
+  font-size: 10px; font-weight: 700;
+}
+.boton-agregar:hover { background: #603030; }
+.boton-agregar::after { content: '+' / ''; font-size: 17px; line-height: 1; }
+.catalogo-vacio { padding: 45px 20px; border: 1px dashed var(--color-dorado); border-radius: var(--radio-mediano); text-align: center; }
+.catalogo-vacio h3 { color: var(--color-vino); font-size: 17px; }
+.catalogo-vacio p { margin: 12px 0 18px; font-size: 13px; }
+
+/* BENEFICIOS */
+.seccion-beneficios { padding-block: 76px 88px; background: #F3E7DC; }
+.lista-beneficios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px; list-style: none; margin-top: 48px; }
+.beneficio { text-align: center; padding-inline: 20px; }
+.icono-beneficio { display: block; width: 62px; height: 62px; padding: 11px; margin: 0 auto 20px; color: var(--color-vino); fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.beneficio h3 { color: var(--color-vino); font-size: 15px; }
+.beneficio p { max-width: 310px; margin: 11px auto 0; font-size: 12px; line-height: 1.85; }
+
+/* RITUAL */
+.seccion-ritual { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 8%; align-items: start; padding-block: 95px; }
+.introduccion-ritual { max-width: 410px; }
+.introduccion-ritual > p:last-child { margin-top: 18px; font-size: 13px; line-height: 1.9; }
+.pasos-ritual { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); list-style: none; gap: 20px; }
+.pasos-ritual li { border-top: 2px solid var(--color-dorado); padding-top: 21px; }
+.pasos-ritual li::before { content: counter(list-item, decimal-leading-zero) / ''; display: block; margin-bottom: 25px; color: var(--color-rosa); font-family: var(--fuente-marca); font-size: 27px; }
+.pasos-ritual h3 { color: var(--color-vino); font-size: 13px; }
+.pasos-ritual p { margin-top: 10px; font-size: 12px; line-height: 1.8; }
+
+/* NUESTRA ESENCIA */
+.seccion-nosotros { padding-block: 80px; background: var(--color-vino); color: var(--color-crema); }
+.contenido-nosotros { display: grid; grid-template-columns: 1.25fr .75fr; gap: 12%; align-items: center; }
+.texto-superior-claro { color: var(--color-dorado); }
+.seccion-nosotros h2 {
+  margin-top: 18px; max-width: 770px;
+  font-family: var(--fuente-marca); font-weight: 500;
+  font-size: clamp(25px, 2.6vw, 36px); line-height: 1.55;
+}
+.seccion-nosotros h2 em { font-style: normal; color: var(--color-dorado); }
+.descripcion-nosotros p { font-size: 13px; line-height: 2; }
+.descripcion-nosotros .firma-nosotros { margin-top: 24px; color: var(--color-dorado); font-family: var(--fuente-emocional); font-size: 26px; line-height: 1.2; }
+
+/* PIE DE PÁGINA */
+.pie-sitio { background: #351717; color: var(--color-crema); }
+.columnas-pie { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 55px; padding-block: 70px 58px; }
+.columna-marca .nombre-marca { color: white; font-size: 26px; }
+.columna-marca > p:nth-child(2) { margin-top: 9px; color: #E8D8CA; font-size: 11px; text-transform: uppercase; letter-spacing: .1em; }
+.firma-pie { margin-top: 23px; color: var(--color-dorado); font-family: var(--fuente-emocional); font-size: 24px; }
+.columna-enlaces h3 { margin-bottom: 22px; color: var(--color-dorado); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; }
+.columna-enlaces ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.columna-enlaces a { color: var(--color-crema); font-size: 12px; line-height: 1.6; }
+.columna-enlaces a:hover { color: var(--color-dorado); }
+.pie-inferior { display: flex; justify-content: space-between; gap: 15px; border-top: 1px solid rgb(255 241 234 / 17%); padding-block: 23px; }
+.pie-inferior small { color: #E8D8CA; font-size: 10px; line-height: 1.5; }
+
+/* VENTANAS DE CARRITO Y FAVORITOS */
+.ventana-resumen {
+  position: fixed; inset: 0; width: min(calc(100% - 32px), 520px); max-height: min(80vh, 650px);
+  padding: 0; border: 1px solid var(--color-borde); border-radius: var(--radio-mediano);
+  background: #FFF9F5; color: var(--color-cafe); box-shadow: 0 25px 70px rgb(0 0 0 / 20%);
+}
+.ventana-resumen::backdrop { background: rgb(30 12 12 / 60%); backdrop-filter: blur(3px); }
+.encabezado-ventana { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 20px 24px; border-bottom: 1px solid var(--color-borde); }
+.encabezado-ventana h2 { color: var(--color-vino); font-family: var(--fuente-marca); font-size: 22px; }
+.boton-cerrar { width: 34px; height: 34px; border: 0; border-radius: 50%; background: var(--color-crema-calido); color: var(--color-vino); font-size: 26px; line-height: 1; }
+.contenido-ventana { padding: 20px 24px; max-height: 42vh; overflow: auto; }
+.linea-resumen { display: flex; justify-content: space-between; gap: 15px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--color-borde); }
+.linea-resumen p { display: grid; gap: 6px; }
+.linea-resumen strong { color: var(--color-vino); font-size: 12px; line-height: 1.5; }
+.linea-resumen small { font-size: 11px; }
+.linea-resumen button { border: 0; background: transparent; color: var(--color-rosa); text-decoration: underline; font-size: 11px; }
+.mensaje-resumen { font-size: 13px; line-height: 1.7; }
+.pie-ventana { padding: 17px 24px 22px; border-top: 1px solid var(--color-borde); }
+.pie-ventana > p:first-child { display: flex; justify-content: space-between; font-size: 13px; }
+.pie-ventana strong { color: var(--color-vino); }
+.aviso-demostracion { margin-top: 12px; color: var(--color-texto-suave); font-size: 10px; line-height: 1.6; }
+.aviso-accion {
+  position: fixed; bottom: 22px; right: 24px; z-index: 200;
+  max-width: min(360px, calc(100% - 48px)); padding: 14px 20px;
+  border-radius: var(--radio-pequeno); background: var(--color-vino);
+  color: white; box-shadow: 0 15px 35px rgb(0 0 0 / 20%); font-size: 12px; line-height: 1.5;
 }
 
-menu.lista-footer-links a {
-  color: var(--color-fondo-crema);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.2s ease;
+/* PANTALLA PORTÁTIL O ESCRITORIO ESTRECHO */
+@media (max-width: 1180px) {
+  .contenedor-ancho { width: min(calc(100% - 64px), var(--ancho-contenido)); }
+  .contenido-encabezado {
+    grid-template-areas: 'marca navegacion acciones' 'busqueda busqueda busqueda';
+    grid-template-columns: auto 1fr auto; row-gap: 4px; padding-block: 13px;
+  }
+  .navegacion-principal { justify-self: center; }
+  .formulario-busqueda { max-width: 430px; margin-inline: auto; }
+  .texto-inicio { width: min(66%, 640px); }
+  .cuadricula-productos { gap: 14px; }
+  .informacion-producto { padding: 17px 14px; }
+  .precio-producto { font-size: 14px; }
+  .boton-agregar { padding: 7px 10px; }
 }
 
-menu.lista-footer-links a:hover {
-  color: var(--color-acento-dorado);
+/* TABLET */
+@media (max-width: 900px) {
+  .seccion-inicio {
+    background-image:
+      linear-gradient(90deg, rgb(255 247 240 / 98%) 0%, rgb(255 247 240 / 91%) 47%, rgb(255 247 240 / 24%) 100%),
+      url('../img/background2.png');
+  }
+  .contenido-inicio { min-height: 590px; padding-block: 64px; }
+  .texto-inicio { width: min(73%, 600px); }
+  .texto-inicio h1 { font-size: 34px; }
+  .descripcion-inicio { font-size: 12px; }
+  .cuadricula-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .lista-beneficios { gap: 12px; }
+  .beneficio { padding-inline: 6px; }
+  .seccion-ritual { grid-template-columns: 1fr; gap: 37px; }
+  .introduccion-ritual { max-width: 650px; }
+  .contenido-nosotros { gap: 35px; }
+  .columnas-pie { gap: 26px; }
 }
 
-address.datos-contacto-institucional {
-  font-style: normal;
-  font-size: 0.85rem;
-  line-height: 1.8;
-  color: var(--color-fondo-crema);
+/* MÓVIL: el menú permanece accesible mediante un botón */
+@media (max-width: 700px) {
+  html { scroll-padding-top: 145px; }
+  .contenedor-ancho { width: min(calc(100% - 36px), var(--ancho-contenido)); }
+  .contenido-encabezado {
+    grid-template-areas: 'marca acciones' 'busqueda busqueda' 'navegacion navegacion';
+    grid-template-columns: 1fr auto; row-gap: 12px; padding-block: 13px;
+  }
+  .nombre-marca { font-size: 21px; }
+  .descripcion-marca { font-size: 7px; }
+  .acciones-encabezado { gap: 1px; }
+  .boton-icono { width: 37px; height: 37px; flex-basis: 37px; padding: 8px; }
+  .acciones-encabezado li:has(.boton-menu) { display: block; }
+  .boton-menu { display: grid; }
+  .navegacion-principal { width: 100%; justify-self: stretch; display: none; }
+  .navegacion-principal[data-menu-abierto="true"] { display: block; }
+  .lista-navegacion { display: grid; gap: 0; padding-block: 6px; border-top: 1px solid var(--color-borde); }
+  .lista-navegacion a { display: block; padding: 12px 5px; }
+  .lista-navegacion .enlace-activo { box-shadow: none; }
+  .formulario-busqueda { max-width: none; }
+  /* En móvil la imagen continúa de fondo, visible debajo del contenido. */
+  .seccion-inicio {
+    background-image:
+      linear-gradient(180deg,
+        rgb(255 247 240 / 99%) 0%,
+        rgb(255 247 240 / 97%) 35%,
+        rgb(255 247 240 / 83%) 57%,
+        rgb(255 247 240 / 18%) 83%,
+        rgb(255 247 240 / 5%) 100%),
+      url('../img/background2.png');
+    background-position: center, 65% bottom;
+  }
+  .contenido-inicio { min-height: 790px; align-items: flex-start; padding-block: 52px 280px; }
+  .texto-inicio { width: 100%; max-width: 580px; }
+  .texto-inicio h1 { font-size: clamp(30px, 7.3vw, 43px); }
+  .firma-marca { font-size: 25px; }
+  .seccion-catalogo { padding-block: 63px; }
+  .filtros-catalogo { justify-content: flex-start; gap: 8px; margin-top: 28px; }
+  .boton-filtro { padding: 9px 13px; }
+  .lista-beneficios { grid-template-columns: 1fr; gap: 27px; margin-top: 32px; }
+  .seccion-beneficios { padding-block: 60px; }
+  .beneficio { padding-inline: 24px; }
+  .pasos-ritual { grid-template-columns: 1fr; gap: 25px; }
+  .pasos-ritual li::before { margin-bottom: 12px; }
+  .seccion-ritual { padding-block: 65px; }
+  .contenido-nosotros { grid-template-columns: 1fr; gap: 25px; }
+  .seccion-nosotros { padding-block: 65px; }
+  .columnas-pie { grid-template-columns: 1fr 1fr; gap: 40px 18px; padding-block: 55px; }
+  .columna-marca { grid-column: 1 / -1; }
+  .pie-inferior { flex-wrap: wrap; }
 }
 
-/* ==========================================================================
-   8. RESPONSIVIDAD (MEDIA QUERIES)
-   ========================================================================== */
-@media (max-width: 1024px) {
-  header.encabezado-principal-sitio {
-    flex-wrap: wrap;
-    padding: 1.2rem;
-  }
-
-  form.formulario-busqueda-global {
-    order: 3;
-    max-width: 100%;
-    width: 100%;
-    margin-top: 0.8rem;
-  }
-
-  section.seccion-hero-promocional {
-    grid-template-columns: 1fr;
-    padding: 2rem;
-  }
-
-  footer.pie-pagina-principal-sitio {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 460px) {
+  .cuadricula-productos { grid-template-columns: 1fr; }
+  .imagen-producto { aspect-ratio: 1 / 1; margin: 12px 12px 0; }
+  .informacion-producto { padding: 19px; }
+  .pie-producto { flex-wrap: nowrap; }
+  .contenido-inicio { min-height: 860px; padding-bottom: 260px; }
+  .seccion-inicio { background-position: center, 64% bottom; }
+  .acciones-inicio { gap: 20px; }
+  .columnas-pie { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 600px) {
-  menu.lista-enlaces-menu {
-    display: none; /* Se consolida menú en vista móvil */
-  }
-
-  h2.titulo-hero-principal {
-    font-size: 1.6rem;
-  }
-
-  figure.figura-imagen-hero {
-    height: 240px;
-  }
+/* En pantallas táctiles no se simula hover; el foco sigue siendo visible. */
+@media (hover: none) {
+  .tarjeta-producto:hover { transform: none; }
+  .tarjeta-producto:focus-within { transform: none; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* La cuadrícula usa los elementos que ya identifican cada área. */
+.contenido-encabezado, .contenido-inicio, .contenido-nosotros {
+  padding-inline: max(var(--margen-contenido, 44px), calc((100% - var(--ancho-contenido)) / 2));
+}
+
+.cuadricula-productos { list-style: none; }
+.filtros-catalogo { margin-inline: 0; }
+.acciones-inicio .boton-primario::after { content: '↗' / ''; }
+
+@media (max-width: 1180px) {
+  .contenido-encabezado, .contenido-inicio, .contenido-nosotros { --margen-contenido: 32px; }
+}
+
+@media (max-width: 700px) {
+  .contenido-encabezado, .contenido-inicio, .contenido-nosotros { --margen-contenido: 18px; }
+}
+
+.lista-resumen { list-style: none; }

@@ -2,144 +2,169 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear Cuenta - Jeruel Velas Corporales Artesanales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#441E1E">
+  <meta name="description" content="Crea tu cuenta en JERUEL y descubre nuestras velas corporales artesanales.">
+  <title>Crear cuenta | JERUEL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/registroStyle.css">
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-
-  <!-- CONTENEDOR PRINCIPAL TARJETA VERTICAL DE REGISTRO -->
   <main class="contenedor-registro">
-
-    <!-- SECCIÓN ÚNICA DEL FORMULARIO DE CREAR CUENTA -->
-    <section class="seccion-formulario-registro">
-      <!-- ENCABEZADO DE LA INTERFAZ -->
+    <section class="seccion-formulario-registro" aria-labelledby="titulo-registro">
       <header class="encabezado-formulario">
-        <h1 class="titulo-formulario">CREAR CUENTA</h1>
-        <p class="instruccion-formulario">Ingresa tus datos para registrarte en Jeruel Velas Corporales</p>
+        <a class="marca" href="homeScreen.html" aria-label="JERUEL, ir al catálogo">JERUEL</a>
+        <p class="marca-eslogan">Inspirado en el amor que ilumina nuestras vidas</p>
+
+        <p class="eyebrow">TU ESPACIO DE BIENESTAR</p>
+        <h1 id="titulo-registro">Crea tu cuenta</h1>
+        <p class="instruccion-formulario">Únete a JERUEL para descubrir una experiencia de bienestar hecha para ti.</p>
       </header>
 
-      <!-- FORMULARIO DE REGISTRO -->
-      <form class="formulario-acceso" action="#" method="POST">
-        
-        <!-- NOMBRES Y APELLIDOS (AGRUPACIÓN SEMÁNTICA CON FIELDSET) -->
+      <!-- Prototipo frontend: valida los datos y navega al catálogo sin almacenar credenciales. -->
+      <form class="formulario-registro" id="formulario-registro" action="#" method="post">
         <fieldset class="contenedor-doble-campo">
-          <legend class="leyenda-oculta">Información Personal</legend>
-          
-          <article class="grupo-campo">
-            <label class="etiqueta-campo" for="nombre-usuario">Nombres *</label>
-            <p class="contenedor-input-icono">
-              <input 
-                type="text" 
-                id="nombre-usuario" 
-                name="nombres" 
-                class="campo-texto" 
-                placeholder="Ej. David" 
-                required
-              >
-            </p>
-          </article>
-
-          <article class="grupo-campo">
-            <label class="etiqueta-campo" for="apellido-usuario">Apellidos *</label>
-            <p class="contenedor-input-icono">
-              <input 
-                type="text" 
-                id="apellido-usuario" 
-                name="apellidos" 
-                class="campo-texto" 
-                placeholder="Ej. Sáenz" 
-                required
-              >
-            </p>
-          </article>
+          <legend class="visualmente-oculto">Datos personales</legend>
+          <fieldset class="grupo-campo" aria-label="Nombre">
+            <label for="nombre-usuario">Nombres</label>
+            <input type="text" id="nombre-usuario" name="nombres" placeholder="Tu nombre" autocomplete="given-name" maxlength="80" aria-describedby="error-nombre" required>
+            <p class="mensaje-error" id="error-nombre" aria-live="polite"></p>
+          </fieldset>
+          <fieldset class="grupo-campo" aria-label="Apellido">
+            <label for="apellido-usuario">Apellidos</label>
+            <input type="text" id="apellido-usuario" name="apellidos" placeholder="Tu apellido" autocomplete="family-name" maxlength="80" aria-describedby="error-apellido" required>
+            <p class="mensaje-error" id="error-apellido" aria-live="polite"></p>
+          </fieldset>
         </fieldset>
 
-        <!-- CAMPO: CORREO ELECTRÓNICO -->
-        <article class="grupo-campo">
-          <label class="etiqueta-campo" for="correo-registro">Correo electrónico *</label>
-          <p class="contenedor-input-icono">
-            <input 
-              type="email" 
-              id="correo-registro" 
-              name="correo" 
-              class="campo-texto" 
-              placeholder="ejemplo@correo.com" 
-              required
-            >
-            <i class="icono-campo">
-              <!-- Ícono de Sobre / Correo -->
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </i>
-          </p>
-        </article>
+        <fieldset class="grupo-campo" aria-label="Correo">
+          <label for="correo-registro">Correo electrónico</label>
+          <input type="email" id="correo-registro" name="correo" placeholder="ejemplo@correo.com" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" maxlength="254" aria-describedby="error-correo" required>
+          <p class="mensaje-error" id="error-correo" aria-live="polite"></p>
+        </fieldset>
 
-        <!-- CAMPO: CONTRASEÑA -->
-        <article class="grupo-campo">
-          <label class="etiqueta-campo" for="clave-registro">Contraseña *</label>
-          <p class="contenedor-input-icono">
-            <input 
-              type="password" 
-              id="clave-registro" 
-              name="clave" 
-              class="campo-texto" 
-              placeholder="••••••••••••" 
-              required
-            >
-            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
+        <fieldset class="grupo-campo" aria-label="Contraseña">
+          <label for="clave-registro">Contraseña</label>
+          <p class="campo-con-accion">
+            <input type="password" id="clave-registro" name="clave" placeholder="Crea una contraseña" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="ayuda-clave error-clave" required>
+            <button type="button" class="boton-mostrar-contrasena" data-toggle-password="clave-registro" aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="clave-registro">
+              <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
             </button>
           </p>
-        </article>
+          <p class="ayuda-campo" id="ayuda-clave">Usa al menos 8 caracteres. Evita contraseñas fáciles de adivinar.</p>
+          <p class="mensaje-error" id="error-clave" aria-live="polite"></p>
+        </fieldset>
 
-        <!-- CAMPO: CONFIRMAR CONTRASEÑA -->
-        <article class="grupo-campo">
-          <label class="etiqueta-campo" for="clave-confirmacion">Confirmar contraseña *</label>
-          <p class="contenedor-input-icono">
-            <input 
-              type="password" 
-              id="clave-confirmacion" 
-              name="confirmar_clave" 
-              class="campo-texto" 
-              placeholder="••••••••••••" 
-              required
-            >
-            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>
+        <fieldset class="grupo-campo" aria-label="Confirmación">
+          <label for="clave-confirmacion">Confirmar contraseña</label>
+          <p class="campo-con-accion">
+            <input type="password" id="clave-confirmacion" name="confirmar_clave" placeholder="Repite tu contraseña" autocomplete="new-password" minlength="8" maxlength="128" aria-describedby="error-confirmacion" required>
+            <button type="button" class="boton-mostrar-contrasena" data-toggle-password="clave-confirmacion" aria-label="Mostrar confirmación de contraseña" aria-pressed="false" aria-controls="clave-confirmacion">
+              <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
             </button>
           </p>
-        </article>
+          <p class="mensaje-error" id="error-confirmacion" aria-live="polite"></p>
+        </fieldset>
 
-        <!-- BOTÓN DE ENVIAR / REGISTRO -->
-        <a href="homeScreen.html" class="boton-iniciar-sesion">
+        <p class="nota-formulario">Todos los campos son obligatorios.</p>
+        <button type="submit" class="boton-crear-cuenta">
           CREAR CUENTA
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
       </form>
 
-      <hr class="linea-divisora-inferior">
-
-      <!-- PIE CON ENLACE A INICIO DE SESIÓN -->
       <footer class="pie-formulario">
-        <p>¿Tienes una cuenta? <a href="index.html" class="enlace-registro">Inicia Sesión</a></p>
+        <p>¿Ya tienes una cuenta? <a href="index.html">Inicia sesión</a></p>
       </footer>
-
     </section>
-
   </main>
 
+  <script>
+    // Prototipo de interfaz. El registro real requiere un servidor y una base de datos.
+    const formulario = document.getElementById('formulario-registro');
+    const nombres = document.getElementById('nombre-usuario');
+    const apellidos = document.getElementById('apellido-usuario');
+    const correo = document.getElementById('correo-registro');
+    const clave = document.getElementById('clave-registro');
+    const confirmacion = document.getElementById('clave-confirmacion');
+    const campos = [nombres, apellidos, correo, clave, confirmacion];
+    const revisados = new Set();
+    const mensajes = new Map([
+      [nombres, document.getElementById('error-nombre')],
+      [apellidos, document.getElementById('error-apellido')],
+      [correo, document.getElementById('error-correo')],
+      [clave, document.getElementById('error-clave')],
+      [confirmacion, document.getElementById('error-confirmacion')]
+    ]);
+
+    // Las comprobaciones tienen mensajes propios, asociados a cada campo.
+    // Los atributos HTML required, minlength y type siguen disponibles sin JS.
+    formulario.noValidate = true;
+
+    document.querySelectorAll('[data-toggle-password]').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const campo = document.getElementById(boton.dataset.togglePassword);
+        const visible = campo.type === 'password';
+        campo.type = visible ? 'text' : 'password';
+        boton.setAttribute('aria-pressed', String(visible));
+        const etiqueta = campo === confirmacion ? 'confirmación de contraseña' : 'contraseña';
+        boton.setAttribute('aria-label', `${visible ? 'Ocultar' : 'Mostrar'} ${etiqueta}`);
+      });
+    });
+
+    function obtenerError(campo) {
+      if (campo === nombres || campo === apellidos) {
+        if (!campo.value.trim()) return campo === nombres ? 'Ingresa tus nombres.' : 'Ingresa tus apellidos.';
+      }
+      if (campo === correo) {
+        if (!campo.value.trim()) return 'Ingresa tu correo electrónico.';
+        if (campo.validity.typeMismatch) return 'Introduce un correo electrónico válido.';
+      }
+      if (campo === clave) {
+        if (!campo.value) return 'Crea una contraseña para tu cuenta.';
+        if (campo.value.length < 8) return 'La contraseña debe tener al menos 8 caracteres.';
+      }
+      if (campo === confirmacion) {
+        if (!campo.value) return 'Repite tu contraseña.';
+        if (campo.value !== clave.value) return 'Las contraseñas no coinciden.';
+      }
+      return '';
+    }
+
+    function mostrarEstado(campo) {
+      const error = obtenerError(campo);
+      const mensaje = mensajes.get(campo);
+      mensaje.textContent = error;
+      campo.setAttribute('aria-invalid', String(Boolean(error)));
+      return !error;
+    }
+
+    campos.forEach((campo) => {
+      campo.addEventListener('blur', () => {
+        revisados.add(campo);
+        mostrarEstado(campo);
+      });
+      campo.addEventListener('input', () => {
+        if (revisados.has(campo)) mostrarEstado(campo);
+        // Si cambia la contraseña, la confirmación debe volver a comprobarse.
+        if (campo === clave && revisados.has(confirmacion)) mostrarEstado(confirmacion);
+      });
+    });
+
+    formulario.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      campos.forEach((campo) => revisados.add(campo));
+      const incorrectos = campos.filter((campo) => !mostrarEstado(campo));
+      if (incorrectos.length) {
+        incorrectos[0].focus();
+        return;
+      }
+      // Solo navegación del prototipo. No se envían ni guardan contraseñas.
+      window.location.assign('homeScreen.html');
+    });
+  </script>
 </body>
 </html>

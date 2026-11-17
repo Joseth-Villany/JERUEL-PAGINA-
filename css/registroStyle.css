@@ -1,318 +1,128 @@
-/* ==========================================================================
-   1. VARIABLES Y TIPOGRAFÍAS OFICIALES (JERUEL)
-   ========================================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap');
-
+/* JERUEL · Registro | Sistema visual coordinado con el inicio de sesión */
 :root {
-  --color-principal: #441E1E;            /* Vinotinto / Tinto Oscuro */
-  --color-fondo-principal: #FFF1EA;      /* Blanco Crema / Marfil */
-  --color-fondo-tarjeta: #FFFFFF;        /* Blanco Puro */
-  --color-texto-principal: #441E1E;      /* Vinotinto Oscuro */
-  --color-texto-secundario: #654A47;     /* Café / Marrón Cálido */
-  --color-texto-atenuado: #A08C8A;        /* Grisáceo / Placeholder */
-  --color-acento-dorado: #C9A16E;        /* Dorado Claro / Hover */
-  --color-borde-campo: #441E1E;         /* Vinotinto para Contornos */
-  --color-halo-dorado: #FBEEDC;
-  --fuente-principal: 'Montserrat', sans-serif;
-  --fuente-marca: 'Cinzel', serif;
-  --fuente-manuscrita: 'Great Vibes', cursive;
+  --vino: #441E1E;
+  --vino-hover: #321616;
+  --crema: #FFF1EA;
+  --crema-suave: #F0E5D8;
+  --blanco: #FFFFFF;
+  --marron: #654A47;
+  --dorado: #C9A16E;
+  --borde: #DCCBC3;
+  --error: #9A2D32;
+  --fuente-texto: 'Montserrat', Arial, sans-serif;
+  --fuente-marca: 'Cinzel', Georgia, serif;
 }
-
-/* RESETEO UNIVERSAL CORREGIDO */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--fuente-principal);
-}
-
-/* ==========================================================================
-   2. LIENZO Y FONDO DE LA PÁGINA (BODY)
-   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
 body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(16px, 3vw, 38px);
+  display: grid;
+  place-items: center;
   position: relative;
   isolation: isolate;
-  background-color: #F0E5D8;
-  color: var(--color-texto-secundario);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 24px;
+  background: var(--crema-suave);
+  color: var(--marron);
+  font-family: var(--fuente-texto);
 }
-
-/* Efecto de Fondo Difuminado Cálido */
+/* Preserva el fondo utilizado en el registro original. */
 body::before {
-  content: "";
+  content: '';
   position: fixed;
-  inset: -20px;
+  inset: -18px;
   z-index: -2;
-  background-image: url("../img/fondo-body.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(0.4rem);
-  transform: scale(1.03);
+  background: url('../img/fondo-body.png') center / cover no-repeat;
+  filter: blur(6px);
   pointer-events: none;
 }
-
 body::after {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: rgba(255, 241, 234, 0.65);
+  background: rgba(255, 241, 234, .70);
   pointer-events: none;
-  justify-content: center;
 }
-figure img{
-  border: 3px solid red;
+button, input { font: inherit; }
+a { color: inherit; }
+.contenedor-registro {
+  width: min(100%, 610px);
+  background: var(--blanco);
+  border: 1px solid rgba(201, 161, 110, .52);
+  border-radius: 24px;
+  box-shadow: 0 22px 65px rgba(68, 30, 30, .13);
 }
-
-/* ==========================================================================
-   3. CONTENEDOR PRINCIPAL TARJETA REGISTRO
-   ========================================================================== */
-main.contenedor-registro {
-  background-color: var(--color-fondo-tarjeta);
-  border: 1.5px solid var(--color-acento-dorado);
-  border-radius: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 40rem;
-  max-height: 100rem;
-  height: 45rem;
-  overflow: hidden;
-  box-shadow: 0 12px 30px rgba(68, 30, 30, 0.12);
-  position: relative;
-  z-index: 1;
-  justify-content: center;
+.seccion-formulario-registro {
+  padding: clamp(28px, 5.5vw, 52px) clamp(22px, 6vw, 62px);
 }
-
-section.seccion-formulario-registro {
-  width: 100%;
-  padding: 2.2rem 2.2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--color-fondo-tarjeta);
-  
-}
-
-/* ==========================================================================
-   5. ENCABEZADOS Y TITULARES
-   ========================================================================== */
-header.encabezado-formulario {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  text-align: center;
-  margin-bottom: 0.4rem;
-  
-  
-}
-
-header.encabezado-formulario h1.titulo-formulario {
-  color: var(--color-principal);
-  font-size: 1.75rem;
-  font-weight: 800;
-  letter-spacing: 0.15rem;
-  text-transform: uppercase;
-  margin: 0;
-  
-}
-
-header.encabezado-formulario p.instruccion-formulario {
-  color: var(--color-texto-secundario);
-  font-size: 0.88rem;
-  margin-top: 0.80rem;  
-}
-
-/* ==========================================================================
-   6. ESTRUCTURA Y CAMPOS DEL FORMULARIO
-   ========================================================================== */
-form.formulario-acceso {
-  display: flex;
-  flex-direction: column;
-  gap: 0.95rem;
-  padding: 1rem 0 0.4rem 0;
-  width: 100%;
-  margin-top: 2rem;
-  
-}
-
-/* Fieldset Semántico para los Campos Dobles (Nombres y Apellidos) */
-fieldset.contenedor-doble-campo {
-  border: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 0.8rem;
-  width: 100%;
-
-}
-
-.leyenda-oculta {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
- 
-}
-
-.contenedor-doble-campo article.grupo-campo {
-  flex: 1;
-}
-
-article.grupo-campo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-  
-}
-
-label.etiqueta-campo {
-  color: var(--color-principal);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05rem;
-  text-transform: uppercase;
-  margin-bottom: 0.35rem;
-}
-
-p.contenedor-input-icono {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-input.campo-texto {
-  width: 100%;
-  padding: 0.85rem 2.5rem 0.85rem 1rem;
-  border: 2px solid var(--color-borde-campo);
-  border-radius: 25px;
-  font-size: 0.88rem;
-  color: var(--color-texto-principal);
-  background-color: var(--color-fondo-tarjeta);
-  outline: none;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
-  padding: 1rem 1rem 1rem 1rem;
-}
-
-input.campo-texto:focus {
-  border-color: var(--color-acento-dorado);
-  box-shadow: 0 0 0 3px rgba(68, 30, 30, 0.1);
-  transform: scale(1.015);
-}
-
-input.campo-texto::placeholder {
-  color: var(--color-texto-atenuado);
-}
-
-i.icono-campo, 
-button.boton-mostrar-contrasena {
-  position: absolute;
-  right: 0.9rem;
-  background: none;
-  border: none;
-  color: var(--color-principal);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-style: normal;
-}
-
-/* ==========================================================================
-   7. BOTÓN PRINCIPAL Y ENLACES (EFECTO HOVER SCALE)
-   ========================================================================== */
-a.boton-iniciar-sesion {
-  background-color: var(--color-principal);
-  color: #FFFFFF;
-  border: none;
-  border-radius: 25px;
-  padding: 1.05rem 0;
-  font-size: 0.9rem;
-  font-weight: 800;
-  letter-spacing: 0.1rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 0.4rem;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.2s ease;
-  padding: 1.1rem 1rem 1.1rem 1rem;
-}
-
-a.boton-iniciar-sesion:hover {
-  background-color: #2F1414;
-  transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(68, 30, 30, 0.25);
-  color: var(--color-fondo-principal);
-}
-
-a.boton-iniciar-sesion:active {
-  transform: scale(0.99);
-}
-
-hr.linea-divisora-inferior {
-  border: none;
-  height: 1px;
-  background-color: #EFE6E2;
-  margin: 1.1rem 0 0.8rem 0;
-  width: 100%;
-}
-
-footer.pie-formulario {
-  text-align: center;
-  font-size: 0.88rem;
-  color: var(--color-texto-secundario);
-}
-
-a.enlace-registro {
-  color: var(--color-acento-dorado);
-  font-weight: 700;
-  text-decoration: underline;
+.encabezado-formulario { text-align: center; }
+.marca {
   display: inline-block;
-  transition: transform 0.25s ease, color 0.2s ease;
+  font: 700 clamp(1.9rem, 4vw, 2.4rem)/1.25 var(--fuente-marca);
+  letter-spacing: .20em;
+  text-decoration: none;
+  color: var(--vino);
 }
-
-a.enlace-registro:hover {
-  color: var(--color-principal);
-  transform: scale(1.03);
+.marca-eslogan { margin: 9px 0 0; color: var(--marron); font-size: .74rem; line-height: 1.6; }
+.marca-eslogan::after { content: ''; display: block; width: 44px; height: 2px; background: var(--dorado); margin: 22px auto 21px; }
+.eyebrow { margin: 0 0 10px; color: #756560; font-size: .7rem; font-weight: 700; letter-spacing: .16em; }
+h1 { margin: 0; color: var(--vino); font-size: clamp(1.65rem, 4vw, 2.05rem); font-weight: 700; letter-spacing: -.035em; line-height: 1.2; }
+.instruccion-formulario { margin: 12px auto 0; max-width: 395px; font-size: .87rem; line-height: 1.65; }
+.formulario-registro { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.contenedor-doble-campo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; border: 0; padding: 0; margin: 0; min-width: 0; }
+.visualmente-oculto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.grupo-campo { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; min-width: 0; gap: 8px; }
+.grupo-campo label { color: var(--vino); font-size: .77rem; font-weight: 700; line-height: 1.5; }
+.grupo-campo input {
+  width: 100%; min-width: 0; height: 52px;
+  padding: 0 16px; background: #FFFDFC; color: var(--vino);
+  border: 1.5px solid var(--borde); border-radius: 15px;
+  outline: 0; font-size: 1rem;
+  transition: border-color .18s ease, box-shadow .18s ease;
 }
-
-/* ==========================================================================
-   8. ADAPTABILIDAD RESPONSIVA (MEDIA QUERIES)
-   ========================================================================== */
+.grupo-campo input::placeholder { color: #817571; opacity: 1; }
+.grupo-campo input:focus { border-color: var(--vino); box-shadow: 0 0 0 4px rgba(68,30,30,.10); }
+.grupo-campo input[aria-invalid="true"] { border-color: var(--error); }
+.grupo-campo input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px rgba(154,45,50,.12); }
+.campo-con-accion { margin: 0; position: relative; display: flex; align-items: center; }
+.campo-con-accion input { padding-right: 58px; }
+.boton-mostrar-contrasena { position: absolute; right: 5px; width: 44px; height: 44px; display: grid; place-items: center; border: 0; border-radius: 9px; background: transparent; color: var(--marron); cursor: pointer; }
+.boton-mostrar-contrasena:hover { background: var(--crema); color: var(--vino); }
+.ayuda-campo { margin: 0; color: #6D5C56; font-size: .73rem; line-height: 1.55; }
+.mensaje-error { margin: 0; color: var(--error); font-size: .75rem; line-height: 1.5; }
+.mensaje-error:empty { display: none; }
+.nota-formulario { margin: -4px 0 0; color: #6D5C56; font-size: .72rem; }
+.boton-crear-cuenta {
+  width: 100%; min-height: 54px; margin-top: 2px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  padding: 14px 20px; border: 1px solid var(--vino); border-radius: 15px;
+  background: var(--vino); color: var(--blanco);
+  font-size: .82rem; font-weight: 700; letter-spacing: .08em;
+  cursor: pointer; transition: background-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.boton-crear-cuenta:hover { background: var(--vino-hover); box-shadow: 0 8px 20px rgba(68,30,30,.18); transform: translateY(-1px); }
+.boton-crear-cuenta:active { transform: translateY(0); }
+:where(a, button):focus-visible { outline: 3px solid var(--dorado); outline-offset: 4px; }
+.pie-formulario { margin-top: 25px; padding-top: 21px; border-top: 1px solid #EBE0DA; text-align: center; font-size: .83rem; line-height: 1.65; }
+.pie-formulario p { margin: 0; }
+.pie-formulario a { color: var(--vino); text-underline-offset: 3px; }
+.pie-formulario p a { font-weight: 700; }
+.pie-formulario a:hover { color: #803B3B; }
+.enlace-visitante { display: inline-block; margin-top: 13px; font-size: .8rem; }
 @media (max-width: 520px) {
-  body {
-    padding: 1rem;
-  }
-
-  main.contenedor-registro {
-    border-radius: 1rem;
-    padding: 0;
-  }
-
-  section.seccion-formulario-registro {
-    padding: 1.8rem 1.25rem;
-  }
-
-  fieldset.contenedor-doble-campo {
-    flex-direction: column;
-    gap: 0.95rem;
-  }
-
-  header.encabezado-formulario h1.titulo-formulario {
-    font-size: 1.45rem;
-  }
+  body { padding: 14px; }
+  .contenedor-registro { border-radius: 20px; }
+  .seccion-formulario-registro { padding: 30px 23px; }
+  .contenedor-doble-campo { grid-template-columns: 1fr; gap: 18px; }
+  .formulario-registro { gap: 18px; }
+}
+@media (max-width: 360px) {
+  body { padding: 9px; }
+  .seccion-formulario-registro { padding: 26px 17px; }
+  h1 { font-size: 1.58rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }

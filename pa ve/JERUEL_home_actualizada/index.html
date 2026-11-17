@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#441E1E">
+  <meta name="description" content="Conoce las velas corporales artesanales JERUEL, creadas para convertir los momentos cotidianos en rituales de bienestar y cuidado personal.">
+  <title>JERUEL | Velas corporales artesanales</title>
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/homeStyle.css">
+  <script src="js/home.js" defer></script>
+</head>
+<body>
+  <a class="enlace-saltar" href="#contenido-principal">Saltar al contenido principal</a>
+
+  <!-- ENCABEZADO -->
+  <header class="encabezado-sitio contenido-encabezado">
+    <a class="marca-sitio" href="#inicio" aria-label="JERUEL, ir al inicio">
+      <strong class="nombre-marca">JERUEL</strong>
+      <small class="descripcion-marca">Velas corporales artesanales</small>
+    </a>
+
+    <nav id="navegacion-principal" class="navegacion-principal" aria-label="Navegación principal" data-menu-abierto="false">
+      <ul class="lista-navegacion">
+        <li><a class="enlace-activo" href="#inicio" aria-current="page">Inicio</a></li>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+      </ul>
+    </nav>
+
+    <form id="formulario-busqueda" class="formulario-busqueda" role="search">
+      <label class="solo-lectores" for="campo-busqueda">Buscar velas</label>
+      <input id="campo-busqueda" name="busqueda" type="search" placeholder="Buscar aromas o velas..." autocomplete="off">
+      <button class="boton-buscar" type="submit" aria-label="Buscar productos">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+      </button>
+    </form>
+
+    <menu class="acciones-encabezado">
+      <li><button id="abrir-favoritos" class="boton-icono" type="button" aria-label="Ver favoritos" title="Favoritos">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 5.2a5.2 5.2 0 0 0-7.4 0L12 6.3l-1.1-1.1a5.2 5.2 0 1 0-7.4 7.4L12 21l8.5-8.4a5.2 5.2 0 0 0 0-7.4Z"/></svg>
+        </button></li>
+      <!-- Esta página se creará al desarrollar el módulo de cuentas. -->
+      <li><a class="boton-icono" href="perfil.html" aria-label="Mi cuenta" title="Mi cuenta">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg>
+        </a></li>
+      <li><button id="abrir-carrito" class="boton-icono boton-con-contador" type="button" aria-label="Ver carrito" title="Carrito">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.3 11h11.8l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+          <data id="contador-carrito" class="contador-carrito" value="0" aria-hidden="true" hidden>0</data>
+        </button></li>
+      <li><button id="boton-menu" class="boton-icono boton-menu" type="button" aria-label="Abrir menú" aria-controls="navegacion-principal" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button></li>
+    </menu>
+  </header>
+
+  <main id="contenido-principal">
+    <!-- PRESENTACIÓN -->
+    <section id="inicio" class="seccion-inicio contenido-inicio" aria-labelledby="titulo-inicio">
+      <header class="texto-inicio">
+        <p class="texto-superior">Artesanía · Calidez · Bienestar</p>
+        <h1 id="titulo-inicio">Un momento para ti. <em>Una experiencia para sentir.</em></h1>
+        <p class="descripcion-inicio">Descubre nuestras velas corporales artesanales: al derretirse, se transforman en un aceite tibio para acompañar tus momentos de masaje y cuidado personal.</p>
+        <nav class="acciones-inicio" aria-label="Explorar JERUEL">
+          <a class="boton-primario" href="#catalogo">Descubrir colección</a>
+          <a class="enlace-subrayado" href="#nosotros">Conoce JERUEL</a>
+        </nav>
+        <p class="firma-marca">Inspirado en el amor que ilumina nuestras vidas</p>
+      </header>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section id="catalogo" class="seccion-catalogo contenedor-ancho" aria-labelledby="titulo-catalogo">
+      <header class="encabezado-seccion">
+        <p class="texto-superior">Encuentra tu favorito</p>
+        <h2 id="titulo-catalogo">Nuestras colecciones</h2>
+        <p>Una selección de aromas y texturas para cada momento.</p>
+      </header>
+
+      <fieldset class="filtros-catalogo">
+        <legend class="solo-lectores">Filtrar productos por colección</legend>
+        <button class="boton-filtro filtro-activo" type="button" data-categoria="todas" aria-pressed="true">Todas las velas</button>
+        <button class="boton-filtro" type="button" data-categoria="lavanda" aria-pressed="false">Lavanda</button>
+        <button class="boton-filtro" type="button" data-categoria="cacao" aria-pressed="false">Cacao</button>
+        <button class="boton-filtro" type="button" data-categoria="citricos" aria-pressed="false">Cítricos</button>
+        <button class="boton-filtro" type="button" data-categoria="bosque" aria-pressed="false">Frutos rojos</button>
+        <button class="boton-filtro" type="button" data-categoria="kits" aria-pressed="false">Kits de regalo</button>
+      </fieldset>
+      <p id="estado-catalogo" class="estado-catalogo" role="status" aria-live="polite">4 productos disponibles</p>
+
+      <ul id="lista-productos" class="cuadricula-productos" role="list">
+        <li id="producto-lavanda" class="tarjeta-producto" data-id="lavanda" data-categoria="lavanda" data-nombre="Vela Corporal Lavanda Relajante" data-precio="42000" data-busqueda="lavanda relajante soya karité masaje">
+          <figure class="imagen-producto">
+            <a class="enlace-imagen-producto" href="detalleProducto.html?producto=lavanda" aria-label="Ver detalle de Vela Corporal Lavanda Relajante">
+              <img src="img/lavanda.png" alt="Vela corporal de lavanda y karité" width="540" height="675" loading="lazy">
+            </a>
+            <mark class="etiqueta-destacada">Más vendido</mark>
+            <button class="boton-favorito" type="button" data-favorito="lavanda" aria-label="Añadir Vela Corporal Lavanda Relajante a favoritos" aria-pressed="false" title="Guardar favorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 5.2a5.2 5.2 0 0 0-7.4 0L12 6.3l-1.1-1.1a5.2 5.2 0 1 0-7.4 7.4L12 21l8.5-8.4a5.2 5.2 0 0 0 0-7.4Z"/></svg>
+            </button>
+          </figure>
+          <section class="informacion-producto">
+            <p class="ingredientes-producto">Soya y karité</p>
+            <h3><a href="detalleProducto.html?producto=lavanda">Vela Corporal Lavanda Relajante</a></h3>
+            <p class="descripcion-producto">Aceite tibio para masajes con aroma de lavanda.</p>
+            <footer class="pie-producto">
+              <data class="precio-producto" value="42000">$42.000 <small>COP</small></data>
+              <button class="boton-agregar" type="button" data-agregar="lavanda" aria-label="Agregar Vela Corporal Lavanda Relajante al carrito">Agregar</button>
+            </footer>
+          </section>
+        </li>
+
+        <li id="producto-cacao" class="tarjeta-producto" data-id="cacao" data-categoria="cacao" data-nombre="Vela Corporal Cacao y Vainilla" data-precio="45000" data-busqueda="cacao vainilla manteca nutrición dulce">
+          <figure class="imagen-producto">
+            <a class="enlace-imagen-producto" href="detalleProducto.html?producto=cacao" aria-label="Ver detalle de Vela Corporal Cacao y Vainilla">
+              <img src="img/cacao.png" alt="Vela corporal de cacao y vainilla" width="540" height="675" loading="lazy">
+            </a>
+            <button class="boton-favorito" type="button" data-favorito="cacao" aria-label="Añadir Vela Corporal Cacao y Vainilla a favoritos" aria-pressed="false" title="Guardar favorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 5.2a5.2 5.2 0 0 0-7.4 0L12 6.3l-1.1-1.1a5.2 5.2 0 1 0-7.4 7.4L12 21l8.5-8.4a5.2 5.2 0 0 0 0-7.4Z"/></svg>
+            </button>
+          </figure>
+          <section class="informacion-producto">
+            <p class="ingredientes-producto">Manteca de cacao</p>
+            <h3><a href="detalleProducto.html?producto=cacao">Vela Corporal Cacao y Vainilla</a></h3>
+            <p class="descripcion-producto">Una experiencia envolvente, de aroma dulce y cálido.</p>
+            <footer class="pie-producto">
+              <data class="precio-producto" value="45000">$45.000 <small>COP</small></data>
+              <button class="boton-agregar" type="button" data-agregar="cacao" aria-label="Agregar Vela Corporal Cacao y Vainilla al carrito">Agregar</button>
+            </footer>
+          </section>
+        </li>
+
+        <li id="producto-citricos" class="tarjeta-producto" data-id="citricos" data-categoria="citricos" data-nombre="Vela Corporal Cítrica Energizante" data-precio="42000" data-busqueda="naranja bergamota cítricos energizante revitalizante">
+          <figure class="imagen-producto">
+            <a class="enlace-imagen-producto" href="detalleProducto.html?producto=citricos" aria-label="Ver detalle de Vela Corporal Cítrica Energizante">
+              <img src="img/naranja.png" alt="Vela corporal de naranja y bergamota" width="540" height="675" loading="lazy">
+            </a>
+            <mark class="etiqueta-novedad">Nuevo</mark>
+            <button class="boton-favorito" type="button" data-favorito="citricos" aria-label="Añadir Vela Corporal Cítrica Energizante a favoritos" aria-pressed="false" title="Guardar favorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 5.2a5.2 5.2 0 0 0-7.4 0L12 6.3l-1.1-1.1a5.2 5.2 0 1 0-7.4 7.4L12 21l8.5-8.4a5.2 5.2 0 0 0 0-7.4Z"/></svg>
+            </button>
+          </figure>
+          <section class="informacion-producto">
+            <p class="ingredientes-producto">Cítricos</p>
+            <h3><a href="detalleProducto.html?producto=citricos">Vela Corporal Cítrica Energizante</a></h3>
+            <p class="descripcion-producto">Notas de naranja y bergamota para acompañar tu rutina.</p>
+            <footer class="pie-producto">
+              <data class="precio-producto" value="42000">$42.000 <small>COP</small></data>
+              <button class="boton-agregar" type="button" data-agregar="citricos" aria-label="Agregar Vela Corporal Cítrica Energizante al carrito">Agregar</button>
+            </footer>
+          </section>
+        </li>
+
+        <li id="producto-bosque" class="tarjeta-producto" data-id="bosque" data-categoria="bosque" data-nombre="Vela Corporal Calidez del Bosque" data-precio="42000" data-busqueda="calidez bosque frutos rojos aroma">
+          <figure class="imagen-producto">
+            <a class="enlace-imagen-producto" href="detalleProducto.html?producto=bosque" aria-label="Ver detalle de Vela Corporal Calidez del Bosque">
+              <img src="img/bosque1.png" alt="Vela corporal Calidez del Bosque, de frutos rojos" width="540" height="675" loading="lazy">
+            </a>
+            <mark class="etiqueta-novedad">Nuevo</mark>
+            <button class="boton-favorito" type="button" data-favorito="bosque" aria-label="Añadir Vela Corporal Calidez del Bosque a favoritos" aria-pressed="false" title="Guardar favorito">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 5.2a5.2 5.2 0 0 0-7.4 0L12 6.3l-1.1-1.1a5.2 5.2 0 1 0-7.4 7.4L12 21l8.5-8.4a5.2 5.2 0 0 0 0-7.4Z"/></svg>
+            </button>
+          </figure>
+          <section class="informacion-producto">
+            <p class="ingredientes-producto">Frutos rojos</p>
+            <h3><a href="detalleProducto.html?producto=bosque">Vela Corporal Calidez del Bosque</a></h3>
+            <p class="descripcion-producto">Un aroma frutal para disfrutar una pausa especial.</p>
+            <footer class="pie-producto">
+              <data class="precio-producto" value="42000">$42.000 <small>COP</small></data>
+              <button class="boton-agregar" type="button" data-agregar="bosque" aria-label="Agregar Vela Corporal Calidez del Bosque al carrito">Agregar</button>
+            </footer>
+          </section>
+        </li>
+      </ul>
+
+      <section id="catalogo-vacio" class="catalogo-vacio" aria-labelledby="titulo-catalogo-vacio" hidden>
+        <h3 id="titulo-catalogo-vacio">No encontramos productos con ese filtro</h3>
+        <p>Prueba otra colección o modifica tu búsqueda.</p>
+        <button id="limpiar-filtros" class="boton-secundario" type="button">Ver todas las velas</button>
+      </section>
+    </section>
+
+    <!-- VALORES DE LA MARCA -->
+    <section id="beneficios" class="seccion-beneficios" aria-labelledby="titulo-beneficios">
+      <header class="encabezado-seccion contenedor-ancho">
+        <p class="texto-superior">La esencia de JERUEL</p>
+        <h2 id="titulo-beneficios">Pequeños detalles que se sienten</h2>
+        <p>Una propuesta artesanal que une aromas, cuidado y momentos de conexión.</p>
+      </header>
+      <ul class="lista-beneficios contenedor-ancho">
+        <li class="beneficio">
+          <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-7-4.1-7-9V5l7-3 7 3v7c0 4.9-7 9-7 9Z"/><path d="m9 12 2 2 4-4"/></svg>
+          <h3>Cuidado corporal</h3>
+          <p>Una vela que se convierte en aceite tibio para complementar tu ritual de masaje.</p>
+        </li>
+        <li class="beneficio">
+          <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-9-5.8-9-11.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 15.2 12 21 12 21Z"/></svg>
+          <h3>Elaboración artesanal</h3>
+          <p>Productos hechos a mano, con atención en los detalles de cada experiencia.</p>
+        </li>
+        <li class="beneficio">
+          <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 22v-6M8 16h8M7 11c0-2.5 5-9 5-9s5 6.5 5 9a5 5 0 0 1-10 0Z"/></svg>
+          <h3>Experiencia sensorial</h3>
+          <p>Aromas y texturas pensados para acompañar pausas de bienestar y conexión.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CÓMO SE DISFRUTA -->
+    <section class="seccion-ritual contenedor-ancho" aria-labelledby="titulo-ritual">
+      <header class="introduccion-ritual">
+        <p class="texto-superior">Tu momento JERUEL</p>
+        <h2 id="titulo-ritual">Convierte una pausa en un ritual</h2>
+        <p>La experiencia combina luz, aroma y aceite para masaje. Sigue siempre las indicaciones de uso del producto.</p>
+      </header>
+      <ol class="pasos-ritual">
+        <li><h3>Enciende</h3><p>Disfruta la luz y el aroma de la vela.</p></li>
+        <li><h3>Deja derretir</h3><p>Espera a que se forme una pequeña cantidad de aceite.</p></li>
+        <li><h3>Apaga y comprueba</h3><p>Apaga la llama y verifica que la temperatura sea adecuada antes de aplicarlo.</p></li>
+      </ol>
+    </section>
+
+    <!-- HISTORIA, SIN TESTIMONIOS INVENTADOS -->
+    <section id="nosotros" class="seccion-nosotros contenido-nosotros" aria-labelledby="titulo-nosotros">
+      <header>
+        <p class="texto-superior texto-superior-claro">Más que una vela</p>
+        <h2 id="titulo-nosotros">JERUEL nace de la idea de <em>iluminar momentos de amor y cuidado.</em></h2>
+      </header>
+      <section class="descripcion-nosotros" aria-label="Nuestra esencia">
+        <p>Creemos que el bienestar también vive en los gestos sencillos. Por eso, nuestras velas corporales artesanales invitan a detenerse, reconectar y compartir una experiencia cálida y sensorial.</p>
+        <p class="firma-nosotros">Inspirado en el amor que ilumina nuestras vidas</p>
+      </section>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="pie-sitio">
+    <section class="contenedor-ancho columnas-pie" aria-label="Información de JERUEL">
+      <section class="columna-marca" aria-labelledby="marca-pie">
+        <h2 id="marca-pie" class="nombre-marca">JERUEL</h2>
+        <p>Velas corporales artesanales</p>
+        <p class="firma-pie">Inspirado en el amor que ilumina nuestras vidas</p>
+      </section>
+      <nav class="columna-enlaces" aria-label="Enlaces del pie de página">
+        <h3>Explora</h3>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#catalogo">Catálogo</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#nosotros">Nuestra esencia</a></li>
+        </ul>
+      </nav>
+      <section class="columna-enlaces" aria-labelledby="titulo-atencion">
+        <h3 id="titulo-atencion">Atención</h3>
+        <ul>
+          <!-- Vincular estas rutas cuando las páginas correspondientes existan. -->
+          <li><a href="contacto.html">Contáctanos</a></li>
+          <li><a href="politicas.html">Envíos y devoluciones</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </section>
+    </section>
+    <p class="contenedor-ancho pie-inferior">
+      <small>© <time id="anio-actual" datetime="2026">2026</time> JERUEL. Todos los derechos reservados.</small>
+      <small>Hecho con dedicación en Colombia.</small>
+    </p>
+  </footer>
+
+  <!-- VENTANAS DE RESUMEN: FUNCIONAN CON JAVASCRIPT, SIN BACKEND -->
+  <dialog id="ventana-carrito" class="ventana-resumen" aria-labelledby="titulo-ventana-carrito">
+    <header class="encabezado-ventana">
+      <h2 id="titulo-ventana-carrito">Tu carrito</h2>
+      <button class="boton-cerrar" type="button" data-cerrar="ventana-carrito" aria-label="Cerrar carrito">×</button>
+    </header>
+    <section id="contenido-carrito" class="contenido-ventana" aria-label="Productos del carrito"></section>
+    <footer class="pie-ventana">
+      <p>Total: <strong id="total-carrito">$0 COP</strong></p>
+      <p class="aviso-demostracion">Resumen local. El pago y el checkout se integrarán en sus páginas respectivas.</p>
+    </footer>
+  </dialog>
+
+  <dialog id="ventana-favoritos" class="ventana-resumen" aria-labelledby="titulo-ventana-favoritos">
+    <header class="encabezado-ventana">
+      <h2 id="titulo-ventana-favoritos">Tus favoritos</h2>
+      <button class="boton-cerrar" type="button" data-cerrar="ventana-favoritos" aria-label="Cerrar favoritos">×</button>
+    </header>
+    <section id="contenido-favoritos" class="contenido-ventana" aria-label="Productos favoritos"></section>
+  </dialog>
+
+  <p id="aviso-accion" class="aviso-accion" role="status" aria-live="polite" hidden></p>
+</body>
+</html>

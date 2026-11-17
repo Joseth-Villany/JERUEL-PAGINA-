@@ -1,0 +1,71 @@
+:root {
+  --vino: #441e1e;
+  --texto: #654a47;
+  --crema: #fff1ea;
+  --fondo: #fffaf7;
+  --borde: #e8d9d3;
+  --dorado: #c9a16e;
+  font-family: Montserrat, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+[hidden] { display: none !important; }
+h1, h2, p, dl, dd { margin: 0; }
+h1, h2, a { color: var(--vino); }
+:focus-visible { outline: 2px solid #925c5d; outline-offset: 3px; }
+button { font: inherit; cursor: pointer; }
+
+.contenedor { width: min(100% - 2rem, 70rem); margin-inline: auto; }
+.cabecera-tienda { background: #fff; border-bottom: 1px solid var(--borde); }
+.barra-tienda, .enlaces { display: flex; align-items: center; }
+.barra-tienda { justify-content: space-between; min-height: 4rem; gap: .75rem; }
+.enlaces { list-style: none; padding: 0; margin: 0; gap: clamp(.75rem, 3vw, 1.5rem); font-size: .85rem; font-weight: 700; }
+.barra-tienda a, .enlace-regreso { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+.barra-tienda a:hover, .enlace-regreso:hover { text-decoration: underline; }
+.marca { font: 700 clamp(1.1rem, 4vw, 1.55rem) Cinzel, serif; letter-spacing: .1em; }
+
+.pago { flex: 1; padding-block: 1rem 3rem; }
+.enlace-regreso { font-size: .875rem; font-weight: 700; }
+.enlace-regreso::before { content: '←' / ''; margin-right: .45rem; }
+h1 { font-size: clamp(1.85rem, 5vw, 3rem); line-height: 1.1; margin-top: .5rem; }
+h2 { font-size: clamp(1.15rem, 3vw, 1.4rem); line-height: 1.3; }
+.aviso-demo { display: inline-block; margin-top: .75rem; padding: .45rem .7rem; border-radius: .5rem; background: var(--crema); font-size: .85rem; font-weight: 700; }
+
+.flujo-compra { display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); gap: 1rem; align-items: start; margin-top: 1.25rem; }
+.pasos { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.pasos li { padding: .55rem .2rem; border-bottom: 2px solid var(--borde); text-align: center; font-size: .78rem; }
+.pasos li[aria-current] { border-color: var(--vino); color: var(--vino); font-weight: 800; }
+.tarjeta { min-width: 0; padding: clamp(1rem, 3vw, 1.5rem); background: #fff; border: 1px solid var(--borde); border-radius: 1rem; box-shadow: 0 7px 20px rgb(68 30 30 / .045); }
+.resumen .boton { width: 100%; }
+.resumen { border-top: 3px solid var(--dorado); }
+.estado-vacio { margin-top: 1rem; }
+.estado-vacio p { margin-top: .65rem; line-height: 1.55; }
+.confirmacion { grid-column: 1 / -1; margin-top: 0; }
+
+fieldset { padding: 0; margin: 1rem 0 0; border: 0; min-inline-size: 0; }
+legend { padding: 0; color: var(--vino); font-size: .875rem; font-weight: 700; }
+.opciones, .articulos { list-style: none; padding: 0; margin: .65rem 0 0; display: grid; gap: .5rem; }
+.opciones label { display: flex; align-items: center; gap: .65rem; min-height: 44px; padding: .55rem .7rem; border: 1px solid var(--borde); border-radius: .65rem; color: var(--vino); font-size: .9rem; cursor: pointer; overflow-wrap: anywhere; }
+.opciones label:has(:checked) { border-color: var(--vino); background: var(--crema); font-weight: 700; }
+.opciones label:has(:focus-visible) { outline: 2px solid #925c5d; outline-offset: 2px; }
+.opciones input { flex: 0 0 auto; accent-color: var(--vino); }
+.ayuda, .entrega-elegida, .estado { margin-top: .75rem; font-size: .875rem; line-height: 1.55; }
+.estado:empty { margin: 0; }
+.entrega-elegida strong { display: block; overflow-wrap: anywhere; }
+.boton { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin: .9rem .25rem 0 0; padding: .55rem .8rem; border: 1px solid var(--vino); border-radius: .7rem; font-size: .85rem; font-weight: 700; text-decoration: none; }
+.primario { background: var(--vino); color: #fff; }
+.primario:hover { background: #2f1414; }
+.secundario { color: var(--vino); background: #fff; }
+.secundario:hover { background: var(--crema); }
+
+.articulos li { font-size: .825rem; line-height: 1.5; }
+.resumen dl { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .6rem; margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--borde); font-size: .875rem; }
+.resumen dd { text-align: end; font-variant-numeric: tabular-nums; }
+.resumen dt:last-of-type, .resumen dd:last-of-type { color: var(--vino); font-weight: 800; }
+.pie-pago { padding: 1.25rem 1rem; border-top: 1px solid var(--borde); text-align: center; font-size: .875rem; }
+
+@media (max-width: 740px) {
+  .flujo-compra { grid-template-columns: minmax(0, 1fr); }
+}

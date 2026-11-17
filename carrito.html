@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tu carrito | JERUEL</title>
+  <link rel="icon" href="img/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/carritoStyle.css">
+  <script src="js/tienda.js" defer></script>
+  <script src="js/carrito.js" defer></script>
+</head>
+<body>
+  <header class="cabecera-tienda">
+    <nav class="contenedor barra-tienda" aria-label="Tienda">
+      <a class="marca" href="homeScreen.html">JERUEL</a>
+      <ul class="enlaces">
+        <li><a href="homeScreen.html#catalogo">Catálogo</a></li>
+        <li><a href="perfil.html">Mi cuenta</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenedor carrito">
+    <header class="cabecera-carrito">
+      <h1>Tu carrito</h1>
+      <p id="cantidad-carrito" hidden></p>
+    </header>
+    <p class="visualmente-oculto" id="estado-carrito" role="status"></p>
+    <p class="error" id="error-carrito" role="alert" hidden></p>
+
+    <section id="carrito-con-productos" aria-label="Productos en el carrito" hidden>
+      <ul class="productos" id="productos-carrito"></ul>
+    </section>
+    <aside class="resumen" id="resumen-carrito" aria-labelledby="titulo-resumen" hidden>
+      <h2 id="titulo-resumen">Resumen del carrito</h2>
+      <dl>
+        <dt>Subtotal</dt><dd id="subtotal-carrito"></dd>
+        <dt>Envío</dt><dd>Por calcular</dd>
+      </dl>
+      <p class="estado-compra">Puedes probar el pago de demostración sin realizar un cobro.</p>
+      <a class="boton" href="metodosPago.html">Continuar a la entrega</a>
+      <a class="boton boton-secundario" href="homeScreen.html#catalogo">Seguir comprando</a>
+    </aside>
+
+    <section class="carrito-vacio" id="carrito-vacio" aria-labelledby="titulo-vacio" hidden>
+      <h2 id="titulo-vacio">Tu carrito está vacío</h2>
+      <p>Explora nuestras velas corporales y añade las que quieras comprar.</p>
+      <a class="boton" id="explorar-catalogo" href="homeScreen.html#catalogo">Explorar el catálogo</a>
+    </section>
+    <noscript><p>Activa JavaScript para ver y actualizar tu carrito.</p></noscript>
+  </main>
+
+  <template id="plantilla-producto">
+    <li>
+      <article class="producto">
+        <img class="foto-producto" width="112" height="112" alt="">
+        <header class="datos-producto">
+          <h2><a class="nombre-producto"></a></h2>
+          <p class="precio-unitario"></p>
+        </header>
+        <footer class="acciones-producto">
+          <fieldset class="cantidad">
+            <legend class="visualmente-oculto"></legend>
+            <button type="button" data-accion="reducir">−</button>
+            <data class="unidades" value="1">1</data>
+            <button type="button" data-accion="aumentar">+</button>
+          </fieldset>
+          <button class="quitar" type="button" data-accion="quitar">Quitar</button>
+        </footer>
+        <p class="importe"><small>Importe</small><strong></strong></p>
+      </article>
+    </li>
+  </template>
+
+  <footer class="pie-carrito">JERUEL · Velas corporales artesanales</footer>
+</body>
+</html>

@@ -2,97 +2,95 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iniciar Sesión - Jeruel Velas Corporales Artesanales</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#441E1E">
+  <meta name="description" content="Inicia sesión en JERUEL, velas corporales artesanales para momentos de bienestar.">
+  <title>Iniciar sesión | JERUEL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/indexStyle.css">
-  <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+  <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
 <body>
-
-  <!-- CONTENEDOR PRINCIPAL DE LA PÁGINA -->
   <main class="contenedor-inicio-sesion">
-
-    <!-- SECCIÓN 1: MARCA E IDENTIDAD (PANEL IZQUIERDO) -->
-    <section class="seccion-marca">
+    <section class="seccion-marca" aria-label="Conoce JERUEL">
       <figure class="contenedor-logo-emblema">
-          <!-- Ícono de Llama / Vela -->
-        <img src="img/Velas artesanales bajo luz cálida (2).png" alt="fondo-velas">
+        <img src="img/Velas artesanales bajo luz cálida (2).png"
+             alt="Velas artesanales JERUEL iluminadas con luz cálida"
+             loading="eager" fetchpriority="high">
+        <figcaption class="contenido-marca">
+          <p class="marca-nombre">JERUEL</p>
+          <p class="marca-categoria">Velas corporales artesanales</p>
+          <p class="marca-eslogan">Inspirado en el amor que ilumina nuestras vidas</p>
+        </figcaption>
       </figure>
     </section>
 
-    <!-- SECCIÓN 2: FORMULARIO DE INICIO DE SESIÓN (PANEL DERECHO) -->
-    <section class="seccion-formulario">
+    <section class="seccion-formulario" aria-labelledby="titulo-acceso">
       <header class="encabezado-formulario">
-        <h2 class="titulo-formulario">INICIA SESIÓN</h2>
-        <p class="instruccion-formulario">Ingresa con tus credenciales para acceder</p>
+        <p class="marca-movil" aria-hidden="true">JERUEL</p>
+        <p class="eyebrow">TU ESPACIO DE BIENESTAR</p>
+        <h1 id="titulo-acceso">Bienvenido de nuevo</h1>
+        <p class="instruccion-formulario">Inicia sesión para continuar tu experiencia con JERUEL.</p>
       </header>
 
-      <form class="formulario-acceso" action="#" method="POST">
-        
-        <!-- CAMPO 1: CORREO O USUARIO -->
-        <article class="grupo-campo">
-          <label class="etiqueta-campo" for="identificador-usuario">Correo electrónico o nombre de usuario</label>
+      <!-- Flujo de demostración: valida campos en el navegador, no autentica contra un servidor. -->
+      <form class="formulario-acceso" id="formulario-acceso" action="homeScreen.html" method="get">
+        <fieldset class="grupo-campo" aria-label="Identificación">
+          <label for="identificador-usuario">Correo electrónico o nombre de usuario</label>
           <p class="contenedor-input-icono">
-            <input 
-              type="text" 
-              id="identificador-usuario" 
-              name="usuario_o_correo" 
-              class="campo-texto" 
-              placeholder="ej: juanVelasco23@gmail.com" 
-              required
-            >
-            <!-- Ícono de Usuario -->
-            <i class="icono-campo">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                <circle cx="12" cy="7" r="4"></circle>
-              </svg>
-            </i>
+            <input id="identificador-usuario" name="usuario_o_correo" type="text"
+                   placeholder="Ingresa tu correo o usuario" autocomplete="username"
+                   autocapitalize="none" spellcheck="false" required minlength="3">
+            <svg class="icono-campo" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
           </p>
-        </article>
+        </fieldset>
 
-        <!-- CAMPO 2: CONTRASEÑA -->
-        <article class="grupo-campo2">
-          <label class="etiqueta-campo" for="clave-acceso">Contraseña</label>
+        <fieldset class="grupo-campo" aria-label="Contraseña">
+            <label for="clave-acceso">Contraseña</label>
           <p class="contenedor-input-icono">
-            <input 
-              type="password" 
-              id="clave-acceso" 
-              name="clave" 
-              class="campo-texto" 
-              placeholder="••••••••••••" 
-              required
-            >
-            <!-- Botón del Ojo para Mostrar Contraseña -->
-            <button type="button" class="boton-mostrar-contrasena" aria-label="Mostrar contraseña">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
+            <input id="clave-acceso" name="clave" type="password"
+                   placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+            <button type="button" class="boton-mostrar-contrasena" id="alternar-clave"
+                    aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="clave-acceso">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>
               </svg>
             </button>
           </p>
-        </article>
+        </fieldset>
 
-        <!-- BOTÓN DE ENVIAR -->
-          <a href="homeScreen.html" class="boton-iniciar-sesion">
-            INICIAR SESIÓN
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-          </a>
+        <button type="submit" class="boton-iniciar-sesion">
+          INICIAR SESIÓN
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+        </button>
       </form>
 
-      <hr class="linea-divisora-inferior">
-
-      <!-- PIE CON ENLACE DE REGISTRO -->
       <footer class="pie-formulario">
-        <p>¿No tienes cuenta? <a href="registro.html" class="enlace-registro">Únete a nuestra familia</a></p>
+        <p>¿Aún no tienes una cuenta? <a href="registro.html" class="enlace-registro">Crear cuenta</a></p>
       </footer>
-
     </section>
-
   </main>
 
+  <script>
+    const campoClave = document.getElementById('clave-acceso');
+    const botonClave = document.getElementById('alternar-clave');
+    botonClave.addEventListener('click', () => {
+      const visible = campoClave.type === 'password';
+      campoClave.type = visible ? 'text' : 'password';
+      botonClave.setAttribute('aria-pressed', String(visible));
+      botonClave.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+
+    document.getElementById('formulario-acceso').addEventListener('submit', (evento) => {
+      evento.preventDefault();
+      if (!evento.currentTarget.reportValidity()) return;
+      // Navegación de prototipo: nunca incluir credenciales en la URL.
+      window.location.assign('homeScreen.html');
+    });
+  </script>
 </body>
 </html>
