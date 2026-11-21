@@ -1,16 +1,14 @@
 /* JERUEL · Inicio de sesión | Identidad visual conservada */
 :root {
-  --vino: #441E1E;
-  --vino-hover: #321616;
-  --crema: #FFF1EA;
-  --crema-suave: #F0E5D8;
+  --vino: var(--color-vino);
+  --vino-hover: var(--color-vino-hover);
+  --crema: var(--color-crema);
+  --crema-suave: var(--color-crema-calido);
   --blanco: #FFFFFF;
-  --marron: #654A47;
+  --marron: var(--color-cafe);
   --texto-suave: #756560;
-  --dorado: #C9A16E;
+  --dorado: var(--color-dorado);
   --borde: #DCCBC3;
-  --fuente-texto: 'Montserrat', Arial, sans-serif;
-  --fuente-marca: 'Cinzel', Georgia, serif;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }

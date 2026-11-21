@@ -4,21 +4,26 @@
   const productos = new Map(Object.entries({
     lavanda: {
       nombre: 'Vela Corporal Lavanda Relajante', precio: 42000, imagen: 'img/lavanda.png',
-      ambiente: 'img/lavanda2.png', variedad: 'Soya y karité',
+      ambiente: 'img/lavanda2.png', variedad: 'Soya y karité', aroma: 'Lavanda',
+      resumen: 'Aceite tibio para masajes con aroma de lavanda.',
+      busqueda: 'soya karité masaje',
       descripcion: 'Vela corporal artesanal con aroma de lavanda. Al derretirse se convierte en un aceite tibio para masajes.',
       ingredientes: 'Cera de soya, manteca de karité, manteca de cacao, aceite esencial de lavanda y pabilo de algodón.'
     },
     cacao: {
       nombre: 'Vela Corporal Cacao y Vainilla', precio: 45000, imagen: 'img/cacao.png',
-      variedad: 'Manteca de cacao', descripcion: 'Una experiencia envolvente, de aroma dulce y cálido.'
+      variedad: 'Manteca de cacao', aroma: 'Cacao',
+      descripcion: 'Una experiencia envolvente, de aroma dulce y cálido.'
     },
     citricos: {
       nombre: 'Vela Corporal Cítrica Energizante', precio: 42000, imagen: 'img/naranja.png',
-      variedad: 'Cítricos', descripcion: 'Notas de naranja y bergamota para acompañar tu rutina.'
+      variedad: 'Cítricos', aroma: 'Cítricos',
+      descripcion: 'Notas de naranja y bergamota para acompañar tu rutina.'
     },
     bosque: {
       nombre: 'Vela Corporal Calidez del Bosque', precio: 42000, imagen: 'img/bosque1.png',
-      variedad: 'Frutos rojos', descripcion: 'Un aroma frutal para disfrutar una pausa especial.'
+      variedad: 'Frutos rojos', aroma: 'Frutos rojos',
+      descripcion: 'Un aroma frutal para disfrutar una pausa especial.'
     }
   }));
 
@@ -84,6 +89,7 @@
   }
 
   function agregarAlCarrito(id, cantidad) {
+    if (!productos.has(id) || !Number.isInteger(cantidad) || cantidad < 1) return null;
     const items = carrito();
     const existente = items.find(item => item.id === id);
     const disponible = 99 - (existente?.cantidad ?? 0);

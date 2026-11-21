@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/productoStyle.css">
   <script src="js/tienda.js" defer></script>
   <script src="js/producto.js" defer></script>
@@ -28,7 +29,7 @@
     <article class="ficha-producto" id="ficha-producto" aria-labelledby="nombre-producto" hidden>
       <section class="galeria" aria-label="Fotografías del producto">
         <figure class="foto-producto">
-          <img id="imagen-producto" width="540" height="675" alt="">
+          <img id="imagen-producto" src="img/lavanda2.png" width="540" height="675" alt="">
         </figure>
         <fieldset class="miniaturas" id="miniaturas" aria-label="Vistas del producto" hidden></fieldset>
       </section>
@@ -56,6 +57,7 @@
             </button>
           </p>
           <p class="mensaje-accion" id="estado-compra" role="status"></p>
+          <a class="enlace-carrito" id="ir-al-carrito" href="carrito.html" hidden>Revisar mi carrito</a>
         </form>
 
         <section class="detalles" aria-label="Información de uso e ingredientes">
@@ -85,6 +87,11 @@
         </section>
       </section>
     </article>
+
+    <section class="productos-relacionados" id="productos-relacionados" aria-labelledby="titulo-relacionados" hidden>
+      <h2 id="titulo-relacionados">Explora otros aromas</h2>
+      <ul id="lista-relacionados"></ul>
+    </section>
 
     <section class="producto-no-disponible" id="producto-no-disponible" hidden>
       <h1>Producto no encontrado</h1>

@@ -8,12 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/perfilStyle.css">
   <link rel="stylesheet" href="css/favoritosStyle.css">
   <script src="js/tienda.js" defer></script>
   <script src="js/favoritos.js" defer></script>
   <script src="js/divipola.js" defer></script>
+  <script src="js/cuenta.js" defer></script>
   <script src="js/perfil.js" defer></script>
+  <script src="js/panel.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -25,7 +28,7 @@
   </header>
   <main class="contenedor cuenta" id="contenido">
     <header class="cabecera-cuenta">
-      <figure class="avatar" aria-hidden="true"><img id="foto-perfil" alt="" hidden><figcaption id="iniciales">J</figcaption></figure>
+      <figure class="avatar" aria-hidden="true"><img id="foto-perfil" src="img/favicon.png" alt="" hidden><figcaption id="iniciales">J</figcaption></figure>
       <hgroup class="titulo-cuenta">
         <h1>Mi cuenta</h1>
         <p id="nombre-cuenta" hidden></p>
@@ -34,59 +37,98 @@
     </header>
     <p class="aviso-local">Los datos que guardes aquí se conservan en este navegador.</p>
     <p id="estado-foto" class="estado" role="status"></p>
-    <nav class="menu-cuenta" aria-label="Secciones de mi cuenta">
-      <ul>
-        <li><a href="#datos-personales">Datos personales</a></li>
-        <li><a href="#pedidos">Mis pedidos</a></li>
-        <li><a href="#velas-favoritas">Velas favoritas</a></li>
-        <li><a href="#direcciones-y-pagos">Direcciones y pagos</a></li>
-      </ul>
-      <a class="volver-acceso" href="index.html">Volver al inicio de sesión</a>
-    </nav>
+    <details class="menu-cuenta" id="menu-cuenta" open>
+      <summary>Secciones de mi cuenta</summary>
+      <nav aria-label="Secciones de mi cuenta">
+        <ul>
+          <li><a href="#resumen">Resumen</a></li>
+          <li><a href="#pedidos">Mis pedidos</a></li>
+          <li><a href="#velas-favoritas">Velas favoritas</a></li>
+          <li><a href="#medios-pago">Medios de pago</a></li>
+          <li><a href="#direcciones-y-pagos">Direcciones de envío</a></li>
+          <li><a href="#datos-personales">Datos personales</a></li>
+          <li><a href="#seguridad">Seguridad y privacidad</a></li>
+          <li><a href="#preferencias">Notificaciones</a></li>
+          <li><a href="#ayuda">Ayuda</a></li>
+        </ul>
+        <button class="boton secundario" type="button" id="cerrar-sesion">Cerrar sesión</button>
+      </nav>
+    </details>
+    <div class="contenido-cuenta">
+    <section class="tarjeta" id="resumen" aria-labelledby="titulo-resumen" hidden>
+      <h2 id="titulo-resumen" tabindex="-1">Resumen de cuenta</h2>
+      <dl class="indicadores"><div><dt>Pedidos</dt><dd id="cuenta-pedidos"></dd></div><div><dt>Favoritos</dt><dd id="cuenta-favoritos"></dd></div><div><dt>Direcciones</dt><dd id="cuenta-direcciones"></dd></div></dl>
+      <section class="destacado-cuenta" aria-labelledby="titulo-ultimo"><h3 id="titulo-ultimo">Último pedido</h3><p id="ultimo-pedido"></p><a class="boton primario" id="ir-a-pedidos" href="#pedidos">Ver mis pedidos</a></section>
+      <p class="acciones"><a class="boton secundario" href="#datos-personales">Editar mis datos</a><a class="boton secundario" href="#velas-favoritas">Ver favoritos</a></p>
+    </section>
     <section class="tarjeta" id="datos-personales" aria-labelledby="titulo-datos" tabindex="-1">
       <header class="encabezado-seccion">
-        <h2 id="titulo-datos">Datos personales</h2>
+        <h2 id="titulo-datos" tabindex="-1">Datos personales</h2>
         <button class="boton secundario" type="button" id="editar-datos">Editar datos</button>
       </header>
       <ul class="datos" id="datos-guardados" role="list">
         <li><dl><dt>Nombre</dt><dd id="dato-nombre">Sin agregar</dd></dl></li>
         <li><dl><dt>Correo</dt><dd id="dato-correo">Sin agregar</dd></dl></li>
-        <li><dl><dt>Teléfono</dt><dd id="dato-telefono">Sin agregar</dd></dl></li>
+        <li><dl><dt>Celular</dt><dd id="dato-telefono">Sin agregar</dd></dl></li>
+        <li><dl><dt>Apellidos</dt><dd id="dato-apellidos">Sin agregar</dd></dl></li>
+        <li><dl><dt>Tipo de documento</dt><dd id="dato-tipoDocumento">Sin agregar</dd></dl></li>
+        <li><dl><dt>Documento</dt><dd id="dato-documento">Sin agregar</dd></dl></li>
+        <li><dl><dt>Nacimiento</dt><dd id="dato-nacimiento">Sin agregar</dd></dl></li>
       </ul>
       <form class="formulario" id="formulario-datos" hidden>
         <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" autocomplete="name" required maxlength="100">
+        <input id="nombre" name="nombre" autocomplete="given-name" required maxlength="100">
+        <label for="apellidos">Apellidos</label><input id="apellidos" name="apellidos" autocomplete="family-name" maxlength="100">
+        <label for="tipoDocumento">Tipo de documento</label>
+        <select id="tipoDocumento" name="tipoDocumento"><option value="">Selecciona un tipo</option><option>CC</option><option>CE</option><option>Pasaporte</option></select>
+        <label for="documento">Número de documento de prueba</label><input id="documento" name="documento" autocomplete="off" maxlength="20" pattern="[A-Za-z0-9]{4,20}" data-error="Escribe entre 4 y 20 letras o números.">
+        <label for="nacimiento">Fecha de nacimiento</label><input id="nacimiento" name="nacimiento" type="date" autocomplete="bday">
         <label for="correo">Correo (opcional)</label>
         <input id="correo" name="correo" type="email" autocomplete="email" maxlength="254">
         <label for="telefono">Teléfono (opcional)</label>
-        <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="30">
+        <input id="telefono" name="telefono" type="tel" autocomplete="tel" maxlength="17" pattern="[+0-9 ()\-]{7,17}" data-error="Escribe entre 7 y 17 caracteres de teléfono.">
         <p class="acciones">
           <button class="boton primario" type="submit">Guardar cambios</button>
           <button class="boton secundario" type="button" id="cancelar-datos">Cancelar</button>
         </p>
       </form>
+      <button class="boton secundario" id="borrar-datos" type="button">Borrar datos personales</button>
       <p id="estado-datos" class="estado" role="status"></p>
     </section>
 
-    <section class="tarjeta" id="pedidos" aria-labelledby="titulo-pedidos" tabindex="-1">
-      <h2 id="titulo-pedidos">Mis pedidos</h2>
-      <section class="estado-vacio" aria-labelledby="titulo-pedidos-vacios">
-        <h3 id="titulo-pedidos-vacios">Aquí podrás consultar tus pedidos</h3>
-        <p>El seguimiento y el historial estarán disponibles cuando la tienda pueda confirmar pedidos.</p>
-        <p class="acciones">
-          <a class="boton primario" href="homeScreen.html#catalogo">Explorar el catálogo</a>
-          <a class="boton secundario" href="carrito.html">Ver carrito</a>
-        </p>
-      </section>
+    <section class="tarjeta" id="pedidos" aria-labelledby="titulo-pedidos" hidden>
+      <h2 id="titulo-pedidos" tabindex="-1">Mis pedidos</h2>
+      <p>Consulta el estado y los detalles de tus compras de prueba.</p>
+      <div class="filtros-pedidos formulario">
+        <label for="buscar-pedidos">Número o producto</label><input id="buscar-pedidos" type="search" placeholder="Ej. JR-1044 o lavanda">
+        <label for="filtrar-pedidos">Estado</label><select id="filtrar-pedidos"><option value="">Todos los estados</option><option value="pendiente">Pendiente de pago</option><option value="pagado">Pagado</option><option value="camino">En camino</option><option value="entregado">Entregado</option></select>
+      </div>
+      <p id="resultados-pedidos" role="status"></p>
+      <table id="tabla-pedidos">
+        <caption class="solo-lectores">Historial de pedidos de prueba</caption>
+        <thead><tr><th scope="col">Pedido</th><th scope="col">Fecha</th><th scope="col">Estado</th><th scope="col">Total</th><th scope="col">Acción</th></tr></thead>
+        <tbody id="lista-pedidos"></tbody>
+      </table>
+      <div id="pedidos-vacios" class="estado-vacio" hidden><p>No encontramos pedidos. Cambia el filtro o explora la colección.</p><button class="boton secundario" type="button" id="limpiar-pedidos">Limpiar filtros</button> <a class="boton primario" href="homeScreen.html#catalogo">Explorar el catálogo</a></div>
     </section>
-
+    <section class="tarjeta" id="detalle-pedido" aria-labelledby="titulo-detalle" hidden>
+      <a class="enlace-boton" href="#pedidos">Volver a mis pedidos</a>
+      <h2 id="titulo-detalle" tabindex="-1">Detalle del pedido</h2>
+      <div id="contenido-pedido"></div>
+    </section>
     <section class="tarjeta" id="velas-favoritas" aria-labelledby="titulo-favoritos" tabindex="-1">
-      <h2 id="titulo-favoritos">Velas favoritas</h2>
-      <section aria-label="Productos guardados" data-lista-favoritos></section>
+      <h2 id="titulo-favoritos" tabindex="-1">Velas favoritas</h2>
+      <section aria-label="Productos guardados" data-lista-favoritos data-permitir-compra></section>
+      <form class="formulario" id="formulario-favorito">
+        <label for="selector-favorito">Añadir una vela a favoritos</label>
+        <select id="selector-favorito" required><option value="">Selecciona una vela</option></select>
+        <button class="boton secundario" type="submit">Guardar favorito</button>
+      </form>
+      <p id="estado-favorito" role="status"></p>
     </section>
 
     <section class="tarjeta" id="direcciones-y-pagos" aria-labelledby="titulo-direcciones" tabindex="-1">
-      <h2 id="titulo-direcciones">Direcciones y pagos</h2>
+      <h2 id="titulo-direcciones" tabindex="-1">Direcciones de envío</h2>
       <header class="encabezado-seccion">
         <h3 id="titulo-lista-direcciones">Direcciones</h3>
         <button id="agregar-direccion" type="button" class="boton secundario">Agregar dirección</button>
@@ -104,6 +146,9 @@
         <select id="ciudad" name="ciudad" autocomplete="address-level2" required disabled>
           <option value="">Selecciona primero el departamento</option>
         </select>
+        <label for="barrio">Barrio</label><input id="barrio" name="barrio" autocomplete="address-level3" maxlength="80">
+        <label for="indicaciones">Indicaciones (opcional)</label><input id="indicaciones" name="indicaciones" maxlength="160">
+        <label for="telefono-envio">Teléfono de entrega</label><input id="telefono-envio" name="telefono-envio" type="tel" autocomplete="shipping tel" maxlength="17" pattern="[+0-9 ()\-]{7,17}" data-error="Escribe un número de teléfono válido.">
         <label class="opcion" for="principal"><input id="principal" name="principal" type="checkbox"> Usar como dirección principal</label>
         <p class="acciones">
           <button class="boton primario" type="submit">Guardar dirección</button>
@@ -111,17 +156,74 @@
         </p>
       </form>
       <p id="estado-direcciones" class="estado" role="status"></p>
-      <section class="medios-pago" aria-labelledby="titulo-medios-pago">
-        <h3 id="titulo-medios-pago">Medios de pago</h3>
-        <a class="boton secundario" href="metodosPago.html?vista=cuenta">Ver métodos de pago</a>
-      </section>
     </section>
+    <section class="tarjeta" id="medios-pago" aria-labelledby="titulo-medios-pago" hidden>
+      <h2 id="titulo-medios-pago" tabindex="-1">Medios de pago</h2>
+      <p>Guarda referencias de prueba para tarjeta, PSE o Nequi.</p>
+      <ul id="lista-medios" class="lista-cuenta"></ul>
+      <p id="medios-vacios" class="estado-vacio">Aún no has guardado medios de pago de prueba.</p>
+      <button type="button" class="boton secundario" id="agregar-medio">Agregar medio de pago</button>
+      <form id="formulario-medio" class="formulario" hidden>
+        <label for="tipo-medio">Método</label><select id="tipo-medio"><option value="tarjeta">Tarjeta</option><option value="pse">PSE</option><option value="nequi">Nequi</option></select>
+        <label for="referencia-medio">Referencia de prueba</label><select id="referencia-medio" required><option value="">Selecciona una referencia</option></select>
+        <label class="opcion"><input type="checkbox" id="medio-principal"> Usar como predeterminado</label>
+        <p class="acciones"><button type="submit" class="boton primario">Guardar medio</button><button type="button" class="boton secundario" id="cancelar-medio">Cancelar</button></p>
+      </form>
+      <p id="estado-medios" role="status"></p>
+    </section>
+    <section class="tarjeta" id="seguridad" aria-labelledby="titulo-seguridad" hidden>
+      <h2 id="titulo-seguridad" tabindex="-1">Seguridad y privacidad</h2>
+      <p>Controles de demostración para esta sesión local.</p>
+      <form class="formulario" id="formulario-seguridad"><label class="opcion"><input type="checkbox" role="switch" id="verificacion"> Verificación en dos pasos</label></form>
+      <h3>Sesiones activas</h3><p>Este navegador · <strong id="estado-sesion">Vista de demostración</strong></p>
+      <h3>Cambio de contraseña</h3>
+      <form id="formulario-clave" class="formulario">
+        <label for="clave-demo">Nueva contraseña de prueba</label><input id="clave-demo" type="password" autocomplete="off" minlength="8" maxlength="72" required data-error="Usa al menos 8 caracteres de prueba.">
+        <label for="repetir-clave-demo">Repite la contraseña de prueba</label><input id="repetir-clave-demo" type="password" autocomplete="off" required>
+        <button class="boton secundario" type="submit">Simular cambio</button>
+      </form>
+      <p id="estado-seguridad" role="status"></p>
+      <button class="boton peligro" id="eliminar-cuenta" type="button">Eliminar cuenta local</button>
+    </section>
+    <section class="tarjeta" id="preferencias" aria-labelledby="titulo-preferencias" hidden>
+      <h2 id="titulo-preferencias" tabindex="-1">Notificaciones y preferencias</h2>
+      <p>Elige qué avisos recibirías en la tienda.</p>
+      <form class="formulario" id="formulario-preferencias">
+        <label class="opcion"><input type="checkbox" role="switch" name="correo"> Correo electrónico</label>
+        <label class="opcion"><input type="checkbox" role="switch" name="sms"> SMS</label>
+        <label class="opcion"><input type="checkbox" role="switch" name="promociones"> Promociones</label>
+        <label class="opcion"><input type="checkbox" role="switch" name="pedidos"> Estado de pedidos</label>
+      </form><p id="estado-preferencias" role="status"></p>
+    </section>
+    <section class="tarjeta" id="ayuda" aria-labelledby="titulo-ayuda" hidden>
+      <h2 id="titulo-ayuda" tabindex="-1">Soporte y ayuda</h2>
+      <details><summary>¿Dónde veo el estado de un pedido?</summary><p>Abre <a href="#pedidos">Mis pedidos</a> y elige «Ver detalle».</p></details>
+      <details><summary>¿Se hará un cobro?</summary><p>Los pagos de esta tienda son simulados. El historial muestra únicamente pedidos de prueba.</p></details>
+      <details><summary>¿Cómo cambio mi dirección?</summary><p>Ve a <a href="#direcciones-y-pagos">Direcciones de envío</a> y elige «Editar».</p></details>
+      <h3>Contacto y reportes</h3>
+      <p>Guarda una solicitud de ayuda en este navegador para probar el formulario.</p>
+      <form id="formulario-soporte" class="formulario">
+        <label for="pedido-soporte">Pedido relacionado</label><select id="pedido-soporte"></select>
+        <label for="mensaje-soporte">¿En qué podemos ayudarte?</label><textarea id="mensaje-soporte" required minlength="10" maxlength="600" rows="4"></textarea>
+        <button class="boton primario" type="submit">Guardar solicitud de prueba</button>
+      </form><p id="estado-soporte" role="status"></p>
+    </section>
+    </div>
   </main>
+
+  <dialog id="confirmar-cuenta" aria-labelledby="titulo-confirmar-cuenta">
+    <h2 id="titulo-confirmar-cuenta"></h2>
+    <p id="mensaje-confirmar-cuenta"></p>
+    <form method="dialog" class="acciones">
+      <button class="boton secundario" value="cancelar" autofocus>Cancelar</button>
+      <button class="boton peligro" value="confirmar">Confirmar</button>
+    </form>
+  </dialog>
 
   <dialog id="dialogo-foto" aria-labelledby="titulo-foto">
     <form class="formulario" id="formulario-foto">
       <h2 id="titulo-foto">Cambiar foto de perfil</h2>
-      <img class="vista-previa" id="vista-foto" alt="Vista previa de la foto de perfil" hidden>
+      <img class="vista-previa" id="vista-foto" src="img/favicon.png" alt="Vista previa de la foto de perfil" hidden>
       <label for="archivo-foto">Seleccionar imagen</label>
       <input id="archivo-foto" type="file" accept="image/jpeg,image/png,image/webp" aria-describedby="ayuda-foto">
       <p id="ayuda-foto">JPG, PNG o WebP. Máximo 5 MB.</p>

@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/registroStyle.css">
   <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
@@ -163,6 +164,7 @@
         return;
       }
       // Solo navegación del prototipo. No se envían ni guardan contraseñas.
+      try { sessionStorage.setItem('jeruel_sesion_demo', 'activa'); } catch { /* La tienda puede abrirse sin almacenamiento. */ }
       window.location.assign('homeScreen.html');
     });
   </script>

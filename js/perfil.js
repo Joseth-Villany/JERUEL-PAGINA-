@@ -2,36 +2,25 @@
   'use strict';
 
   const buscar = id => document.getElementById(id);
-  const clave = 'jeruel_perfil';
-  const campos = ['nombre', 'correo', 'telefono'];
-
-  const { leerPerfil } = window.Jeruel;
+  const tienda = window.Jeruel;
+  const campos = ['nombre', 'apellidos', 'tipoDocumento', 'documento', 'correo', 'telefono', 'nacimiento'];
+  const { leerPerfil } = tienda;
 
   function guardarPerfil(cambios, estado) {
-    try {
-      localStorage.setItem(clave, JSON.stringify({ ...leerPerfil(), ...cambios }));
+    if (tienda.guardarPerfil(cambios)) {
+      window.dispatchEvent(new Event('jeruel:perfil'));
       return true;
-    } catch {
-      estado.textContent = 'No se pudo guardar el cambio en este navegador.';
-      return false;
     }
+    estado.textContent = 'No se pudo guardar el cambio en este navegador.';
+    return false;
   }
-
-  const enlaces = [...document.querySelectorAll('.menu-cuenta a[href^="#"]')];
-  function marcarSeccion() {
-    const activo = enlaces.find(enlace => enlace.hash === location.hash);
-    enlaces.forEach(enlace => enlace.removeAttribute('aria-current'));
-    activo?.setAttribute('aria-current', 'location');
-  }
-  window.addEventListener('hashchange', marcarSeccion);
-  marcarSeccion();
 
   function actualizarDatos() {
     const { datos = {}, foto } = leerPerfil();
     campos.forEach(campo => { buscar('dato-' + campo).textContent = datos[campo] || 'Sin agregar'; });
     const nombre = buscar('nombre-cuenta');
-    nombre.textContent = datos.nombre || '';
-    nombre.hidden = !datos.nombre;
+    nombre.textContent = datos.nombre ? 'Hola, ' + [datos.nombre, datos.apellidos].filter(Boolean).join(' ') : 'Tu espacio JERUEL';
+    nombre.hidden = false;
     const iniciales = buscar('iniciales');
     iniciales.textContent = datos.nombre?.split(/\s+/).slice(0, 2).map(parte => [...parte][0]).join('').toLocaleUpperCase('es') || 'J';
     iniciales.hidden = Boolean(foto);
@@ -43,18 +32,29 @@
 
   const formularioDatos = buscar('formulario-datos');
   const editarDatos = buscar('editar-datos');
+  const borrarDatos = buscar('borrar-datos');
+  tienda.validar(formularioDatos);
+  borrarDatos.addEventListener('click', () => {
+    if (!window.confirm('¿Borrar los datos personales guardados en este navegador?')) return;
+    if (!guardarPerfil({ datos: {}, foto: '' }, estadoDatos)) return;
+    actualizarDatos();
+    estadoDatos.textContent = 'Datos personales borrados.';
+  });
   const estadoDatos = buscar('estado-datos');
   function cerrarEdicionDatos() {
     formularioDatos.hidden = true;
     buscar('datos-guardados').hidden = false;
     editarDatos.hidden = false;
+    borrarDatos.hidden = false;
     editarDatos.focus();
   }
   editarDatos.addEventListener('click', () => {
     const { datos = {} } = leerPerfil();
-    campos.forEach(campo => { formularioDatos.elements[campo].value = datos[campo] || ''; });
     estadoDatos.textContent = '';
+    formularioDatos.reset();
+    campos.forEach(campo => { formularioDatos.elements[campo].value = datos[campo] || ''; });
     editarDatos.hidden = true;
+    borrarDatos.hidden = true;
     buscar('datos-guardados').hidden = true;
     formularioDatos.hidden = false;
     buscar('nombre').focus();
@@ -144,6 +144,7 @@
   });
 
   const formularioDireccion = buscar('formulario-direccion');
+  tienda.validar(formularioDireccion);
   const departamento = buscar('departamento');
   const ciudad = buscar('ciudad');
   const ubicaciones = new Map(Object.entries(window.divipolaColombia));
@@ -217,7 +218,7 @@
       const titulo = document.createElement('h3');
       titulo.textContent = entrada.principal ? 'Dirección principal' : entrada.ciudad;
       const texto = document.createElement('p');
-      texto.textContent = [entrada.direccion, entrada.ciudad, entrada.departamento].filter(Boolean).join(', ');
+      texto.textContent = [entrada.direccion, entrada.barrio, entrada.ciudad, entrada.departamento].filter(Boolean).join(', ');
       const acciones = document.createElement('p');
       acciones.className = 'acciones';
       acciones.append(botonDireccion('Editar', 'Editar ' + entrada.direccion, evento => {
@@ -243,7 +244,10 @@
           estadoDirecciones.textContent = 'Dirección quitada.';
         }
       }));
-      tarjeta.append(titulo, texto, acciones);
+      tarjeta.append(titulo, texto);
+      if (entrada.telefono) tarjeta.append(tienda.elemento('p', 'Teléfono: ' + entrada.telefono));
+      if (entrada.indicaciones) tarjeta.append(tienda.elemento('p', entrada.indicaciones));
+      tarjeta.append(acciones);
       listaDirecciones.append(tarjeta);
     }
   }
@@ -251,7 +255,11 @@
   function abrirDireccion(entrada, origen) {
     idEdicion = entrada?.id;
     origenEdicion = origen;
+    formularioDireccion.reset();
     formularioDireccion.elements.direccion.value = entrada?.direccion ?? '';
+    buscar('barrio').value = entrada?.barrio ?? '';
+    buscar('indicaciones').value = entrada?.indicaciones ?? '';
+    buscar('telefono-envio').value = entrada?.telefono ?? '';
     const [codigoDepartamento = '', codigoMunicipio = ''] = ubicacionGuardada(entrada);
     departamento.value = codigoDepartamento;
     mostrarMunicipios(codigoDepartamento, codigoMunicipio);
@@ -293,7 +301,12 @@
     const direcciones = leerDirecciones();
     const id = idEdicion ?? String(crypto.getRandomValues(new Uint32Array(2)).join('-'));
     const principal = camposDireccion.principal.checked || !direcciones.length;
-    const entrada = { id, direccion, departamento: ubicacion[0], ciudad: municipio, codigoDepartamento, codigoMunicipio, principal };
+    const entrada = {
+      id, direccion, departamento: ubicacion[0], ciudad: municipio, codigoDepartamento, codigoMunicipio, principal,
+      barrio: buscar('barrio').value.trim(),
+      indicaciones: buscar('indicaciones').value.trim(),
+      telefono: buscar('telefono-envio').value.trim()
+    };
     const nuevas = direcciones.map(item => item.id === id ? entrada : { ...item, principal: !principal && item.principal });
     if (!nuevas.some(item => item.id === id)) nuevas.push(entrada);
     if (!guardarPerfil({ direcciones: nuevas }, estadoDirecciones)) return;

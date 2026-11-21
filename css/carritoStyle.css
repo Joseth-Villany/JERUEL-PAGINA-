@@ -1,11 +1,11 @@
 :root {
-  --vino: #441e1e;
-  --texto: #654a47;
-  --crema: #fff1ea;
-  --fondo: #fffaf7;
+  --vino: var(--color-vino);
+  --texto: var(--color-cafe);
+  --crema: var(--color-crema);
+  --fondo: var(--color-papel);
   --borde: #e8d9d3;
-  --dorado: #c9a16e;
-  font-family: Montserrat, sans-serif;
+  --dorado: var(--color-dorado);
+  font-family: var(--fuente-texto);
   color: var(--texto);
   background: var(--fondo);
 }
@@ -17,7 +17,7 @@ h1, h2, p, dl, dd { margin: 0; }
 h1, h2, a { color: var(--vino); }
 button { font: inherit; }
 button:not(:disabled) { cursor: pointer; }
-:focus-visible { outline: 2px solid #925c5d; outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--color-rosa); outline-offset: 3px; }
 .visualmente-oculto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 .contenedor { width: min(100% - 2rem, 74rem); margin-inline: auto; }
@@ -50,7 +50,7 @@ h1 { font-size: clamp(1.85rem, 5vw, 3rem); line-height: 1.1; }
   align-items: center;
   gap: clamp(.65rem, 2vw, 1.1rem);
 }
-.foto-producto { display: block; width: clamp(4.5rem, 9vw, 7rem); height: auto; aspect-ratio: 1; object-fit: cover; background: #f0e5d8; border-radius: .7rem; }
+.foto-producto { display: block; width: clamp(4.5rem, 9vw, 7rem); height: auto; aspect-ratio: 1; object-fit: cover; background: var(--color-crema-calido); border-radius: .7rem; }
 .datos-producto h2 { font-size: 1rem; line-height: 1.35; overflow-wrap: anywhere; }
 .nombre-producto { text-decoration: none; }
 .nombre-producto:hover { text-decoration: underline; }

@@ -1,74 +1,27 @@
-JERUEL - HOME MEJORADA
-====================
+JERUEL · Tienda de velas corporales artesanales
 
-ARCHIVOS
-- index.html: página de inicio semántica.
-- css/homeStyle.css: diseño e identidad visual.
-- js/home.js: búsqueda, categorías, favoritos, menú móvil y carrito local.
-- img/: aquí debes copiar las imágenes que ya usabas en el proyecto.
+Cómo abrir el sitio
+- Abre esta carpeta con un servidor local estático, por ejemplo Live Server.
+- index.html es la pantalla de acceso. «Explorar la tienda» abre homeScreen.html.
+- homeScreen.html es la portada, con catálogo, favoritos, carrito rápido y modo de uso.
 
-IMÁGENES ESPERADAS (no estaban incluidas en los archivos HTML/CSS entregados)
-- img/favicon.png
-- img/background2.png
-- img/lavanda.png
-- img/cacao.png
-- img/naranja.png
-- img/bosque1.png
+Cómo mantener el catálogo
+- Edita los productos en js/tienda.js. La portada, las fichas, los favoritos,
+  el carrito y el resumen de compra usan esos datos.
+- Conserva el ID de cada producto existente para mantener los enlaces y las
+  selecciones guardadas. Cada ficha usa detalleProducto.html?producto=ID.
+- Coloca las imágenes en img/. Los filtros aparecen según los aromas del
+  catálogo. Añade ingredientes y foto ambientada cuando estén confirmados.
 
-No se han inventado ni sustituido fotografías. El diseño tiene fondos
-alternativos discretos por si faltan esas imágenes.
+Identidad y navegación
+- css/identidad.css reúne la paleta y las tipografías compartidas por la
+  portada, la ficha, el carrito y la compra.
+- Desde una ficha se puede revisar el carrito o explorar otros aromas.
+- perfil.html reúne el historial y la configuración de cuenta.
+- El checkout abre desde carrito.html o desde un pedido pendiente.
+  Para probarlo, abre perfil.html#pedido/JR-1044 y elige «Pagar ahora».
 
-COLORES CONSERVADOS
-- Vino #441E1E
-- Dorado #C9A16E
-- Crema #FFF1EA
-- Crema cálido #F0E5D8
-- Oliva #8B8468
-- Palo de rosa #925C5D
-- Café #654A47
-
-USO
-1. Copia tus imágenes originales a la carpeta img/. Mantén los nombres.
-2. Abre index.html en tu navegador o en Live Server.
-3. Si integras esta Home en un proyecto existente, mantén la ruta
-   css/homeStyle.css y añade js/home.js.
-
-ALCANCE DE LAS INTERACCIONES
-- Filtros y búsqueda funcionan sobre los 4 productos visibles.
-- Los favoritos y el carrito se guardan en localStorage de este navegador.
-- El resumen de carrito no ejecuta pagos, no descuenta inventario ni
-  sincroniza con un servidor. Se necesitará integración backend posterior.
-- La categoría Kits de regalo se conserva, pero no hay productos asociados
-  en los archivos originales. Por eso muestra el estado vacío.
-- Las rutas perfil.html, detalleProducto.html, contacto.html,
-  politicas.html y privacidad.html son páginas futuras del sitio. Los
-  enlaces están preparados, pero esos archivos no se incluyen aquí.
-- Los enlaces de detalle usan ?producto=ID. La página de detalle deberá
-  leer ese parámetro al desarrollarse.
-
-MEJORAS REALIZADAS
-- Un único h1 y secciones semánticas con IDs útiles.
-- Botones separados de enlaces, sin interacciones anidadas.
-- Header sticky, Hero con fondo fotográfico a pantalla completa y tarjetas más limpias.
-- Estados accesibles de filtros/favoritos, foco visible y menú funcional.
-- Diseño desktop-first con adaptaciones para tablet y móvil.
-- Se retiró el testimonio no verificado y las promesas de seguridad absoluta.
-- Se eliminaron los datos de contacto de ejemplo no confirmados.
-
-CAMBIO SOLICITADO: HERO A FONDO COMPLETO
-- La fotografía img/background2.png cubre toda la sección de bienvenida,
-  como en el diseño original, ya no aparece dentro de un recuadro.
-- Se usa un degradado crema sobre la zona izquierda para leer bien el texto.
-- En celulares se mantiene la fotografía de fondo, priorizando la lectura.
-- IMPORTANTE: img/background2.png NO está incluida en este ZIP. Debes copiar
-  ese archivo original de tu proyecto a la carpeta img/ de este paquete.
-- No se modificó la paleta de JERUEL ni el resto de la página.
-
-CAMBIO SOLICITADO: TARJETAS DE PRODUCTO
-- Se recuperó el recuadro individual para cada fotografía, con esquinas de 16px.
-- La tarjeta conserva las esquinas redondeadas (22px).
-- Al pasar el cursor SOLO sobre una tarjeta, sus bordes y los de su fotografía
-  se enfatizan en dorado JERUEL #C9A16E, con elevación y sombra suave.
-- El énfasis también funciona al navegar con teclado mediante :focus-within.
-- Las fotografías usan object-fit: cover como en las tarjetas originales.
-  Si algún archivo ya contiene mucho espacio a su alrededor, prueba contain.
+Alcance del prototipo
+- El carrito, los favoritos, las calificaciones y el historial de prueba
+  se guardan en el navegador. Se incluyen cuatro pedidos de demostración.
+- La compra es una demostración sin cobro ni envío real.

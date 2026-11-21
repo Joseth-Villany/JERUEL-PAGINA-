@@ -17,6 +17,20 @@
       fila.querySelector('img').src = imagen;
       fila.querySelector('strong').textContent = nombre;
       fila.querySelector('small').textContent = tienda.precio(precio);
+      if (contenedor.hasAttribute('data-permitir-compra')) {
+        const agregar = document.createElement('button');
+        agregar.type = 'button';
+        agregar.className = 'boton primario';
+        agregar.textContent = 'Agregar al carrito';
+        agregar.setAttribute('aria-label', 'Agregar ' + nombre + ' al carrito');
+        agregar.addEventListener('click', () => {
+          const cantidad = tienda.agregarAlCarrito(id, 1);
+          contenedor.querySelector('[role="status"]').textContent = cantidad === null
+            ? 'El carrito no se pudo actualizar.'
+            : cantidad ? nombre + ' se añadió al carrito.' : 'Alcanzaste el límite de unidades.';
+        });
+        fila.querySelector('li').append(agregar);
+      }
       const quitar = fila.querySelector('button');
       quitar.setAttribute('aria-label', 'Quitar ' + nombre + ' de favoritos');
       quitar.addEventListener('click', () => {

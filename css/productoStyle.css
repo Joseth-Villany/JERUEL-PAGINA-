@@ -1,12 +1,12 @@
 :root {
-  --vino: #441e1e;
-  --cafe: #654a47;
-  --crema: #fff1ea;
-  --dorado: #c9a16e;
+  --vino: var(--color-vino);
+  --cafe: var(--color-cafe);
+  --crema: var(--color-crema);
+  --dorado: var(--color-dorado);
   --borde: #eadbd4;
   color: var(--cafe);
-  background: #fffaf7;
-  font-family: Montserrat, sans-serif;
+  background: var(--color-papel);
+  font-family: var(--fuente-texto);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -15,7 +15,7 @@ body { margin: 0; }
 button, input { font: inherit; }
 a { color: var(--vino); }
 button:not(:disabled), summary { cursor: pointer; }
-:focus-visible { outline: 2px solid #925c5d; outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--color-rosa); outline-offset: 3px; }
 
 .encabezado { background: #fff; border-bottom: 1px solid var(--borde); }
 .navegacion, .contenedor-producto {
@@ -59,7 +59,7 @@ button:not(:disabled), summary { cursor: pointer; }
   overflow: hidden;
   border: 1px solid var(--borde);
   border-radius: 1rem;
-  background: #f0e5d8;
+  background: var(--color-crema-calido);
 }
 
 .foto-producto img, .miniaturas img {
@@ -107,7 +107,7 @@ h1 { font-size: clamp(1.55rem, 4vw, 2.6rem); line-height: 1.15; }
   display: inline-flex;
   border: 1px solid var(--borde);
   border-radius: .75rem;
-  background: #fffaf7;
+  background: var(--color-papel);
 }
 .selector-cantidad input, .selector-cantidad button {
   width: 44px;
@@ -156,6 +156,7 @@ h1 { font-size: clamp(1.55rem, 4vw, 2.6rem); line-height: 1.15; }
 .boton-favorito[aria-pressed="true"] svg { fill: currentColor; }
 .mensaje-accion { margin: .65rem 0 0; font-size: .875rem; line-height: 1.5; }
 .mensaje-accion:empty { margin: 0; }
+.enlace-carrito { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; font-weight: 700; text-underline-offset: .2em; }
 
 .detalles { margin-top: 1.25rem; border-top: 1px solid var(--borde); }
 .detalles details { border-bottom: 1px solid var(--borde); }
@@ -167,7 +168,7 @@ h1 { font-size: clamp(1.55rem, 4vw, 2.6rem); line-height: 1.15; }
   padding: .875rem;
   border: 1px solid var(--borde);
   border-radius: .875rem;
-  background: #fffaf7;
+  background: var(--color-papel);
 }
 .bloque-calificacion h2 { font-size: 1rem; }
 .selector-estrellas {
@@ -181,12 +182,29 @@ h1 { font-size: clamp(1.55rem, 4vw, 2.6rem); line-height: 1.15; }
 .selector-estrellas label { position: relative; display: grid; place-items: center; width: 44px; height: 44px; }
 .selector-estrellas input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
 .selector-estrellas label::after { content: '☆' / ''; font-size: 1.65rem; color: #84706c; }
-.selector-estrellas label:has(input:focus-visible) { outline: 2px solid #925c5d; outline-offset: 2px; border-radius: .25rem; }
+.selector-estrellas label:has(input:focus-visible) { outline: 2px solid var(--color-rosa); outline-offset: 2px; border-radius: .25rem; }
 .selector-estrellas label:has(input:checked)::after,
 .selector-estrellas label:has(~ label input:checked)::after { color: #8b530e; }
 .selector-estrellas label:has(input:checked)::after,
 .selector-estrellas label:has(~ label input:checked)::after { content: '★' / ''; }
 
+
+.productos-relacionados { margin-top: clamp(2.25rem, 6vw, 4rem); }
+.productos-relacionados h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); letter-spacing: -.035em; }
+.productos-relacionados ul { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: 1rem; padding: 0; list-style: none; }
+.productos-relacionados a {
+  display: grid;
+  gap: .5rem;
+  height: 100%;
+  padding: .75rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 1rem;
+  background: white;
+  text-decoration: none;
+}
+.productos-relacionados a:hover { border-color: var(--color-dorado); }
+.productos-relacionados img { width: 100%; aspect-ratio: 1.35; object-fit: cover; border-radius: .65rem; }
+.productos-relacionados span { font-size: .875rem; color: var(--cafe); align-self: end; }
 
 .producto-no-disponible { padding-block: 2rem; }
 .pie-producto {

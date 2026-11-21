@@ -53,6 +53,7 @@
 
   const favorito = buscar('favorito-producto');
   const estadoCompra = buscar('estado-compra');
+  const enlaceCarrito = buscar('ir-al-carrito');
   const actualizarFavorito = () => favorito.setAttribute('aria-pressed', String(tienda.favoritos().has(id)));
   tienda.alCambiarFavoritos(actualizarFavorito);
   actualizarFavorito();
@@ -83,7 +84,10 @@
     const agregados = tienda.agregarAlCarrito(id, cantidad.valueAsNumber);
     if (agregados === null) estadoCompra.textContent = 'No se pudo guardar el carrito en este navegador.';
     else if (agregados === 0) estadoCompra.textContent = 'Alcanzaste el límite de unidades para este producto.';
-    else estadoCompra.textContent = agregados === 1 ? '1 unidad añadida al carrito.' : `${agregados} unidades añadidas al carrito.`;
+    else {
+      estadoCompra.textContent = agregados === 1 ? '1 unidad añadida al carrito.' : `${agregados} unidades añadidas al carrito.`;
+      enlaceCarrito.hidden = false;
+    }
   });
 
   const formulario = buscar('formulario-calificacion');
@@ -101,5 +105,25 @@
       `Tu calificación guardada: ${valor} de 5.` : 'No se pudo guardar tu calificación en este navegador.';
   });
 
+  const relacionados = buscar('lista-relacionados');
+  for (const [otroId, otraVela] of tienda.productos) {
+    if (otroId === id) continue;
+    const fila = document.createElement('li');
+    const enlace = document.createElement('a');
+    enlace.href = tienda.ficha(otroId);
+    const imagen = document.createElement('img');
+    imagen.src = otraVela.imagen;
+    imagen.alt = '';
+    imagen.loading = 'lazy';
+    const nombre = document.createElement('strong');
+    nombre.textContent = otraVela.nombre;
+    const precio = document.createElement('span');
+    precio.textContent = tienda.precio(otraVela.precio);
+    enlace.append(imagen, nombre, precio);
+    fila.append(enlace);
+    relacionados.append(fila);
+  }
+
+  buscar('productos-relacionados').hidden = !relacionados.childElementCount;
   buscar('ficha-producto').hidden = false;
 })();

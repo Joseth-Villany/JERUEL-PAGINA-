@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/indexStyle.css">
   <link rel="icon" href="img/favicon.png" type="image/png">
 </head>
@@ -16,14 +17,9 @@
   <main class="contenedor-inicio-sesion">
     <section class="seccion-marca" aria-label="Conoce JERUEL">
       <figure class="contenedor-logo-emblema">
-        <img src="img/Velas artesanales bajo luz cálida (2).png"
+        <img src="img/Velas%20artesanales%20bajo%20luz%20c%C3%A1lida%20%282%29.png"
              alt="Velas artesanales JERUEL iluminadas con luz cálida"
              loading="eager" fetchpriority="high">
-        <figcaption class="contenido-marca">
-          <p class="marca-nombre">JERUEL</p>
-          <p class="marca-categoria">Velas corporales artesanales</p>
-          <p class="marca-eslogan">Inspirado en el amor que ilumina nuestras vidas</p>
-        </figcaption>
       </figure>
     </section>
 
@@ -40,7 +36,7 @@
         <fieldset class="grupo-campo" aria-label="Identificación">
           <label for="identificador-usuario">Correo electrónico o nombre de usuario</label>
           <p class="contenedor-input-icono">
-            <input id="identificador-usuario" name="usuario_o_correo" type="text"
+            <input id="identificador-usuario" type="text"
                    placeholder="Ingresa tu correo o usuario" autocomplete="username"
                    autocapitalize="none" spellcheck="false" required minlength="3">
             <svg class="icono-campo" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -52,7 +48,7 @@
         <fieldset class="grupo-campo" aria-label="Contraseña">
             <label for="clave-acceso">Contraseña</label>
           <p class="contenedor-input-icono">
-            <input id="clave-acceso" name="clave" type="password"
+            <input id="clave-acceso" type="password"
                    placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
             <button type="button" class="boton-mostrar-contrasena" id="alternar-clave"
                     aria-label="Mostrar contraseña" aria-pressed="false" aria-controls="clave-acceso">
@@ -89,6 +85,7 @@
       evento.preventDefault();
       if (!evento.currentTarget.reportValidity()) return;
       // Navegación de prototipo: nunca incluir credenciales en la URL.
+      try { sessionStorage.setItem('jeruel_sesion_demo', 'activa'); } catch { /* La tienda puede abrirse sin almacenamiento. */ }
       window.location.assign('homeScreen.html');
     });
   </script>

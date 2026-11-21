@@ -8,11 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/pagoStyle.css">
   <script src="js/tienda.js" defer></script>
+  <script src="js/cuenta.js" defer></script>
   <script src="js/pago.js" defer></script>
 </head>
 <body>
+  <a class="saltar" href="#contenido-pago">Saltar al contenido</a>
   <header class="cabecera-tienda">
     <nav class="contenedor barra-tienda" aria-label="Tienda">
       <a class="marca" href="homeScreen.html">JERUEL</a>
@@ -23,10 +26,10 @@
     </nav>
   </header>
 
-  <main class="contenedor pago">
-    <section id="vista-cuenta" aria-labelledby="titulo-cuenta" hidden>
-      <a class="enlace-regreso" href="perfil.html#direcciones-y-pagos">Volver a Mi cuenta</a>
-      <h1 id="titulo-cuenta">Métodos de pago</h1>
+  <main class="contenedor pago" id="contenido-pago" tabindex="-1">
+    <h1 id="titulo-compra">Finalizar compra</h1>
+    <section id="vista-cuenta" aria-labelledby="titulo-compra" hidden>
+      <a class="enlace-regreso" href="perfil.html#medios-pago">Gestionar medios en Mi cuenta</a>
       <section class="tarjeta estado-vacio" aria-labelledby="titulo-guardados">
         <h2 id="titulo-guardados">Métodos guardados</h2>
         <p>Aún no hay métodos guardados. Podrás gestionarlos cuando se habiliten los pagos en línea.</p>
@@ -35,12 +38,11 @@
     </section>
 
     <section id="vista-compra" aria-labelledby="titulo-compra" hidden>
-      <a class="enlace-regreso" href="carrito.html">Volver al carrito</a>
-      <h1 id="titulo-compra">Finalizar compra</h1>
-      <p class="aviso-demo">Demostración · Sin cobro ni envío real</p>
+      <a class="enlace-regreso" id="volver-compra" href="carrito.html">Volver al carrito</a>
+      <p class="aviso-demo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Entorno de pruebas · Sin cobro ni envío real</p>
       <section class="tarjeta estado-vacio" id="carrito-vacio-pago" aria-labelledby="titulo-vacio" hidden>
         <h2 id="titulo-vacio" tabindex="-1">Tu carrito está vacío</h2>
-        <p>Agrega una vela para probar el recorrido de compra.</p>
+        <p id="texto-vacio-pago">Agrega una vela para probar el recorrido de compra.</p>
         <a class="boton primario" href="homeScreen.html#catalogo">Explorar el catálogo</a>
       </section>
 
@@ -58,14 +60,14 @@
               <legend>Dirección de entrega</legend>
               <ul class="opciones" id="opciones-entrega"></ul>
             </fieldset>
-            <p class="ayuda">Puedes agregar una dirección desde <a href="perfil.html#direcciones-y-pagos">Mi cuenta</a>.</p>
+            <p class="ayuda" id="ayuda-direccion">Puedes agregar una dirección desde <a href="perfil.html#direcciones-y-pagos">Mi cuenta</a>.</p>
             <button class="boton primario" type="submit">Continuar al pago</button>
           </form>
         </section>
 
         <section class="tarjeta etapa" id="paso-pago" aria-labelledby="titulo-metodo" hidden>
           <h2 id="titulo-metodo" tabindex="-1">Elige un método de pago</h2>
-          <p class="entrega-elegida">Entrega <strong id="entrega-seleccionada"></strong></p>
+          <dl class="datos-pago"><dt>Entrega</dt><dd id="entrega-seleccionada"></dd><dt>Contacto de prueba</dt><dd>cliente@example.test</dd></dl>
           <form id="formulario-pago">
             <fieldset aria-describedby="ayuda-metodo">
               <legend>Método de demostración</legend>
@@ -76,6 +78,35 @@
               </ul>
             </fieldset>
             <p class="ayuda" id="ayuda-metodo"></p>
+            <fieldset class="campos-pago" id="campos-tarjeta">
+              <legend>Tarjeta de prueba</legend>
+              <label for="tarjeta-demo">Elegir tarjeta ficticia</label><select id="tarjeta-demo"><option value="4242424242424242">Visa de prueba</option><option value="5555555555554444">Mastercard de prueba</option></select>
+              <label for="numero-demo">Número de prueba</label><input id="numero-demo" readonly autocomplete="off">
+              <p class="ayuda" id="franquicia-demo" role="status"></p>
+              <label for="vencimiento-demo">Vencimiento</label><input id="vencimiento-demo" readonly autocomplete="off" value="12/30">
+              <label for="cvv-demo">Código de prueba</label><input id="cvv-demo" readonly autocomplete="off" value="123">
+              <label for="titular-demo">Titular</label><input id="titular-demo" readonly autocomplete="off" value="Cliente de prueba">
+              <label for="cuotas-demo">Cuotas</label><select id="cuotas-demo"><option>1</option><option>3</option><option>6</option><option>12</option></select>
+              <label for="documento-tarjeta">Documento de prueba</label><input id="documento-tarjeta" readonly autocomplete="off" value="CC 1000000000">
+            </fieldset>
+            <fieldset class="campos-pago" id="campos-pse" hidden disabled>
+              <legend>Datos PSE de prueba</legend>
+              <label for="banco-demo">Banco de prueba</label><select id="banco-demo" required><option value="">Selecciona un banco</option><option>Banco de pruebas A</option><option>Banco de pruebas B</option></select>
+              <label for="persona-demo">Tipo de persona</label><select id="persona-demo"><option>Natural</option><option>Jurídica</option></select>
+              <label for="tipo-doc-pse">Tipo de documento</label><select id="tipo-doc-pse"><option>CC</option><option>CE</option><option>NIT</option></select>
+              <label for="doc-pse">Número de documento de prueba</label><input id="doc-pse" readonly autocomplete="off" value="1000000000">
+              <label for="correo-pse">Correo de prueba</label><input id="correo-pse" type="email" readonly autocomplete="off" value="cliente@example.test">
+            </fieldset>
+            <fieldset class="campos-pago" id="campos-nequi" hidden disabled>
+              <legend>Nequi de prueba</legend>
+              <label for="celular-demo">Celular ficticio</label><input id="celular-demo" type="tel" readonly autocomplete="off" value="300 000 0101">
+              <button id="push-demo" class="boton secundario" type="button">Simular notificación</button>
+              <p id="estado-push" role="status"></p>
+            </fieldset>
+            <fieldset class="campos-pago">
+              <legend>Resultado de prueba</legend>
+              <label for="resultado-demo">Comportamiento del simulador</label><select id="resultado-demo"><option value="pagado">Aprobado</option><option value="rechazado">Rechazado</option><option value="pendiente">Pendiente</option></select>
+            </fieldset>
             <button class="boton secundario" id="volver-entrega" type="button">Cambiar entrega</button>
           </form>
         </section>
@@ -85,20 +116,21 @@
           <ul class="articulos" id="articulos-pago"></ul>
           <dl>
             <dt>Subtotal</dt><dd id="subtotal-pago"></dd>
-            <dt>Envío simulado</dt><dd>$0 COP</dd>
+            <dt>Envío simulado</dt><dd id="envio-pago"></dd>
             <dt>Total simulado</dt><dd id="total-pago"></dd>
           </dl>
-          <button class="boton primario" id="simular-pago" type="submit" form="formulario-pago" hidden>Simular pago</button>
+          <button class="boton primario" id="simular-pago" type="submit" form="formulario-pago" hidden>Confirmar pago de prueba</button>
         </aside>
 
         <section class="tarjeta etapa estado-vacio confirmacion" id="paso-confirmacion" aria-labelledby="titulo-confirmacion" hidden>
           <h2 id="titulo-confirmacion" tabindex="-1">Simulación completada</h2>
           <p id="detalle-confirmacion"></p>
-          <p>Tu selección sigue disponible en el carrito.</p>
-          <a class="boton primario" href="carrito.html">Volver al carrito</a>
+          <p id="mensaje-confirmacion"></p>
+          <p class="acciones"><a class="boton primario" href="perfil.html#pedidos">Ver historial</a>
+          <a class="boton secundario" href="perfil.html">Volver al perfil</a></p>
         </section>
       </section>
-      <p id="estado-pago" class="estado" role="status"></p>
+      <p id="estado-pago" class="estado estado-pago" role="status"></p>
     </section>
     <noscript><p>Activa JavaScript para ver el resumen e iniciar la demostración.</p></noscript>
   </main>

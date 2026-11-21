@@ -1,11 +1,11 @@
 :root {
-  --vino: #441e1e;
-  --texto: #654a47;
-  --crema: #fff1ea;
-  --fondo: #fffaf7;
+  --vino: var(--color-vino);
+  --texto: var(--color-cafe);
+  --crema: var(--color-crema);
+  --fondo: var(--color-papel);
   --borde: #e8d9d3;
-  --dorado: #c9a16e;
-  font-family: Montserrat, sans-serif;
+  --dorado: var(--color-dorado);
+  font-family: var(--fuente-texto);
   color: var(--texto);
   background: var(--fondo);
 }
@@ -14,7 +14,7 @@ body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
 [hidden] { display: none !important; }
 h1, h2, p, dl, dd { margin: 0; }
 h1, h2, a { color: var(--vino); }
-:focus-visible { outline: 2px solid #925c5d; outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--color-rosa); outline-offset: 3px; }
 button { font: inherit; cursor: pointer; }
 
 .contenedor { width: min(100% - 2rem, 70rem); margin-inline: auto; }
@@ -49,7 +49,7 @@ legend { padding: 0; color: var(--vino); font-size: .875rem; font-weight: 700; }
 .opciones, .articulos { list-style: none; padding: 0; margin: .65rem 0 0; display: grid; gap: .5rem; }
 .opciones label { display: flex; align-items: center; gap: .65rem; min-height: 44px; padding: .55rem .7rem; border: 1px solid var(--borde); border-radius: .65rem; color: var(--vino); font-size: .9rem; cursor: pointer; overflow-wrap: anywhere; }
 .opciones label:has(:checked) { border-color: var(--vino); background: var(--crema); font-weight: 700; }
-.opciones label:has(:focus-visible) { outline: 2px solid #925c5d; outline-offset: 2px; }
+.opciones label:has(:focus-visible) { outline: 2px solid var(--color-rosa); outline-offset: 2px; }
 .opciones input { flex: 0 0 auto; accent-color: var(--vino); }
 .ayuda, .entrega-elegida, .estado { margin-top: .75rem; font-size: .875rem; line-height: 1.55; }
 .estado:empty { margin: 0; }
@@ -66,6 +66,35 @@ legend { padding: 0; color: var(--vino); font-size: .875rem; font-weight: 700; }
 .resumen dt:last-of-type, .resumen dd:last-of-type { color: var(--vino); font-weight: 800; }
 .pie-pago { padding: 1.25rem 1rem; border-top: 1px solid var(--borde); text-align: center; font-size: .875rem; }
 
-@media (max-width: 740px) {
+.pago { padding-block: var(--espacio-l) var(--espacio-xl); }
+.saltar { position: absolute; z-index: 2; padding: var(--espacio-s); background: var(--color-superficie); }
+.saltar:not(:focus) { clip-path: inset(100%); }
+.aviso-demo { display: inline-flex; align-items: center; gap: var(--espacio-xs); }
+.aviso-demo svg { flex: none; }
+.datos-pago { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--espacio-xs) var(--espacio-m); margin-top: var(--espacio-m); }
+.datos-pago dt { font-weight: 700; }
+.datos-pago dd { overflow-wrap: anywhere; }
+.campos-pago {
+  display: grid; gap: var(--espacio-xs);
+  padding: var(--espacio-s); border: 1px solid var(--borde);
+  border-radius: var(--radio-control); background: var(--fondo);
+}
+.campos-pago label { color: var(--vino); font-weight: 600; }
+.campos-pago input, .campos-pago select {
+  width: 100%; min-width: 0; min-height: var(--tamano-control); font: inherit;
+  border: 1px solid var(--color-borde-control); border-radius: var(--radio-control); padding: var(--espacio-xs);
+  color: var(--vino); background: var(--color-superficie);
+}
+.campos-pago input[readonly] { background: var(--crema); }
+.campos-pago [aria-invalid="true"] { border-color: var(--color-error); }
+.error-campo { color: var(--color-error); }
+.error-campo:empty { display: none; }
+.boton:disabled { opacity: .6; cursor: wait; }
+.boton:active:not(:disabled) { box-shadow: inset 0 0 0 2px var(--dorado); }
+.estado-pago:not(:empty) { border: 1px solid var(--color-borde-control); border-radius: var(--radio-control); background: var(--crema); padding: var(--espacio-s); }
+.articulos li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--espacio-xs); align-items: center; }
+.articulos img { display: block; object-fit: cover; border-radius: var(--radio-control); }
+.articulos strong { grid-column: 2; }
+@media (max-width: 767px) {
   .flujo-compra { grid-template-columns: minmax(0, 1fr); }
 }

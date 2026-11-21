@@ -5,14 +5,45 @@
   'use strict';
 
   const tienda = window.Jeruel;
-  const tarjetas = [...document.querySelectorAll('.tarjeta-producto')];
-  const productos = new Map(tarjetas.map(tarjeta => [tarjeta.dataset.id, {
-    id: tarjeta.dataset.id,
-    nombre: tienda.productos.get(tarjeta.dataset.id).nombre,
-    categoria: tarjeta.dataset.categoria,
-    busqueda: tarjeta.dataset.busqueda
-  }]));
+  const plantilla = document.querySelector('#plantilla-tarjeta');
+  const listaProductos = document.querySelector('#lista-productos');
+  const filtros = document.querySelector('#filtros-catalogo');
+  const aromas = new Set();
 
+  for (const [id, producto] of tienda.productos) {
+    const tarjeta = plantilla.content.firstElementChild.cloneNode(true);
+    tarjeta.id = 'producto-' + id;
+    tarjeta.dataset.id = id;
+    const enlaceFoto = tarjeta.querySelector('.enlace-imagen-producto');
+    const imagen = enlaceFoto.querySelector('img');
+    const enlaceNombre = tarjeta.querySelector('h3 a');
+    enlaceFoto.href = enlaceNombre.href = tienda.ficha(id);
+    imagen.src = producto.imagen;
+    imagen.alt = producto.nombre;
+    enlaceNombre.textContent = producto.nombre;
+    tarjeta.querySelector('.ingredientes-producto').textContent = producto.variedad;
+    tarjeta.querySelector('.descripcion-producto').textContent = producto.resumen ?? producto.descripcion;
+    const precio = tarjeta.querySelector('.precio-producto');
+    precio.value = producto.precio;
+    precio.textContent = tienda.precio(producto.precio);
+    tarjeta.querySelector('.boton-favorito').dataset.favorito = id;
+    const agregar = tarjeta.querySelector('.boton-agregar');
+    agregar.dataset.agregar = id;
+    agregar.setAttribute('aria-label', `Agregar ${producto.nombre} al carrito`);
+    listaProductos.append(tarjeta);
+
+    if (aromas.has(producto.aroma)) continue;
+    aromas.add(producto.aroma);
+    const filtro = document.createElement('button');
+    filtro.type = 'button';
+    filtro.className = 'boton-filtro';
+    filtro.dataset.categoria = producto.aroma;
+    filtro.setAttribute('aria-pressed', 'false');
+    filtro.textContent = producto.aroma;
+    filtros.append(filtro);
+  }
+
+  const tarjetas = [...listaProductos.children];
   const botonesFiltro = [...document.querySelectorAll('.boton-filtro')];
   const campoBusqueda = document.querySelector('#campo-busqueda');
   const estadoCatalogo = document.querySelector('#estado-catalogo');
@@ -21,6 +52,7 @@
   const avisoAccion = document.querySelector('#aviso-accion');
   const ventanaCarrito = document.querySelector('#ventana-carrito');
   const ventanaFavoritos = document.querySelector('#ventana-favoritos');
+  const estadoCarritoRapido = document.querySelector('#estado-carrito-rapido');
   function normalizar(texto) {
     return String(texto).toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
   }
@@ -43,9 +75,10 @@
     let visibles = 0;
 
     tarjetas.forEach(tarjeta => {
-      const producto = productos.get(tarjeta.dataset.id);
-      const coincideCategoria = categoriaActual === 'todas' || producto.categoria === categoriaActual;
-      const coincideBusqueda = !texto || normalizar(`${producto.nombre} ${producto.busqueda}`).includes(texto);
+      const producto = tienda.productos.get(tarjeta.dataset.id);
+      const coincideCategoria = categoriaActual === 'todas' || producto.aroma === categoriaActual;
+      const palabras = normalizar([producto.nombre, producto.aroma, producto.variedad, producto.descripcion, producto.busqueda].join(' '));
+      const coincideBusqueda = texto.split(/\s+/).every(palabra => palabras.includes(palabra));
       const mostrar = coincideCategoria && coincideBusqueda;
       tarjeta.hidden = !mostrar;
       if (mostrar) visibles++;
@@ -60,16 +93,27 @@
   document.querySelector('#formulario-busqueda').addEventListener('submit', evento => {
     evento.preventDefault();
     filtrarProductos();
-    document.querySelector('#catalogo').scrollIntoView({ behavior: 'smooth' });
   });
   document.querySelector('#limpiar-filtros').addEventListener('click', () => {
     campoBusqueda.value = '';
     seleccionarCategoria('todas');
+    campoBusqueda.focus();
   });
 
   // MENÚ DE PANTALLAS PEQUEÑAS
   const botonMenu = document.querySelector('#boton-menu');
   const navegacion = document.querySelector('#navegacion-principal');
+  const enlacesNavegacion = [...navegacion.querySelectorAll('a')];
+
+  function actualizarNavegacion() {
+    const actual = enlacesNavegacion.find(enlace => enlace.hash === location.hash) ?? enlacesNavegacion[0];
+    for (const enlace of enlacesNavegacion) {
+      enlace.classList.toggle('enlace-activo', enlace === actual);
+      if (enlace === actual) enlace.setAttribute('aria-current', 'location');
+      else enlace.removeAttribute('aria-current');
+    }
+  }
+
   function cerrarMenu() {
     navegacion.dataset.menuAbierto = 'false';
     botonMenu.setAttribute('aria-expanded', 'false');
@@ -81,15 +125,19 @@
     botonMenu.setAttribute('aria-expanded', String(abierto));
     botonMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
   });
-  navegacion.querySelectorAll('a').forEach(enlace => enlace.addEventListener('click', cerrarMenu));
+  enlacesNavegacion.forEach(enlace => enlace.addEventListener('click', cerrarMenu));
+  document.addEventListener('keydown', evento => {
+    if (evento.key !== 'Escape' || navegacion.dataset.menuAbierto !== 'true') return;
+    cerrarMenu();
+    botonMenu.focus();
+  });
 
   // MENSAJE BREVE DE CONFIRMACIÓN
   let temporizadorAviso;
   function avisar(mensaje) {
     avisoAccion.textContent = mensaje;
-    avisoAccion.hidden = false;
     clearTimeout(temporizadorAviso);
-    temporizadorAviso = setTimeout(() => { avisoAccion.hidden = true; }, 2600);
+    temporizadorAviso = setTimeout(() => { avisoAccion.textContent = ''; }, 3000);
   }
 
   // FAVORITOS
@@ -126,9 +174,12 @@
       return;
     }
     actualizarContador();
-    avisar(agregado ? `${tienda.productos.get(id).nombre} añadido al carrito.` :
-      'Alcanzaste el límite de unidades para este producto.');
-    if (ventanaCarrito.open) mostrarCarrito();
+    if (!agregado) {
+      avisar('Alcanzaste el límite de unidades para este producto.');
+      return;
+    }
+    abrirCarrito();
+    estadoCarritoRapido.textContent = `${tienda.productos.get(id).nombre} se añadió al carrito.`;
   }
 
   document.querySelectorAll('[data-agregar]').forEach(boton => boton.addEventListener('click', () => {
@@ -159,6 +210,7 @@
     lista.className = 'lista-resumen';
     contenedor.replaceChildren();
     const carrito = tienda.carrito();
+    document.querySelector('#resumen-carrito-rapido').hidden = carrito.length === 0;
     let total = 0;
     if (!carrito.length) {
       const mensaje = document.createElement('p');
@@ -166,24 +218,29 @@
       mensaje.textContent = 'Tu carrito está vacío. Descubre nuestras velas y añade tus favoritas.';
       contenedor.append(mensaje);
     }
-    carrito.forEach(item => {
+    carrito.forEach((item, indice) => {
       const producto = tienda.productos.get(item.id);
       total += producto.precio * item.cantidad;
       lista.append(lineaResumen(producto.nombre,
         `${item.cantidad} × ${tienda.precio(producto.precio)}`, 'Quitar', () => {
           if (!tienda.quitarDelCarrito(item.id)) {
-            avisar('No se pudo actualizar el carrito.');
+            estadoCarritoRapido.textContent = 'No se pudo actualizar el carrito.';
             return;
           }
           actualizarContador();
           mostrarCarrito();
+          estadoCarritoRapido.textContent = `${producto.nombre} se quitó del carrito.`;
+          const botones = contenedor.querySelectorAll('.linea-resumen button');
+          (botones[Math.min(indice, botones.length - 1)] ?? ventanaCarrito.querySelector('[data-cerrar]')).focus();
         }));
+      lista.lastElementChild.querySelector('button').setAttribute('aria-label', `Quitar ${producto.nombre} del carrito`);
     });
     if (lista.childElementCount) contenedor.append(lista);
     document.querySelector('#total-carrito').textContent = tienda.precio(total);
   }
 
   function abrirCarrito() {
+    estadoCarritoRapido.textContent = '';
     mostrarCarrito();
     if (!ventanaCarrito.open) ventanaCarrito.showModal();
   }
@@ -195,11 +252,19 @@
 
   document.querySelector('#abrir-carrito').addEventListener('click', abrirCarrito);
   document.querySelector('#abrir-favoritos').addEventListener('click', () => ventanaFavoritos.showModal());
+  ventanaFavoritos.addEventListener('click', evento => {
+    if (!evento.target.closest('.explorar-favoritos')) return;
+    evento.preventDefault();
+    ventanaFavoritos.close();
+    location.hash = 'catalogo';
+    campoBusqueda.focus({ preventScroll: true });
+  });
   window.addEventListener('pageshow', actualizarCarrito);
   window.addEventListener('storage', evento => {
     if (evento.key === tienda.claveCarrito || evento.key === null) actualizarCarrito();
   });
   window.addEventListener('hashchange', () => {
+    actualizarNavegacion();
     if (location.hash === '#carrito') abrirCarrito();
   });
   if (location.hash === '#carrito') abrirCarrito();
@@ -226,5 +291,6 @@
   tienda.alCambiarFavoritos(actualizarBotonesFavoritos);
   actualizarBotonesFavoritos();
   actualizarContador();
+  actualizarNavegacion();
   filtrarProductos();
 })();
