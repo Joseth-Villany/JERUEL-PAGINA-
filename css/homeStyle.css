@@ -7,7 +7,7 @@
   --color-texto-suave: #765C58;
   --fuente-emocional: 'Great Vibes', cursive;
 
-  --ancho-contenido: 1320px;
+  --ancho-contenido: 1400px;
   --radio-pequeno: 12px;
   --radio-mediano: 20px;
   --radio-grande: 28px;
@@ -117,19 +117,20 @@ h1, h2, h3, p, figure { margin: 0; }
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   min-height: clamp(480px, 42vw, 620px);
-  width: min(calc(100% - 88px), var(--ancho-contenido));
+  width: min(calc(100% - 90px), var(--ancho-contenido));
   margin: 24px auto 0;
   overflow: hidden;
   background: var(--color-crema-calido);
   border: 1px solid var(--color-borde);
   border-radius: var(--radio-grande);
+
 }
 .texto-inicio {
   align-self: center;
   padding: clamp(2rem, 5vw, 5rem);
 }
 .foto-inicio { position: relative; min-height: 100%; background: var(--color-crema-oscuro); }
-.foto-inicio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 77% center; }
+.foto-inicio img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 100% center; }
 .texto-inicio .boton-primario { margin-top: 1.75rem; }
 .texto-superior {
   color: var(--color-rosa); text-transform: uppercase;
