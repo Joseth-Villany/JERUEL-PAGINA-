@@ -362,7 +362,7 @@ h1, h2, h3, p, figure { margin: 0; }
   .contenedor-ancho, .seccion-inicio { width: min(calc(100% - 36px), var(--ancho-contenido)); }
   .contenido-encabezado {
     min-height: 72px;
-    grid-template-areas: 'marca acciones' 'navegacion navegacion';
+    grid-template-areas: 'marca acciones';
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0 .25rem;
     padding-block: .5rem;
@@ -372,7 +372,14 @@ h1, h2, h3, p, figure { margin: 0; }
   .acciones-encabezado { gap: 0; }
   .acciones-encabezado li:has(.boton-menu) { display: block; }
   .boton-menu { display: grid; }
-  .navegacion-principal { width: 100%; display: none; }
+  .navegacion-principal {
+    display: none;
+    grid-area: auto;
+    position: absolute; inset: 100% 0 auto;
+    padding-inline: var(--margen-contenido);
+    background: var(--color-papel);
+    border-bottom: 1px solid var(--color-borde);
+  }
   .navegacion-principal[data-menu-abierto="true"] { display: block; }
   .lista-navegacion { display: grid; gap: 0; border-top: 1px solid var(--color-borde); }
   .lista-navegacion a { display: block; min-height: 44px; padding: .75rem .25rem; }

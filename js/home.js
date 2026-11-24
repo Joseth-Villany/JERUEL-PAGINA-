@@ -100,10 +100,12 @@
     campoBusqueda.focus();
   });
 
-  // MENÚ DE PANTALLAS PEQUEÑAS
+  // NAVEGACIÓN PRINCIPAL
   const botonMenu = document.querySelector('#boton-menu');
   const navegacion = document.querySelector('#navegacion-principal');
   const enlacesNavegacion = [...navegacion.querySelectorAll('a')];
+  const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let cuadroDesplazamiento;
 
   function actualizarNavegacion() {
     const actual = enlacesNavegacion.find(enlace => enlace.hash === location.hash) ?? enlacesNavegacion[0];
@@ -119,14 +121,67 @@
     botonMenu.setAttribute('aria-expanded', 'false');
     botonMenu.setAttribute('aria-label', 'Abrir menú');
   }
+
+  function detenerDesplazamiento() {
+    cancelAnimationFrame(cuadroDesplazamiento);
+  }
+
+  function desplazarASeccion(seccion) {
+    detenerDesplazamiento();
+    const origen = window.scrollY;
+    const pagina = document.documentElement;
+    const espacioEncabezado = parseFloat(getComputedStyle(pagina).scrollPaddingTop);
+    const limite = pagina.scrollHeight - pagina.clientHeight;
+    const posicionSeccion = origen + seccion.getBoundingClientRect().top - espacioEncabezado;
+    const destino = Math.max(0, Math.min(posicionSeccion, limite));
+    const distancia = destino - origen;
+
+    if (movimientoReducido.matches || Math.abs(distancia) < 1) {
+      window.scrollTo({ top: destino, behavior: 'instant' });
+      return;
+    }
+
+    const duracion = Math.min(950, 520 + Math.abs(distancia) * .12);
+    let inicio;
+    function animar(tiempo) {
+      inicio ??= tiempo;
+      const avance = Math.min((tiempo - inicio) / duracion, 1);
+      const avanceSuave = (1 - Math.cos(Math.PI * avance)) / 2;
+      window.scrollTo({ top: origen + distancia * avanceSuave, behavior: 'instant' });
+      if (avance < 1) cuadroDesplazamiento = requestAnimationFrame(animar);
+    }
+    cuadroDesplazamiento = requestAnimationFrame(animar);
+  }
+
+  function irASeccion(evento) {
+    if (evento.defaultPrevented || evento.button !== 0 || evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
+    const { hash } = evento.currentTarget;
+    const seccion = document.getElementById(hash.slice(1));
+    if (!seccion) return;
+
+    evento.preventDefault();
+    cerrarMenu();
+    if (location.hash !== hash) history.pushState(null, '', hash);
+    actualizarNavegacion();
+    seccion.focus({ preventScroll: true });
+    desplazarASeccion(seccion);
+  }
+
   botonMenu.addEventListener('click', () => {
     const abierto = navegacion.dataset.menuAbierto !== 'true';
     navegacion.dataset.menuAbierto = String(abierto);
     botonMenu.setAttribute('aria-expanded', String(abierto));
     botonMenu.setAttribute('aria-label', abierto ? 'Cerrar menú' : 'Abrir menú');
   });
-  enlacesNavegacion.forEach(enlace => enlace.addEventListener('click', cerrarMenu));
+  [...enlacesNavegacion, document.querySelector('.marca-sitio')].forEach(enlace => {
+    enlace.addEventListener('click', irASeccion);
+  });
+  window.addEventListener('wheel', detenerDesplazamiento, { passive: true });
+  window.addEventListener('pointerdown', detenerDesplazamiento, { passive: true });
   document.addEventListener('keydown', evento => {
+    if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' ', 'Tab', 'Escape'].includes(evento.key)) {
+      detenerDesplazamiento();
+    }
     if (evento.key !== 'Escape' || navegacion.dataset.menuAbierto !== 'true') return;
     cerrarMenu();
     botonMenu.focus();
@@ -264,6 +319,7 @@
     if (evento.key === tienda.claveCarrito || evento.key === null) actualizarCarrito();
   });
   window.addEventListener('hashchange', () => {
+    detenerDesplazamiento();
     actualizarNavegacion();
     if (location.hash === '#carrito') abrirCarrito();
   });
