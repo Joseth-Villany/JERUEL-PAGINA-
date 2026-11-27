@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const baseArtesanal = 'Cera de soya, manteca de cacao, manteca de karité y aceites esenciales.';
+  const baseArtesanal = 'Cera de soya, manteca de cacao y aceites esenciales.';
   const productos = new Map(Object.entries({
     chocolate: {
       nombre: 'Chocolate cremoso', precio: 15000,
