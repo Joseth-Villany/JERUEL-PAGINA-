@@ -5,18 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tu carrito | JERUEL</title>
   <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/carritoStyle.css">
   <script src="js/tienda.js" defer></script>
   <script src="js/carrito.js" defer></script>
+  <script src="js/interfaz.js" defer></script>
 </head>
 <body>
   <header class="cabecera-tienda">
     <nav class="contenedor barra-tienda" aria-label="Tienda">
-      <a class="marca" href="homeScreen.html">JERUEL</a>
+      <a class="marca enlace-marca" href="homeScreen.html"><img class="sello-marca" src="img/favicon.png" width="36" height="36" alt="">JERUEL</a>
       <ul class="enlaces">
         <li><a href="homeScreen.html#catalogo">Catálogo</a></li>
         <li><a href="perfil.html">Mi cuenta</a></li>
@@ -25,6 +23,12 @@
   </header>
 
   <main class="contenedor carrito">
+    <nav class="migas" aria-label="Ruta de navegación">
+      <ol>
+        <li><a href="homeScreen.html">Inicio</a></li>
+        <li><span aria-current="page">Carrito</span></li>
+      </ol>
+    </nav>
     <header class="cabecera-carrito">
       <h1>Tu carrito</h1>
       <p id="cantidad-carrito" hidden></p>
@@ -35,7 +39,7 @@
     <section id="carrito-con-productos" aria-label="Productos en el carrito" hidden>
       <ul class="productos" id="productos-carrito"></ul>
     </section>
-    <aside class="resumen" id="resumen-carrito" aria-labelledby="titulo-resumen" hidden>
+    <aside class="resumen" data-revelar id="resumen-carrito" aria-labelledby="titulo-resumen" hidden>
       <h2 id="titulo-resumen">Resumen del carrito</h2>
       <dl>
         <dt>Subtotal</dt><dd id="subtotal-carrito"></dd>

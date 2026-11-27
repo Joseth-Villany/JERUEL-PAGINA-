@@ -6,27 +6,24 @@
   <meta name="theme-color" content="#441E1E">
   <meta name="description" content="Inicia sesión en JERUEL, velas corporales artesanales para momentos de bienestar.">
   <title>Iniciar sesión | JERUEL</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/indexStyle.css">
   <link rel="icon" href="img/favicon.png" type="image/png">
+  <script src="js/interfaz.js" defer></script>
 </head>
 <body>
   <main class="contenedor-inicio-sesion">
     <section class="seccion-marca" aria-label="Conoce JERUEL">
       <figure class="contenedor-logo-emblema">
-        <img src="img/Velas%20artesanales%20bajo%20luz%20c%C3%A1lida%20%282%29.png"
-             alt="Velas artesanales JERUEL iluminadas con luz cálida"
+        <img src="img/indexBackground.png"
+             alt="Emblema de JERUEL sobre las velas de chocolate, frutos rojos y maracuyá"
              loading="eager" fetchpriority="high">
       </figure>
     </section>
 
     <section class="seccion-formulario" aria-labelledby="titulo-acceso">
       <header class="encabezado-formulario">
-        <p class="marca-movil" aria-hidden="true">JERUEL</p>
-        <p class="eyebrow">TU ESPACIO DE BIENESTAR</p>
+        <img class="marca-movil" src="img/logo.png" width="108" height="105" alt="JERUEL, velas corporales artesanales">
         <h1 id="titulo-acceso">Bienvenido de nuevo</h1>
         <p class="instruccion-formulario">Inicia sesión para continuar tu experiencia con JERUEL.</p>
       </header>
@@ -65,7 +62,7 @@
         </button>
       </form>
 
-      <footer class="pie-formulario">
+      <footer class="pie-formulario" data-revelar>
         <p>¿Aún no tienes una cuenta? <a href="registro.html" class="enlace-registro">Crear cuenta</a></p>
       </footer>
     </section>

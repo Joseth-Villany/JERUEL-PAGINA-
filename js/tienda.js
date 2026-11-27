@@ -1,27 +1,34 @@
 (() => {
   'use strict';
 
+  const baseArtesanal = 'Cera de soya, manteca de cacao, manteca de karité y aceites esenciales.';
   const productos = new Map(Object.entries({
-    lavanda: {
-      nombre: 'Vela Corporal Lavanda Relajante', precio: 42000, imagen: 'img/lavanda.png',
-      ambiente: 'img/lavanda2.png', variedad: 'Soya y karité', aroma: 'Lavanda',
-      resumen: 'Aceite tibio para masajes con aroma de lavanda.',
-      busqueda: 'soya karité masaje',
-      descripcion: 'Vela corporal artesanal con aroma de lavanda. Al derretirse se convierte en un aceite tibio para masajes.',
-      ingredientes: 'Cera de soya, manteca de karité, manteca de cacao, aceite esencial de lavanda y pabilo de algodón.'
+    chocolate: {
+      nombre: 'Chocolate cremoso', precio: 15000,
+      imagen: 'img/catalogo-chocolate.webp', frente: 'img/chocolate.png',
+      variedad: 'Vela corporal', aroma: 'Chocolate',
+      resumen: 'Aroma a cacao tostado con un fondo suave de chocolate con leche.',
+      descripcion: 'Primero se percibe el cacao tostado y después una nota dulce de chocolate con leche. Al fundirse, la vela se convierte en un aceite tibio para el masaje.',
+      ingredientes: baseArtesanal
     },
-    cacao: {
-      nombre: 'Vela Corporal Cacao y Vainilla', precio: 45000, imagen: 'img/cacao.png',
-      variedad: 'Manteca de cacao', aroma: 'Cacao',
-      descripcion: 'Una experiencia envolvente, de aroma dulce y cálido.'
+    frutos_rojos: {
+      nombre: 'Frutos rojos silvestres', precio: 15000,
+      imagen: 'img/catalogo-frutos-rojos.webp', frente: 'img/frutos_rojos.png',
+      variedad: 'Vela corporal', aroma: 'Frutos rojos',
+      resumen: 'La dulzura de la frambuesa se mezcla con una nota ácida de mora.',
+      descripcion: 'El aroma recuerda a frambuesas maduras y a la acidez de una mora recién cortada. La cera se funde en un aceite tibio que acompaña el masaje con ese toque frutal.',
+      ingredientes: baseArtesanal
     },
-    citricos: {
-      nombre: 'Vela Corporal Cítrica Energizante', precio: 42000, imagen: 'img/naranja.png',
-      variedad: 'Cítricos', aroma: 'Cítricos',
-      descripcion: 'Notas de naranja y bergamota para acompañar tu rutina.'
+    maracuya: {
+      nombre: 'Maracuyá tropical', precio: 15000,
+      imagen: 'img/catalogo-maracuya.webp', frente: 'img/maracuya.png',
+      variedad: 'Vela corporal', aroma: 'Maracuyá',
+      resumen: 'Una nota fresca y agridulce, como el aroma de un maracuyá al abrirlo.',
+      descripcion: 'El perfume combina la acidez del maracuyá con el dulzor de su pulpa madura. Al derretirse, la vela deja un aceite tibio de aroma tropical para el masaje.',
+      ingredientes: baseArtesanal
     },
     bosque: {
-      nombre: 'Vela Corporal Calidez del Bosque', precio: 42000, imagen: 'img/bosque1.png',
+      nombre: 'Vela Corporal Calidez del Bosque', precio: 15000, imagen: 'img/bosque1.png',
       variedad: 'Frutos rojos', aroma: 'Frutos rojos',
       descripcion: 'Un aroma frutal para disfrutar una pausa especial.'
     }

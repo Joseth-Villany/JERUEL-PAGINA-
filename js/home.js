@@ -21,7 +21,12 @@
     imagen.src = producto.imagen;
     imagen.alt = producto.nombre;
     enlaceNombre.textContent = producto.nombre;
-    tarjeta.querySelector('.ingredientes-producto').textContent = producto.variedad;
+    tarjeta.querySelector('.variedad-producto').textContent = producto.variedad;
+    if (producto.ingredientes) {
+      const ingredientes = tarjeta.querySelector('.ingredientes-producto');
+      ingredientes.querySelector('span').textContent = producto.ingredientes;
+      ingredientes.hidden = false;
+    }
     tarjeta.querySelector('.descripcion-producto').textContent = producto.resumen ?? producto.descripcion;
     const precio = tarjeta.querySelector('.precio-producto');
     precio.value = producto.precio;
@@ -77,7 +82,7 @@
     tarjetas.forEach(tarjeta => {
       const producto = tienda.productos.get(tarjeta.dataset.id);
       const coincideCategoria = categoriaActual === 'todas' || producto.aroma === categoriaActual;
-      const palabras = normalizar([producto.nombre, producto.aroma, producto.variedad, producto.descripcion, producto.busqueda].join(' '));
+      const palabras = normalizar([producto.nombre, producto.aroma, producto.variedad, producto.resumen, producto.descripcion, producto.ingredientes].join(' '));
       const coincideBusqueda = texto.split(/\s+/).every(palabra => palabras.includes(palabra));
       const mostrar = coincideCategoria && coincideBusqueda;
       tarjeta.hidden = !mostrar;

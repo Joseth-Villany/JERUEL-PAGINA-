@@ -12,9 +12,9 @@
   }
 
   const ejemplos = [
-    ['JR-1044', '2026-11-18', 'pendiente', 'lavanda', 2, 'nequi'],
-    ['JR-1043', '2026-11-12', 'pagado', 'cacao', 1, 'pse'],
-    ['JR-1042', '2026-11-06', 'camino', 'citricos', 2, 'tarjeta'],
+    ['JR-1044', '2026-11-18', 'pendiente', 'chocolate', 2, 'nequi'],
+    ['JR-1043', '2026-11-12', 'pagado', 'frutos_rojos', 1, 'pse'],
+    ['JR-1042', '2026-11-06', 'camino', 'maracuya', 2, 'tarjeta'],
     ['JR-1041', '2026-10-29', 'entregado', 'bosque', 1, 'tarjeta']
   ].map(([id, fecha, estado, producto, cantidad, medio]) => ({
     id, fecha, estado, medio, envio: 8000,

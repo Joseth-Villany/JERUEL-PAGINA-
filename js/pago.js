@@ -5,6 +5,9 @@
   const buscar = id => document.getElementById(id);
   const consulta = new URLSearchParams(location.search);
   if (consulta.get('vista') === 'cuenta' && !consulta.has('pedido')) {
+    buscar('volver-compra').href = 'perfil.html';
+    buscar('volver-compra').textContent = 'Mi cuenta';
+    buscar('miga-actual').textContent = 'Métodos de pago';
     buscar('titulo-compra').textContent = 'Métodos de pago';
     buscar('vista-cuenta').hidden = false;
     return;
@@ -32,8 +35,9 @@
   document.title = 'Finalizar compra | JERUEL';
   buscar('vista-compra').hidden = false;
   if (esHistorial) {
+    buscar('miga-cuenta-pago').hidden = false;
     buscar('volver-compra').href = 'perfil.html#pedidos';
-    buscar('volver-compra').textContent = 'Volver a mis pedidos';
+    buscar('volver-compra').textContent = 'Mis pedidos';
     if (!pedido || pedido.estado !== 'pendiente') {
       buscar('titulo-vacio').textContent = pedido ? 'Este pedido ya fue procesado' : 'Pedido no encontrado';
       buscar('texto-vacio-pago').textContent = 'Consulta el historial para elegir un pedido pendiente.';
@@ -52,7 +56,10 @@
     for (const indicador of indicadores) {
       const actual = indicador.dataset.paso === paso;
       buscar('paso-' + indicador.dataset.paso).hidden = !actual;
-      if (actual) indicador.setAttribute('aria-current', 'step');
+      if (actual) {
+        indicador.setAttribute('aria-current', 'step');
+        buscar('miga-actual').textContent = indicador.textContent;
+      }
       else indicador.removeAttribute('aria-current');
     }
     buscar('resumen-pago').hidden = paso === 'confirmacion';
@@ -87,7 +94,11 @@
     const tienePedido = Boolean(pedido?.items.length);
     buscar('flujo-compra').hidden = !tienePedido;
     buscar('carrito-vacio-pago').hidden = tienePedido;
-    if (!tienePedido) return;
+    if (!tienePedido) {
+      buscar('miga-actual').textContent = 'Finalizar compra';
+      return;
+    }
+    buscar('miga-actual').textContent = indicadores.find(indicador => indicador.dataset.paso === etapa).textContent;
     const lista = buscar('articulos-pago');
     lista.replaceChildren();
     for (const item of pedido.items) {

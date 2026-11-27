@@ -3,15 +3,17 @@
 
   const tienda = window.Jeruel;
   const buscar = id => document.getElementById(id);
-  const id = new URLSearchParams(window.location.search).get('producto') ?? 'lavanda';
+  const id = new URLSearchParams(window.location.search).get('producto') ?? tienda.productos.keys().next().value;
   const producto = tienda.productos.get(id);
 
   if (!producto) {
+    buscar('miga-actual').textContent = 'Producto no encontrado';
     buscar('producto-no-disponible').hidden = false;
     return;
   }
 
   document.title = `${producto.nombre} | JERUEL`;
+  buscar('miga-actual').textContent = producto.nombre;
   buscar('nombre-producto').textContent = producto.nombre;
   buscar('variedad-producto').textContent = producto.variedad;
   buscar('precio-producto').value = producto.precio;
@@ -24,11 +26,11 @@
 
   const foto = buscar('imagen-producto');
   const miniaturas = buscar('miniaturas');
-  foto.src = producto.ambiente ?? producto.imagen;
-  foto.alt = producto.ambiente ? producto.nombre + ' en una escena de cuidado corporal' : producto.nombre;
+  foto.src = producto.imagen;
+  foto.alt = producto.nombre;
 
-  if (producto.ambiente) {
-    [[producto.ambiente, 'Vista ambientada', foto.alt], [producto.imagen, 'Vista de frente', producto.nombre]].forEach(
+  if (producto.frente) {
+    [[producto.imagen, 'Vista ambientada', foto.alt], [producto.frente, 'Detalle del envase', producto.nombre + ', vista frontal del envase']].forEach(
       ([ruta, etiqueta, descripcion], indice) => {
         const boton = document.createElement('button');
         boton.type = 'button';

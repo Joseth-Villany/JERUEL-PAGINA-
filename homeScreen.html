@@ -7,15 +7,13 @@
   <meta name="description" content="Conoce las velas corporales artesanales JERUEL, creadas para convertir los momentos cotidianos en rituales de bienestar y cuidado personal.">
   <title>JERUEL | Velas corporales artesanales</title>
   <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/homeStyle.css">
   <link rel="stylesheet" href="css/favoritosStyle.css">
   <script src="js/tienda.js" defer></script>
   <script src="js/favoritos.js" defer></script>
   <script src="js/home.js" defer></script>
+  <script src="js/interfaz.js" defer></script>
 </head>
 <body>
   <a class="enlace-saltar" href="#contenido-principal">Saltar al contenido principal</a>
@@ -23,8 +21,9 @@
   <!-- ENCABEZADO -->
   <header class="encabezado-sitio contenido-encabezado">
     <a class="marca-sitio" href="#inicio" aria-label="JERUEL, ir al inicio">
-      <strong class="nombre-marca">JERUEL</strong>
-      <small class="descripcion-marca">Velas corporales artesanales</small>
+      
+      <span class="texto-marca"><strong class="nombre-marca">JERUEL</strong>
+        <small class="descripcion-marca">Velas corporales artesanales</small></span>
     </a>
 
     <nav id="navegacion-principal" class="navegacion-principal" aria-label="Navegación principal" data-menu-abierto="false">
@@ -65,13 +64,22 @@
         <a class="boton-primario" href="#catalogo">Descubrir colección</a>
       </header>
       <figure class="foto-inicio">
-        <img src="img/background3.png" width="1672" height="941" alt="Colección de velas corporales JERUEL sobre tela e iluminación cálida" fetchpriority="high">
+        <picture>
+          <source media="(max-width: 700px)" srcset="img/background3.png">
+          <img src="img/background4.png" width="1536" height="864" alt="Velas JERUEL de chocolate, frutos rojos y maracuyá en frascos de vidrio con tapa dorada" fetchpriority="high">
+        </picture>
       </figure>
     </section>
 
     <!-- CATÁLOGO -->
     <section id="catalogo" class="seccion-catalogo contenedor-ancho" aria-labelledby="titulo-catalogo" tabindex="-1">
-      <header class="encabezado-seccion">
+      <nav class="migas" aria-label="Ruta de navegación">
+        <ol>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><span aria-current="page">Catálogo</span></li>
+        </ol>
+      </nav>
+      <header class="encabezado-seccion" data-revelar>
         <h2 id="titulo-catalogo">Nuestras velas</h2>
         <p>Explora la colección por aroma.</p>
       </header>
@@ -94,7 +102,7 @@
       <noscript><p>Activa JavaScript para explorar el catálogo y el carrito.</p></noscript>
 
       <template id="plantilla-tarjeta">
-        <li class="tarjeta-producto">
+        <li class="tarjeta-producto" data-revelar>
           <figure class="imagen-producto">
             <a class="enlace-imagen-producto" tabindex="-1"><img alt="" loading="lazy" decoding="async"></a>
             <button class="boton-favorito" type="button" aria-pressed="false">
@@ -102,9 +110,10 @@
             </button>
           </figure>
           <div class="informacion-producto">
-            <p class="ingredientes-producto"></p>
+            <p class="variedad-producto"></p>
             <h3><a></a></h3>
             <p class="descripcion-producto"></p>
+            <p class="ingredientes-producto" hidden><strong>Ingredientes de base</strong> <span></span></p>
             <footer class="pie-producto">
               <data class="precio-producto"></data>
               <button class="boton-agregar" type="button">Agregar</button>
@@ -122,23 +131,23 @@
 
     <!-- VALORES DE LA MARCA -->
     <section id="beneficios" class="seccion-beneficios" aria-labelledby="titulo-beneficios">
-      <header class="encabezado-seccion contenedor-ancho">
+      <header class="encabezado-seccion contenedor-ancho" data-revelar>
         <p class="texto-superior">La esencia de JERUEL</p>
         <h2 id="titulo-beneficios">Pequeños detalles que se sienten</h2>
         <p>Una propuesta artesanal que une aromas, cuidado y momentos de conexión.</p>
       </header>
       <ul class="lista-beneficios contenedor-ancho">
-        <li class="beneficio">
+        <li class="beneficio" data-revelar>
           <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-7-4.1-7-9V5l7-3 7 3v7c0 4.9-7 9-7 9Z"/><path d="m9 12 2 2 4-4"/></svg>
           <h3>Cuidado corporal</h3>
           <p>Una vela que se convierte en aceite tibio para complementar tu ritual de masaje.</p>
         </li>
-        <li class="beneficio">
+        <li class="beneficio" data-revelar>
           <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 21s-9-5.8-9-11.5a5 5 0 0 1 9-3 5 5 0 0 1 9 3C21 15.2 12 21 12 21Z"/></svg>
           <h3>Elaboración artesanal</h3>
           <p>Productos hechos a mano, con atención en los detalles de cada experiencia.</p>
         </li>
-        <li class="beneficio">
+        <li class="beneficio" data-revelar>
           <svg class="icono-beneficio" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 22v-6M8 16h8M7 11c0-2.5 5-9 5-9s5 6.5 5 9a5 5 0 0 1-10 0Z"/></svg>
           <h3>Experiencia sensorial</h3>
           <p>Aromas y texturas pensados para acompañar pausas de bienestar y conexión.</p>
@@ -147,20 +156,20 @@
     </section>
 
     <section id="ritual" class="seccion-ritual" aria-labelledby="titulo-ritual" tabindex="-1">
-      <div class="contenedor-ancho contenido-ritual">
-        <figure class="foto-ritual">
-          <img src="img/citrico.png" width="1536" height="1024" alt="Vela corporal de lavanda encendida junto a toallas y flores" loading="lazy" decoding="async">
+      <section class="contenedor-ancho contenido-ritual">
+        <figure class="foto-ritual" data-revelar>
+          <img src="img/fondoProductos.png" width="1180" height="885" alt="Vela corporal de maracuyá encendida, con la tapa dorada a un lado" loading="lazy" decoding="async">
         </figure>
-        <div class="introduccion-ritual">
+        <section class="introduccion-ritual" data-revelar>
           <h2 id="titulo-ritual">De vela a aceite de masaje</h2>
           <p>Sigue siempre las indicaciones de uso de tu vela.</p>
-          <div class="pasos-ritual">
+          <section class="pasos-ritual">
             <details name="ritual" open><summary>Enciende la vela</summary><p>Disfruta la luz y el aroma de la vela.</p></details>
             <details name="ritual"><summary>Deja que se derrita</summary><p>Espera a que se forme una pequeña cantidad de aceite.</p></details>
             <details name="ritual"><summary>Apaga y comprueba</summary><p>Apaga la llama y verifica que la temperatura sea adecuada antes de aplicarlo.</p></details>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </section>
     </section>
 
     <!-- HISTORIA, SIN TESTIMONIOS INVENTADOS -->
@@ -169,7 +178,7 @@
         <p class="texto-superior">Más que una vela</p>
         <h2 id="titulo-nosotros">JERUEL nace de la idea de <em>iluminar momentos de amor y cuidado.</em></h2>
       </header>
-      <section class="descripcion-nosotros" aria-label="Nuestra esencia">
+      <section class="descripcion-nosotros" data-revelar aria-label="Nuestra esencia">
         <p>Creemos que el bienestar también vive en los gestos sencillos. Por eso, nuestras velas corporales artesanales invitan a detenerse, reconectar y compartir una experiencia cálida y sensorial.</p>
         <p class="firma-nosotros">Inspirado en el amor que ilumina nuestras vidas</p>
       </section>

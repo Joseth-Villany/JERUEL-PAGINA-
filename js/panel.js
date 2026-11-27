@@ -53,14 +53,17 @@
     );
     const lista = buscar('lista-pedidos');
     lista.replaceChildren();
+    const destacado = resultados.find(pedido => pedido.estado === 'pendiente') ?? resultados[0];
     for (const pedido of resultados) {
       const fila = elemento('tr');
       const numero = elemento('th', pedido.id);
       numero.scope = 'row';
       fila.append(numero);
       const acciones = elemento('div', undefined, 'acciones');
-      acciones.append(enlace('Ver detalle', '#pedido/' + pedido.id));
-      if (pedido.estado === 'pendiente') acciones.append(enlace('Pagar ahora', 'metodosPago.html?pedido=' + pedido.id, 'boton primario'));
+      const pendiente = pedido.estado === 'pendiente';
+      const estilo = pedido === destacado ? 'boton primario' : 'boton secundario';
+      acciones.append(enlace('Ver detalle', '#pedido/' + pedido.id, pendiente ? 'boton secundario' : estilo));
+      if (pendiente) acciones.append(enlace('Pagar ahora', 'metodosPago.html?pedido=' + pedido.id, estilo));
       for (const [titulo, contenido] of [
         ['Fecha', fechaHTML(pedido.fecha)], ['Estado', etiquetaEstado(pedido.estado)],
         ['Total', precio(tienda.total(pedido))], ['Acción', acciones]
@@ -151,6 +154,9 @@
     const pedido = hash.startsWith('pedido/') ? hash.slice(7) : '';
     const vista = pedido ? 'detalle-pedido' : enlaces.some(item => item.hash.slice(1) === hash) ? hash : 'resumen';
     if (pedido) mostrarDetalle(pedido);
+    buscar('miga-perfil').hidden = vista === 'resumen';
+    buscar('miga-pedidos').hidden = !pedido;
+    buscar('miga-actual').textContent = vista === 'resumen' ? 'Mi cuenta' : buscar(vista).querySelector('h2').textContent;
     for (const seccion of secciones) seccion.hidden = seccion.id !== vista;
     for (const item of enlaces) {
       if (item.hash.slice(1) === (pedido ? 'pedidos' : vista)) item.setAttribute('aria-current', 'location');

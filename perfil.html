@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mi cuenta | JERUEL</title>
   <link rel="icon" href="img/favicon.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/identidad.css">
   <link rel="stylesheet" href="css/perfilStyle.css">
   <link rel="stylesheet" href="css/favoritosStyle.css">
@@ -17,16 +14,25 @@
   <script src="js/cuenta.js" defer></script>
   <script src="js/perfil.js" defer></script>
   <script src="js/panel.js" defer></script>
+  <script src="js/interfaz.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
   <header class="cabecera-tienda">
     <nav class="contenedor barra-tienda" aria-label="Tienda">
-      <a class="marca" href="homeScreen.html">JERUEL</a>
+      <a class="marca enlace-marca" href="homeScreen.html"><img class="sello-marca" src="img/favicon.png" width="36" height="36" alt="">JERUEL</a>
       <a href="homeScreen.html#catalogo">← Volver al catálogo</a>
     </nav>
   </header>
   <main class="contenedor cuenta" id="contenido">
+    <nav class="migas" aria-label="Ruta de navegación">
+      <ol>
+        <li><a href="homeScreen.html">Inicio</a></li>
+        <li id="miga-perfil" hidden><a href="#resumen">Mi cuenta</a></li>
+        <li id="miga-pedidos" hidden><a href="#pedidos">Mis pedidos</a></li>
+        <li><span id="miga-actual" aria-current="page">Mi cuenta</span></li>
+      </ol>
+    </nav>
     <header class="cabecera-cuenta">
       <figure class="avatar" aria-hidden="true"><img id="foto-perfil" src="img/favicon.png" alt="" hidden><figcaption id="iniciales">J</figcaption></figure>
       <hgroup class="titulo-cuenta">
@@ -55,16 +61,16 @@
       </nav>
     </details>
     <div class="contenido-cuenta">
-    <section class="tarjeta" id="resumen" aria-labelledby="titulo-resumen" hidden>
+    <section class="tarjeta" data-revelar id="resumen" aria-labelledby="titulo-resumen" hidden>
       <h2 id="titulo-resumen" tabindex="-1">Resumen de cuenta</h2>
       <dl class="indicadores"><div><dt>Pedidos</dt><dd id="cuenta-pedidos"></dd></div><div><dt>Favoritos</dt><dd id="cuenta-favoritos"></dd></div><div><dt>Direcciones</dt><dd id="cuenta-direcciones"></dd></div></dl>
-      <section class="destacado-cuenta" aria-labelledby="titulo-ultimo"><h3 id="titulo-ultimo">Último pedido</h3><p id="ultimo-pedido"></p><a class="boton primario" id="ir-a-pedidos" href="#pedidos">Ver mis pedidos</a></section>
+      <section class="destacado-cuenta" data-revelar aria-labelledby="titulo-ultimo"><h3 id="titulo-ultimo">Último pedido</h3><p id="ultimo-pedido"></p><a class="boton primario" id="ir-a-pedidos" href="#pedidos">Ver mis pedidos</a></section>
       <p class="acciones"><a class="boton secundario" href="#datos-personales">Editar mis datos</a><a class="boton secundario" href="#velas-favoritas">Ver favoritos</a></p>
     </section>
-    <section class="tarjeta" id="datos-personales" aria-labelledby="titulo-datos" tabindex="-1">
+    <section class="tarjeta" data-revelar id="datos-personales" aria-labelledby="titulo-datos" tabindex="-1">
       <header class="encabezado-seccion">
         <h2 id="titulo-datos" tabindex="-1">Datos personales</h2>
-        <button class="boton secundario" type="button" id="editar-datos">Editar datos</button>
+        <button class="boton primario" type="button" id="editar-datos">Editar datos</button>
       </header>
       <ul class="datos" id="datos-guardados" role="list">
         <li><dl><dt>Nombre</dt><dd id="dato-nombre">Sin agregar</dd></dl></li>
@@ -96,11 +102,11 @@
       <p id="estado-datos" class="estado" role="status"></p>
     </section>
 
-    <section class="tarjeta" id="pedidos" aria-labelledby="titulo-pedidos" hidden>
+    <section class="tarjeta" data-revelar id="pedidos" aria-labelledby="titulo-pedidos" hidden>
       <h2 id="titulo-pedidos" tabindex="-1">Mis pedidos</h2>
       <p>Consulta el estado y los detalles de tus compras de prueba.</p>
       <div class="filtros-pedidos formulario">
-        <label for="buscar-pedidos">Número o producto</label><input id="buscar-pedidos" type="search" placeholder="Ej. JR-1044 o lavanda">
+        <label for="buscar-pedidos">Número o producto</label><input id="buscar-pedidos" type="search" placeholder="Ej. JR-1044 o chocolate">
         <label for="filtrar-pedidos">Estado</label><select id="filtrar-pedidos"><option value="">Todos los estados</option><option value="pendiente">Pendiente de pago</option><option value="pagado">Pagado</option><option value="camino">En camino</option><option value="entregado">Entregado</option></select>
       </div>
       <p id="resultados-pedidos" role="status"></p>
@@ -111,12 +117,12 @@
       </table>
       <div id="pedidos-vacios" class="estado-vacio" hidden><p>No encontramos pedidos. Cambia el filtro o explora la colección.</p><button class="boton secundario" type="button" id="limpiar-pedidos">Limpiar filtros</button> <a class="boton primario" href="homeScreen.html#catalogo">Explorar el catálogo</a></div>
     </section>
-    <section class="tarjeta" id="detalle-pedido" aria-labelledby="titulo-detalle" hidden>
+    <section class="tarjeta" data-revelar id="detalle-pedido" aria-labelledby="titulo-detalle" hidden>
       <a class="enlace-boton" href="#pedidos">Volver a mis pedidos</a>
       <h2 id="titulo-detalle" tabindex="-1">Detalle del pedido</h2>
       <div id="contenido-pedido"></div>
     </section>
-    <section class="tarjeta" id="velas-favoritas" aria-labelledby="titulo-favoritos" tabindex="-1">
+    <section class="tarjeta" data-revelar id="velas-favoritas" aria-labelledby="titulo-favoritos" tabindex="-1">
       <h2 id="titulo-favoritos" tabindex="-1">Velas favoritas</h2>
       <section aria-label="Productos guardados" data-lista-favoritos data-permitir-compra></section>
       <form class="formulario" id="formulario-favorito">
@@ -127,11 +133,11 @@
       <p id="estado-favorito" role="status"></p>
     </section>
 
-    <section class="tarjeta" id="direcciones-y-pagos" aria-labelledby="titulo-direcciones" tabindex="-1">
+    <section class="tarjeta" data-revelar id="direcciones-y-pagos" aria-labelledby="titulo-direcciones" tabindex="-1">
       <h2 id="titulo-direcciones" tabindex="-1">Direcciones de envío</h2>
       <header class="encabezado-seccion">
         <h3 id="titulo-lista-direcciones">Direcciones</h3>
-        <button id="agregar-direccion" type="button" class="boton secundario">Agregar dirección</button>
+        <button id="agregar-direccion" type="button" class="boton primario">Agregar dirección</button>
       </header>
       <p id="direcciones-vacias" hidden>Aún no has guardado direcciones.</p>
       <ul id="direcciones-guardadas" role="list" aria-labelledby="titulo-lista-direcciones" hidden></ul>
@@ -157,12 +163,12 @@
       </form>
       <p id="estado-direcciones" class="estado" role="status"></p>
     </section>
-    <section class="tarjeta" id="medios-pago" aria-labelledby="titulo-medios-pago" hidden>
+    <section class="tarjeta" data-revelar id="medios-pago" aria-labelledby="titulo-medios-pago" hidden>
       <h2 id="titulo-medios-pago" tabindex="-1">Medios de pago</h2>
       <p>Guarda referencias de prueba para tarjeta, PSE o Nequi.</p>
       <ul id="lista-medios" class="lista-cuenta"></ul>
       <p id="medios-vacios" class="estado-vacio">Aún no has guardado medios de pago de prueba.</p>
-      <button type="button" class="boton secundario" id="agregar-medio">Agregar medio de pago</button>
+      <button type="button" class="boton primario" id="agregar-medio">Agregar medio de pago</button>
       <form id="formulario-medio" class="formulario" hidden>
         <label for="tipo-medio">Método</label><select id="tipo-medio"><option value="tarjeta">Tarjeta</option><option value="pse">PSE</option><option value="nequi">Nequi</option></select>
         <label for="referencia-medio">Referencia de prueba</label><select id="referencia-medio" required><option value="">Selecciona una referencia</option></select>
@@ -171,7 +177,7 @@
       </form>
       <p id="estado-medios" role="status"></p>
     </section>
-    <section class="tarjeta" id="seguridad" aria-labelledby="titulo-seguridad" hidden>
+    <section class="tarjeta" data-revelar id="seguridad" aria-labelledby="titulo-seguridad" hidden>
       <h2 id="titulo-seguridad" tabindex="-1">Seguridad y privacidad</h2>
       <p>Controles de demostración para esta sesión local.</p>
       <form class="formulario" id="formulario-seguridad"><label class="opcion"><input type="checkbox" role="switch" id="verificacion"> Verificación en dos pasos</label></form>
@@ -185,7 +191,7 @@
       <p id="estado-seguridad" role="status"></p>
       <button class="boton peligro" id="eliminar-cuenta" type="button">Eliminar cuenta local</button>
     </section>
-    <section class="tarjeta" id="preferencias" aria-labelledby="titulo-preferencias" hidden>
+    <section class="tarjeta" data-revelar id="preferencias" aria-labelledby="titulo-preferencias" hidden>
       <h2 id="titulo-preferencias" tabindex="-1">Notificaciones y preferencias</h2>
       <p>Elige qué avisos recibirías en la tienda.</p>
       <form class="formulario" id="formulario-preferencias">
@@ -195,7 +201,7 @@
         <label class="opcion"><input type="checkbox" role="switch" name="pedidos"> Estado de pedidos</label>
       </form><p id="estado-preferencias" role="status"></p>
     </section>
-    <section class="tarjeta" id="ayuda" aria-labelledby="titulo-ayuda" hidden>
+    <section class="tarjeta" data-revelar id="ayuda" aria-labelledby="titulo-ayuda" hidden>
       <h2 id="titulo-ayuda" tabindex="-1">Soporte y ayuda</h2>
       <details><summary>¿Dónde veo el estado de un pedido?</summary><p>Abre <a href="#pedidos">Mis pedidos</a> y elige «Ver detalle».</p></details>
       <details><summary>¿Se hará un cobro?</summary><p>Los pagos de esta tienda son simulados. El historial muestra únicamente pedidos de prueba.</p></details>
